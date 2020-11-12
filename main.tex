@@ -1,0 +1,125 @@
+\documentclass[a4paper,12pt,twoside]{report}
+\linespread{1.5}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{a4paper,top=3cm,bottom=3cm,left=3cm,right=3cm,heightrounded,bindingoffset=5mm}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage{empheq}
+\usepackage{tikz}
+\usepackage{url}
+\usepackage{diagbox}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+\usepackage{graphicx}% http://ctan.org/pkg/graphicx
+\usepackage{array}% http://ctan.org/pkg/array
+\usepackage{multirow}
+\usepackage{adjustbox}
+
+\newcolumntype{R}[2]{%
+	>{\adjustbox{angle=#1,lap=\width-(#2)}\bgroup}%
+	l%
+	<{\egroup}%
+}
+
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{booktabs}
+\graphicspath{{images_folder/}{../images_folder/}}
+\usepackage{fancyhdr}
+
+
+\usepackage{subfiles} % Best loaded last in the preamble
+
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Master Theisis in Mechatronic Enigneering }
+\lhead{Alessandro Panini}
+\cfoot{\thepage}
+
+\title{\textbf{MAster Thesisi Alessandro Panini}}
+\date{}
+\author{Alessandro Panini}
+
+
+\newcommand*{\plogo}{\Huge \fbox{LOGO}}
+\newlength{\drop}% for my convenience
+\setlength{\drop}{1em}
+\newcommand*{\titleSal}%
+{
+	\begin{center}  
+		\begingroup
+		{\Large\bfseries\rmfamily\scshape Universit\'a degli Studi di Modena e Reggio Emilia}\\
+		{\Large\bfseries\rmfamily\scshape Dipartimento di Scienze e Metodi dell'Ingegneria }\\[\baselineskip]
+		\vspace*{1cm}
+		\vspace*{\drop}
+		{\Large\bfseries\rmfamily\scshape Corso di Laurea in Ingegneria Meccatronica}\\[\baselineskip]
+		\vspace*{\drop}
+		
+		\vspace*{3cm}
+		
+		\linespread{3}
+		{\LARGE\bfseries\rmfamily BUSINESS INTELLIGENCE APPLICATION FOR THE SOFTWARE DEVELOPMENT}\\
+		\vspace*{4cm}
+		
+	\end{center}
+	\vspace*{2cm}   
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft}
+			{\small\bfseries Advisor}\\
+			{\bfseries\itshape Prof. Andrea SPAGGIARI }
+			{\small\bfseries Co-Advisor}\\
+			{\bfseries\itshape Prof. Marco Lippi }
+		\end{flushleft}
+	\end{minipage}
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushright} 
+			{\bfseries\small Student:}\\
+			{\bfseries\itshape Alessandro PANINI}
+		\end{flushright}
+	\end{minipage}  
+	\vfill
+	
+	{\large\bfseries\rmfamily ACADEMIC YEAR 2019-2020}
+	
+	\endgroup
+}
+
+
+\begin{document}
+\pagenumbering{gobble}
+	
+\titleSal
+\pagestyle{plain}
+
+\newcommand*\rot{\multicolumn{1}{R{45}{1em}}}
+
+	
+	\newpage
+	
+	\pagenumbering{arabic}
+	
+	\tableofcontents
+	
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+\subfile{Introduction/Introduction}
+
+	
+		
+		
+\cleardoublepage
+\chapter{Sistema matematico sospensione}
+\section{Analisi sistema a singolo grado di libert\'a}
+
+\begin{thebibliography}{9}
+	
+	\bibitem{Costruzione_di_macchine} 
+	Eugenio Dragoni. 
+	\textit{Lezione di costruzione di macchine}.
+	Pitagora Editrice Bologna, 2007.
+	
+\end{thebibliography}
+\end{document}
