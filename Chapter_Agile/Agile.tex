@@ -35,6 +35,8 @@ The proponents of the Manifest found them self in a situation in which no softwa
 
 
 % \resizebox{\textwidth}{7cm}{
+\begin{figure}
+\centering
     \begin{tikzpicture}[>=stealth]
       \node[phase]                       (requirements) {\small Requirements};
       \node[phase,previous=requirements] (design)       {\small Design};
@@ -46,7 +48,11 @@ The proponents of the Manifest found them self in a situation in which no softwa
       \connecttw{coding}{integration};
       \connecttw{integration}{operation};
     \end{tikzpicture}
-    
+\caption{Agile model}
+\end{figure}
+
+\begin{figure}
+\centering
     \begin{tikzpicture}[>=stealth]
      \node[phase]                       (requirements)  {\small Requirements};
       \node[phase,previous=requirements] (design)       {\small Design};
@@ -58,6 +64,8 @@ The proponents of the Manifest found them self in a situation in which no softwa
       \connectow{coding}{integration};
       \connectow{integration}{operation};
     \end{tikzpicture}
+\caption{Waterfall model}
+\end{figure}
 % }
 \section{Scrum}
 \subsection{Scrum Process}
