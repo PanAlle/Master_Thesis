@@ -1,4 +1,17 @@
 \documentclass[../main.tex]{subfiles}
+
+\tikzset
+  {phase/.style={draw,minimum width=2.5cm,minimum height=1.5cm,align=center}
+  ,previous/.style={below right=0.5cm of #1}
+  }
+\newcommand\connecttw[2]%
+  {\draw[->,thick] (#1) -| (#2);
+   \draw[->,thick] (#2) -| (#1);
+  }
+\newcommand\connectow[2]%
+  {\draw[thick, ->] (#1) |- (#2);
+  }
+
 \begin{document}
 The following chapter introduces the Agile philosophy, including a comparison with traditional waterfall methods. The chapter then continues with the definition of Scrum methodology, giving a overview of the tools, processes and roles related to it.\\
 The focus is going to be mainly software related, as those method originated as a way to efficiently develop software projects.
@@ -18,6 +31,34 @@ Project Mercury, the first human spaceflight program of the United States, used 
 \section{Agile Manifesto}
 The influences continued until a real theorizing was made in 2001 by software developer that, tired of inefficient way to develop software theorized all under the slogan "\textit{We are uncovering better ways of developing software by doing it and helping others do it}". \\
 The proponents of the Manifest found them self in a situation in which no software development methodology or techniques enabled them to succeed in a constant manner. As reported \citet{schmidt2013software} the Manifesto was to established a guild surrounding a set of principles for software development based on rapid prototyping, incremental product delivery, and absolutely no product design. They, as developer, 
+\subsection{Agile vs Waterfall methodology}
+
+
+% \resizebox{\textwidth}{7cm}{
+    \begin{tikzpicture}[>=stealth]
+      \node[phase]                       (requirements) {\small Requirements};
+      \node[phase,previous=requirements] (design)       {\small Design};
+      \node[phase,previous=design]       (coding)       {\small Coding and\\unit test};
+      \node[phase,previous=coding]       (integration)  {\small System\\integration};
+      \node[phase,previous=integration]  (operation)    {\small Operation and\\maintenance};
+      \connecttw{requirements}{design};
+      \connecttw{design}{coding};
+      \connecttw{coding}{integration};
+      \connecttw{integration}{operation};
+    \end{tikzpicture}
+    
+    \begin{tikzpicture}[>=stealth]
+     \node[phase]                       (requirements)  {\small Requirements};
+      \node[phase,previous=requirements] (design)       {\small Design};
+      \node[phase,previous=design]       (coding)       {\small Coding and\\unit test};
+      \node[phase,previous=coding]       (integration)  {\small System\\integration};
+      \node[phase,previous=integration]  (operation)    {\small Operation and\\maintenance};
+      \connectow{requirements}{design};
+      \connectow{design}{coding};
+      \connectow{coding}{integration};
+      \connectow{integration}{operation};
+    \end{tikzpicture}
+% }
 \section{Scrum}
 \subsection{Scrum Process}
 \subsection{Scrum tools}
