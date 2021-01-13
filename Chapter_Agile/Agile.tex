@@ -29,8 +29,43 @@ Bell Labs, one of the center that provided the greatest innovation in recent his
 Tanks to the success the next step for IID was to flood military projects. Iterative approaches were used in the development of the X-15 hyper-sonic jet in which the "Agile like" practices contributed majorly to its success.\\ Post war IDD experience and experts arrived at NASA, which in the 60´was US government top priority with the ongoing cold war.\\
 Project Mercury, the first human spaceflight program of the United States, used short half day iterations. The development team performed technical review of all the changes, and applied a super early version of Extreme Programming practice of "test first" development. This consist in writing test before each micro increment. They also applied top-down development with the usage of stubs. Stubs simulate the behaviour of code or is used as a substitute to yet-to-be-developed code.\\ 
 \section{Agile Manifesto}
-The influences continued until a real theorizing was made in 2001 by software developer that, tired of inefficient way to develop software theorized all under the slogan "\textit{We are uncovering better ways of developing software by doing it and helping others do it}". \\
-The proponents of the Manifest found them self in a situation in which no software development methodology or techniques enabled them to succeed in a constant manner. As reported \citet{schmidt2013software} the Manifesto was to established a guild surrounding a set of principles for software development based on rapid prototyping, incremental product delivery, and absolutely no product design. They, as developer, 
+The influences continued until a real theorizing was made in 2001 by software developer that, tired of inefficient way to develop software summed all up under the slogan "\textit{We are uncovering better ways of developing software by doing it and helping others do it}". \\
+The proponents of the Manifest found them self in a situation in which no software development methodology or techniques enabled them to succeed in a constant manner. As reported \citet{schmidt2013software} the Manifesto was to established a guild surrounding a set of principles for software development based on rapid prototyping, incremental product delivery, and absolutely no product design. The Manifesto highlighted 4 values:
+\begin{itemize}
+    \item \textit{individuals and interactions over processes and tools.}
+    \item \textit{working software over comprehensive documentation.}
+    \item \textit{customer collaboration over contract negotiation.}
+    \item \textit{responding to change over following a plan.}
+\end{itemize}
+
+\paragraph{Individuals and interactions over processes and tools}
+One of Agile goals is the one to enhance the communications inside teams. With this principle this goal is underlined. The importance of having good interactions between the team members surpass the focus of having high-tech tools or complex processes. \\
+The main problem with tools and process is that they push towards a certain conformity. 
+Conformity makes it hard to accommodate new ideas, requirements and way of thinking. 
+Other than that the more robust a process or a tool is, the more time it require to "translate" everything in order to fit it. 
+Agile stays human-centric and team focused. Every member need to be an active participants. 
+\paragraph{Working software over comprehensive documentation}
+One of the flaws of waterfall method is that can happen that a working software version arrives when the initial requirements are already outdated. To criticize this mechanism it´s important to deeply working software as soon as possible during the development process. Having a working product as early as possible is also use full for getting customer feedback on it, as the next values will underline. 
+It´s important to state that documentation don´t need to be completely left out but it´s important to focus more on what´s important and what´s not in terms of documentation artifacts. Documentation requires indeed not only a lot of time to be set up, but also to be maintained. 
+\paragraph{Customer collaboration over contract negotiation}
+This value stresses the importance of encouraging customer and developer team collaboration over the product, other than seeing each other as adversaries in the contract negotiation part.
+Creating a strong customer relationship translates to more frequent and accurate customer feedback. The more a customer is involved in the product the more the outcome of a product is shared between developers and the customer itself. Thus the push in the direction of success is stronger.  
+\paragraph{Responding to change over following a plan}
+This stands as the most innovative values out of the four. The ability not only to respond to changes but to welcome it during the developing process is a really important tool for Agile. Differently from other approaches, as for example QFD, in Agile as time and knowledge over the product increases the ability to make changes stay unvaried. This is a really innovative concept. The cost related to changes ideally stay the same until product delivery. In traditional method this cost tend to infinite when getting near the product delivery.
+
+\begin{tikzpicture}
+  \draw[->] (0, 0) -- (8, 0) node[right] {\scriptsize $time$};
+  \draw[->] (0, 0) -- (0, 6) node[left] {\scriptsize $cost\;of\;changes$};
+  \draw[scale=0.7, domain=0:2.42, smooth, variable=\x, black] plot ({4*\x}, {0.8*\x^2.5});
+  \draw[scale=0.7, domain=0:1.39, smooth, variable=\y, black]  plot ({\y^7}, {\y});
+  \draw[loosely dashed, scale=0.7, domain=0:10, smooth, variable=\y, black]  plot ({\y}, {1.5});
+  \draw[densely dashed, scale=0.7, domain=0:8, smooth, variable=\x, black]  plot ({10}, {\x});
+  \node at (7,0) [align=center,anchor=north ] {\footnotesize Delivery};
+  \node at (0,1.05) [align=center,anchor=east ] {\footnotesize Constant cost};
+  \draw[<-] (12:6) -- (22:10) node[right] {\footnotesize Constant cost up to delivery};
+  \node at (0,1.05) [align=center,anchor=east ] {\footnotesize Constant cost};
+  \draw[<-] (34:8) -- (25:10) node[right] {\footnotesize Cost increase until delivery};
+\end{tikzpicture}
 
 
 \subsection{Agile vs Waterfall methodology}
