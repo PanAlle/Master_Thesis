@@ -56,14 +56,23 @@ This stands as the most innovative values out of the four. The ability not only 
 \begin{tikzpicture}
   \draw[->] (0, 0) -- (8, 0) node[right] {\scriptsize $time$};
   \draw[->] (0, 0) -- (0, 6) node[left] {\scriptsize $cost\;of\;changes$};
-  \draw[scale=0.7, domain=0:2.42, smooth, variable=\x, black] plot ({4*\x}, {0.8*\x^2.5});
-  \draw[scale=0.7, domain=0:1.39, smooth, variable=\y, black]  plot ({\y^7}, {\y});
+  \draw[scale=0.7, domain=0:2.42, densely dashdotted, line width=0.25mm, variable=\x, black] plot ({4*\x}, {0.8*\x^2.5});
+  \draw[scale=0.7, line width=0.25mm, domain=0:1.39, smooth, variable=\y, black]  plot ({\y^7}, {\y});
   \draw[loosely dashed, scale=0.7, domain=0:10, smooth, variable=\y, black]  plot ({\y}, {1.5});
-  \draw[densely dashed, scale=0.7, domain=0:8, smooth, variable=\x, black]  plot ({10}, {\x});
+  \draw[loosely dashed, scale=0.7, domain=0:8, smooth, variable=\x, black]  plot ({10}, {\x});
   \node at (7,0) [align=center,anchor=north ] {\footnotesize Delivery};
   \node at (0,1.05) [align=center,anchor=east ] {\footnotesize Constant cost};
-  \draw[<-] (12:6) -- (22:10) node[right] {\footnotesize Constant cost up to delivery};
-  \draw[<-] (34:8) -- (25:10) node[right] {\footnotesize Cost increase until delivery};
+  \draw[<-] (40:6) -- (50:6) node[above] {\footnotesize Cost increase until delivery};
+  \draw[<-] (12:6) -- (20:8) node[right] {\footnotesize Constant cost up to delivery};
+  
+  \draw [line width=0.25mm, dash dot] (8.5,6) -- (9,6);
+  \node at (9,6) [right] {\footnotesize Waterfall methods};
+  \draw [line width=0.25mm] (8.5,5) -- (9,5);
+  \node at (9,5) [right] {\footnotesize Agile methods};
+  \draw[draw=black] (12.5,6.5) rectangle ++(-4.5,-2);
+ 
+
+  
 \end{tikzpicture}
 
 
