@@ -27,7 +27,7 @@ The criticism in regard to those methods suggested alternatives approaches which
 By reading the paper by \citet{larman2003iterative} the traces of iterative and incremental development approaches can already be found in the 30´. \\
 Bell Labs, one of the center that provided the greatest innovation in recent history, the invention of the transistor is also the one who first applied with sufficient success IID method. Walter Shewahrt in 1930 posed a series of short "plan-do-study-act" (PSDA) cycles for quality improvement. This method was a great success and the PSDA was vigorously promoted starting from the 40.\\ 
 Tanks to the success the next step for IID was to flood military projects. Iterative approaches were used in the development of the X-15 hyper-sonic jet in which the "Agile like" practices contributed majorly to its success.\\ Post war IDD experience and experts arrived at NASA, which in the 60´was US government top priority with the ongoing cold war.\\
-Project Mercury, the first human spaceflight program of the United States, used short half day iterations. The development team performed technical review of all the changes, and applied a super early version of Extreme Programming practice of "test first" development. This consist in writing test before each micro increment. They also applied top-down development with the usage of stubs. Stubs simulate the behaviour of code or is used as a substitute to yet-to-be-developed code.\\ 
+Project Mercury, the first human spaceflight program of the United States, used short half day iterations. The Development Team performed technical review of all the changes, and applied a super early version of Extreme Programming practice of "test first" development. This consist in writing test before each micro increment. They also applied top-down development with the usage of stubs. Stubs simulate the behaviour of code or is used as a substitute to yet-to-be-developed code.\\ 
 \section{Agile Manifesto}
 The influences continued until a real theorizing was made in 2001 by software developer that, tired of inefficient way to develop software summed all up under the slogan "\textit{We are uncovering better ways of developing software by doing it and helping others do it}". \\
 The proponents of the Manifest found them self in a situation in which no software development methodology or techniques enabled them to succeed in a constant manner. As reported \citet{schmidt2013software} the Manifesto was to established a guild surrounding a set of principles for software development based on rapid prototyping, incremental product delivery, and absolutely no product design. The Manifesto highlighted 4 values:
@@ -126,7 +126,7 @@ The Scrum framework consist of:
     \item Rules, bind together the roles, events, and artifacts, governing the relationships and interaction between them.
 \end{itemize}
 \subsection{Scrum teams}
-Scrum teams are composed by a Product Owner, the Development team and a Scrum Master. Outside the Scrum team we find also A Business Owner, the Stakes-holder and the Subjects Matter Experts (SME). 
+Scrum teams are composed by a Product Owner, the Development Team and a Scrum Master. Outside the Scrum team we find also A Business Owner, the Stakes-holder and the Subjects Matter Experts (SME). 
 \begin{figure}[H]
     \centering
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
@@ -201,8 +201,8 @@ Scrum teams are composed by a Product Owner, the Development team and a Scrum Ma
     \caption{Scrum team structure}
 \end{figure}
 Scrum Teams are a self-organizing and cross functional. The self organization is needed to better decide with the team how to get work done, rather than having this decided from the outside.\\
-Cross-functional team have all competencies needed to complete the task. A team need to be composed by what \citeauthor{Scrumastery} defines as T-shaped people. The name comes from the fact that the vertical shaft of the T represent the depth of their chosen preferred skill, while the horizontal bar of the T represents the diversity of other skills they can dip into in order to collaborate. Obviously T-shaped people antagonist are the I-shaped people, that have a set of skills, therefore,  that is deeper than broad, resembling the letter I.
-
+Cross-functional team have all competencies needed to complete the task. A team need to be composed by what \citeauthor{Scrumastery} defines as T-shaped people. The name comes from the fact that the vertical shaft of the T represent the depth of their chosen preferred skill, while the horizontal bar of the T represents the diversity of other skills they can dip into in order to collaborate. Obviously T-shaped people antagonist are the I-shaped people, that have a set of skills, therefore, that is deeper than broad, resembling the letter I.\\
+The sole goal of Scrum teams is to deliver products iteratively and incrementally, maximizing opportunities for feedback. 
 \begin{figure}
 \centering
 \begin{minipage}{.5\textwidth}
@@ -232,6 +232,25 @@ Cross-functional team have all competencies needed to complete the task. A team 
 \end{minipage}
 \end{figure}
 
+\subsection{The product owner}
+The Product Owner is responsible for maximizing the value of the product resulting from work of the Development Teams. This encompasses managing the Product Backlog (the concept will be later explained). The product owner decisions can be seen from the Backlog organization, giving a clear overview to the team and to the business owner of the work.\\
+\subsection{The Development Team}
+The Development Team consist of professionals who do the work of delivering a potentially releasable Increment of "Done" product at the end of each sprint. Only the members of the Development Team can deliver a product increment. \\
+The Development Team need the following characteristics:
+\begin{itemize}
+    \item They are self-organizing. A potentially releasable functionality is chosen from the members, not even the Scrum Master can influence this choice. 
+    \item Development Teams need to be cross-functional. 
+    \item Accountability belongs to the Development Team as a whole. 
+\end{itemize}
+Scrum teams size is small enough to remain nimble and large enough to complete work in the Sprint.
+\subsection{The Scrum Master}
+Scrum Master is responsible for promoting and supporting Scrum. Scrum Masters do this by helping everyone understand Scrum theory, practices, rules and values. 
+The Scrum Master role is to interface between the Scrum Team and those on the outside, his success is related to the success in the interactions, in order to maximize the value created by the Scum Team. The following interfaces roles are required to the Scrum Master:
+\begin{itemize}
+    \item Scrum Master to the Product Owner, ensuring that goals, scope and product domain are understood by the Product Owner and the Backlog resealable those objectives.
+    \item Scrum Master to the Development Team, coaching team on self-organization and cross-functionality while outputting high quality products. 
+    \item Scrum Master to the Organization, helping stakeholder understand the empirical product development and work and act as an intermediary for the communication from outside to the Scrum team. 
+\end{itemize}
 
 \subsection{Scrum Process}
 \subsection{Scrum tools}
