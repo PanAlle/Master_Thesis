@@ -252,7 +252,38 @@ The Scrum Master role is to interface between the Scrum Team and those on the ou
     \item Scrum Master to the Organization, helping stakeholder understand the empirical product development and work and act as an intermediary for the communication from outside to the Scrum team. 
 \end{itemize}
 
-\subsection{Scrum Process}
+\subsection{Scrum Events}
+\begin{figure}[ht]
+    \begin{center}
+        \begin{tikzpicture}[scale=0.6,transform shape,, node distance=4cm,>=latex']
+        % \node [input, name=input] {};
+        % \node [sum, right of=input] (sum) {};
+        \node [block] (Prod_Backlog) {$Product\;Backlog$};
+        \node [block, right of=Prod_Backlog] (Sprint_Plan) {$Sprint\;Planning$};
+        \node [block, right of=Sprint_Plan] (Sprint_Backlog) {$Sprint\;Backlog$};
+        \node [block1, right of=Sprint_Backlog] (Sprint_scrum) {$Scrum\;Sprint$};
+        \node [block, below of=Sprint_scrum] (daily) {$Daily\;Scrum$};
+        \node [block, above of=Sprint_scrum] (Retrospective) {$Retrospective$};
+        \node [block, right of=Sprint_scrum] (Sprint_rev) {$Sprint\;Review$};
+        \node [block, right of=Sprint_rev] (Increment) {$Increment\;Delivery$};
+        \draw [->] (Prod_Backlog) -- node {} (Sprint_Plan);
+        \draw [->] (Sprint_Plan) -- node {} (Sprint_Backlog);
+        \draw [->] (Sprint_Backlog) -- node {} (Sprint_scrum);
+        \draw [->] (Sprint_scrum) -- node {} (Sprint_rev);
+        \draw [->] (Sprint_rev) -- node {} (Increment);
+        \draw [->] (Increment) |- node [above,pos=0.79] {} (Retrospective) ;
+        % \draw [->] (Sprint_rev) |- node [above,pos=0.79] {} (Retrospective) ;
+        \draw (Sprint_rev)--++(90:1) coordinate (A)--++(90:3) ;
+        \draw [->] (Retrospective) -| node [above,pos=0.79] {} (Prod_Backlog) ;
+        \draw [<->] (Sprint_scrum) -- node [] {} (daily) ;
+        \draw[->] (Increment)--++(-90:1) coordinate (A)--++(-90:4.5) coordinate (B)-|(Prod_Backlog);
+        % \draw [->] (Sprint_scrum) -| node [near end] {} (daily) ;
+        % \draw [->] (Retrospective) |- node [above,pos=0.79] {} (Sprint_Plan) ;
+        % \draw [->] (Increment) |- node [near end] {} (controller);
+        \end{tikzpicture}
+    \end{center}
+    \caption{TikzPicture}\label{fig}
+\end{figure}
 \subsection{Scrum tools}
 \subsection{Scrum roles}
 \section{Direct application of Agile for software development}
