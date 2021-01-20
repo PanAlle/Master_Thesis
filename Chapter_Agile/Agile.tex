@@ -232,9 +232,9 @@ The sole goal of Scrum teams is to deliver products iteratively and incrementall
 \end{minipage}
 \end{figure}
 
-\subsection{The product owner}
+\subsubsection{The product owner}
 The Product Owner is responsible for maximizing the value of the product resulting from work of the Development Teams. This encompasses managing the Product Backlog (the concept will be later explained). The product owner decisions can be seen from the Backlog organization, giving a clear overview to the team and to the business owner of the work.\\
-\subsection{The Development Team}
+\subsubsection{The Development Team}
 The Development Team consist of professionals who do the work of delivering a potentially releasable Increment of "Done" product at the end of each sprint. Only the members of the Development Team can deliver a product increment. \\
 The Development Team need the following characteristics:
 \begin{itemize}
@@ -243,7 +243,7 @@ The Development Team need the following characteristics:
     \item Accountability belongs to the Development Team as a whole. 
 \end{itemize}
 Scrum teams size is small enough to remain nimble and large enough to complete work in the Sprint.
-\subsection{The Scrum Master}
+\subsubsection{The Scrum Master}
 Scrum Master is responsible for promoting and supporting Scrum. Scrum Masters do this by helping everyone understand Scrum theory, practices, rules and values. 
 The Scrum Master role is to interface between the Scrum Team and those on the outside, his success is related to the success in the interactions, in order to maximize the value created by the Scum Team. The following interfaces roles are required to the Scrum Master:
 \begin{itemize}
@@ -253,37 +253,68 @@ The Scrum Master role is to interface between the Scrum Team and those on the ou
 \end{itemize}
 
 \subsection{Scrum Events}
+Scrum is composed by a series of regularly planned meetings. All the events are time boxed events, such that every events has a maximum duration. The duration of each events don't need to match the maximum planned duration, once the goal of a meeting is achieved than the events can be terminated, reducing time waste. 
 \begin{figure}[ht]
     \begin{center}
-        \begin{tikzpicture}[scale=0.6,transform shape,, node distance=4cm,>=latex']
-        % \node [input, name=input] {};
-        % \node [sum, right of=input] (sum) {};
-        \node [block] (Prod_Backlog) {$Product\;Backlog$};
+        \begin{tikzpicture}[scale=0.50,transform shape,, node distance=4cm,>=latex']
+        \node [input, name=input] {};
+        \node [sum, right of=input] (sum) {};
+        \node [block, right of=sum] (Prod_Backlog) {$Product\;Backlog$};
         \node [block, right of=Prod_Backlog] (Sprint_Plan) {$Sprint\;Planning$};
         \node [block, right of=Sprint_Plan] (Sprint_Backlog) {$Sprint\;Backlog$};
         \node [block1, right of=Sprint_Backlog] (Sprint_scrum) {$Scrum\;Sprint$};
         \node [block, below of=Sprint_scrum] (daily) {$Daily\;Scrum$};
         \node [block, above of=Sprint_scrum] (Retrospective) {$Retrospective$};
         \node [block, right of=Sprint_scrum] (Sprint_rev) {$Sprint\;Review$};
-        \node [block, right of=Sprint_rev] (Increment) {$Increment\;Delivery$};
+        \node [output, right of=Sprint_rev] (output) {};
+        \draw [draw,->] (input) -- node [above left] {$Requirements$} (sum);
+        \draw [->] (sum) -- node {} (Prod_Backlog);
         \draw [->] (Prod_Backlog) -- node {} (Sprint_Plan);
         \draw [->] (Sprint_Plan) -- node {} (Sprint_Backlog);
         \draw [->] (Sprint_Backlog) -- node {} (Sprint_scrum);
         \draw [->] (Sprint_scrum) -- node {} (Sprint_rev);
-        \draw [->] (Sprint_rev) -- node {} (Increment);
-        \draw [->] (Increment) |- node [above,pos=0.79] {} (Retrospective) ;
-        % \draw [->] (Sprint_rev) |- node [above,pos=0.79] {} (Retrospective) ;
         \draw (Sprint_rev)--++(90:1) coordinate (A)--++(90:3) ;
-        \draw [->] (Retrospective) -| node [above,pos=0.79] {} (Prod_Backlog) ;
+        \draw [->] (Retrospective) -| node [above, pos=0.79] {} (sum) ;
         \draw [<->] (Sprint_scrum) -- node [] {} (daily) ;
-        \draw[->] (Increment)--++(-90:1) coordinate (A)--++(-90:4.5) coordinate (B)-|(Prod_Backlog);
-        % \draw [->] (Sprint_scrum) -| node [near end] {} (daily) ;
-        % \draw [->] (Retrospective) |- node [above,pos=0.79] {} (Sprint_Plan) ;
-        % \draw [->] (Increment) |- node [near end] {} (controller);
+        \draw [->] (Sprint_rev) -- node [name=y, above] {$Product\;Delivery$}(output);
+        \draw [->] (y) |- node [above, pos=0.79] {} (Retrospective) ;
+        \draw[->] (y)--++(-90:1) coordinate (A)--++(-90:4.5) coordinate (B)-|(sum);
         \end{tikzpicture}
     \end{center}
-    \caption{TikzPicture}\label{fig}
+    \caption{Scrum process}\label{figscrum}
 \end{figure}
+In the block scheme in \ref{figscrum} the Scrum process is reported. From the scheme the five Scrum events can be underlined:
+\begin{itemize}
+    \item Sprint planning 
+    \item Scrum Sprint
+    \item Sprint review 
+    \item Daily Scrum 
+    \item Sprint Retrospective
+\end{itemize}
+\subsubsection{The sprint}
+The heart of the scrum is a Sprint, a time-box of one month or less in which a "Done", usable and potentially releasable product increment is created. In general sprints are consequential to each other, so as soon as a sprint ends a new one stars. \\
+Sprint can be thought as a project with a short horizon. As projects also sprint need to accomplish something. Each sprint therefor has a goal of what is to be build, a design and a  flexible pane that will guide the development team.\\
+The time limitation of the sprint avoids the risk of changes in what is being build. With long sprint complexity of the goal may arise, and with that also the risk of failing. Having a sprint with a maximum length of a month ensures that at least monthly an adaptation and inspection of the progress toward a new sprint goal is implemented. 
+\subsubsection{Sprint Planning}
+The work to be performed in the Sprint is planned in this event. The collaborative team create a plan to work on for the next sprint. \\
+Sprint planning is also a time-boxed event, which duration may vary in regard to the duration of the sprint.\\
+In this event the development team forecast the functionality that will be developed during the Sprint. The product Owner discuss the objective that the sprint should achieve. The team than decide which items present in the product backlog integrate in the sprint and define a spring goal to go along with it.\\
+The input of this meeting are the Product Backlog and the latest increment. The teams select the product backlog items and defines a goal. With the performance during last increment the team also define the load of work it needs to take on for the next sprint. All of this together compose the so called \textit{Sprint Backlog}.\\
+The Sprint goal is an objective set for the Sprint that can be met thought the implementation of the Sprint Backlog. 
+\subsubsection{Daily Scrum}
+Daily scrum is a 15-minute time-boxed event for the development team, the meeting is held every day.\\
+In the event the development team inspect the progress towards the Sprint goal and how progress is trending toward completing the Sprint Backlog. The Daily Scrum enhance the communication between team members, therefor the structure of the meeting is based on the question "what work I am currently doing in order to full fill the Sprint Goal?".
+\subsubsection{Sprint review}
+A Sprint Review is held at the end of a Sprint to inspect the increment and adapt the Product backlog. During this event the Scrum team and the stakeholder discuss the output of the Sprint. The meeting should sparkle feedback from the last released increment, in order to improve the Backlog.\\
+The result of this meeting is a revised product Backlog that defines the probable Product Backlog items for the next sprint.
+\subsubsection{Sprint retrospective}
+This event is an opportunity for the Scrum Team to inspect itself and create a plan for improvements to be enacted during the next Sprint. The purpose of the Sprint Retrospective is to:
+\begin{itemize}
+    \item Inspect how the communication between the team worked.
+    \item Identify potential improvements.
+    \item Think on how improvements can be implemented
+\end{itemize}
+The main focus of the team is to improve the work process. The underlined improvements should be implemented in the next sprint. This allow the team to mold the Scrum process on its need, still maintaining a structured approach. 
 \subsection{Scrum tools}
 \subsection{Scrum roles}
 \section{Direct application of Agile for software development}
