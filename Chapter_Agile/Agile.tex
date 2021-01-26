@@ -52,7 +52,8 @@ This value stresses the importance of encouraging customer and developer team co
 Creating a strong customer relationship translates to more frequent and accurate customer feedback. The more a customer is involved in the product the more the outcome of a product is shared between developers and the customer itself. Thus the push in the direction of success is stronger.  
 \paragraph{Responding to change over following a plan}
 This stands as the most innovative values out of the four. The ability not only to respond to changes but to welcome it during the developing process is a really important tool for Agile. Differently from other approaches, as for example QFD, in Agile as time and knowledge over the product increases the ability to make changes stay unvaried. This is a really innovative concept. The cost related to changes ideally stay the same until product delivery. In traditional method this cost tend to infinite when getting near the product delivery.
-
+\begin{figure}
+\centering
 \begin{tikzpicture}
   \draw[->] (0, 0) -- (8, 0) node[right] {\scriptsize $time$};
   \draw[->] (0, 0) -- (0, 6) node[left] {\scriptsize $cost\;of\;changes$};
@@ -70,11 +71,10 @@ This stands as the most innovative values out of the four. The ability not only 
   \draw [line width=0.25mm] (8.5,5) -- (9,5);
   \node at (9,5) [right] {\footnotesize Agile methods};
   \draw[draw=black] (12.5,6.5) rectangle ++(-4.5,-2);
- 
-
-  
 \end{tikzpicture}
-
+\caption{Agile vs Waterfall}
+    \label{fig:agilevswaterfall}
+\end{figure}
 
 
 
@@ -94,22 +94,6 @@ This stands as the most innovative values out of the four. The ability not only 
       \connecttw{integration}{operation};
     \end{tikzpicture}
 \caption{Agile model}
-\end{figure}
-
-\begin{figure}
-\centering
-    \begin{tikzpicture}[>=stealth]
-     \node[phase]                       (requirements)  {\small Requirements};
-      \node[phase,previous=requirements] (design)       {\small Design};
-      \node[phase,previous=design]       (coding)       {\small Coding and\\unit test};
-      \node[phase,previous=coding]       (integration)  {\small System\\integration};
-      \node[phase,previous=integration]  (operation)    {\small Operation and\\maintenance};
-      \connectow{requirements}{design};
-      \connectow{design}{coding};
-      \connectow{coding}{integration};
-      \connectow{integration}{operation};
-    \end{tikzpicture}
-\caption{Waterfall model}
 \end{figure}
 % }
 \section{Scrum Methodology}
@@ -337,6 +321,47 @@ The Increment is the sum of all completed Product Backlog items completed during
 An increment need to full fill the team definition of "Done".
 \subsubsection{Definition of "Done"}
 A Sprint Backlog items can be moved to "Done" only if it meet the team definition of "Done". This definition is team-based, different teams can have different definition. The sum of all the "Done" items create a "Done" increment. This increment need to be usable. It´s important that the definition is chosen internally by the team, obviously the definition can vary slightly during the development, even if some basic rules need to be applied.
+\subsection{Example of a Scrum application}
+Having described completely the theory behind the approach, the feeling is the one I personally had the first time learning about the theory behind Scrum. The method have potentiality, but the application deons´t seem that revolutionary. In this sense, I provide here an example which explain how a product is developed using Scrum. This should give a general idea over the method, helping to understand how a possible application can take place. \\
+In the following image we can see the full development of a Product.\\
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/scrum.png}
+    \caption{Scrum product development}
+    \label{fig:scrumprddev}
+\end{figure}
+At the beginning (top left corner) the process start with the definition of the requirements, which compose the Product Backlog. For the sake of simplicity we consider to have the full set of requirements at the beginning of the process. The team, as first task, also defines its own definition of "Done". They, team, opted to define "Done" a increment that completely full fill a certain requirements. This indeed comprehend not only designing, but also testing and integrating, having therefor a working product at the end of each sprint.\\
+Starting the first sprint, considering a capacity of 1 Backlog item per sprint the team decides to implement the task "\textit{make coffee}". This task is the only task present in the "Sprint \#1 Backlog". \\
+At the end of the first sprint the team present to the Business Owner and to the Stakeholders the "Done" increment, in this case a mug, containing hot water in which pour the coffee beans. The team has the opportunity to check its progress and get a direct feedback from the stakeholders.\\ Here the team has already drank a cup of Coffee. This is going to be important later.\\ The scrum continues until the final sprint, in which the team output a complete automatic Coffee machine. Prior to the release on the market the team has drank 3 total Coffee during the development process. At the end the Backlog is empty, since all the tasks have been completed. 
 \subsection{Waterfall vs Scrum}
+In order to completely understand the advantages of Scrum in regard to classic techniques, the methodology is compared with classic approach, \textit{waterfall methods}.
+\begin{figure}[H]
+\centering
+    \begin{tikzpicture}[>=stealth]
+     \node[phase]                       (requirements)  {\small Requirements};
+      \node[phase,previous=requirements] (design)       {\small Design};
+      \node[phase,previous=design]       (coding)       {\small Coding and\\unit test};
+      \node[phase,previous=coding]       (integration)  {\small System\\integration};
+      \node[phase,previous=integration]  (operation)    {\small Operation and\\maintenance};
+      \connectow{requirements}{design};
+      \connectow{design}{coding};
+      \connectow{coding}{integration};
+      \connectow{integration}{operation};
+    \end{tikzpicture}
+\caption{Waterfall model}
+\end{figure}
+
+Waterfall methods are still in great usage, the main feature is that the development is done step by step, flowing from a stage to the other. As \cite{Scrum} refers they based on a scheme where "each piece of the project cascade down to the next like a waterfall". The methodology lays out everything using the \textit{Gant charts}. One of the criticism that the authors of Scrum made is related exactly to those charts, that are as complex as wrong. Here is reported a development of a product similar to the one reported in \ref{figscrum} but using a waterfall approach.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/waterfall.png}
+    \caption{Waterfall product development}
+    \label{fig:scrumprddev}
+\end{figure}
+The task is the same described in the Scrum process, the required product is an automatic coffee machine. The team, following the waterfall method splits in sub teams for the first step of designing the components of the Coffee machine. The outputs of what in a time manner could be compared to a Scrum Sprint are the idea on how to full fill the requirements. The next step is the production and unit test of each components. Each team in the example produces and test the assigned components. The output of the second step in the process are the fully completed components. No integration is being done. The last step is therefor integration. The teams, integrate the components with the other developed. Obviously the process is not flawless, because the team only discover at this step how the other teams developed a certain requirements. At the end the team full fill all the requirements and release a product identical to the one developed following the Scrum methodology.\\ There are, indeed a lot of differences, which favor the Scrum approach.
+\begin{itemize}
+    \item During the whole development process the Waterfall approach has no direct feedback from the stakeholders, no coffee is drank by the team before the product is released. This mean that the first feedback arrives at the end of the development process where, recalling \ref{fig:agilevswaterfall} the cost for a adjustment is higher. 
+    \item The team has no way of predicting the correct time that it will take to deliver a product. This can be really vary based on the integration between the different parts designed by the teams. A no fit in this situation would set the team back just for one of the components. 
+\end{itemize}
 \cleardoublepage
 \end{document}
