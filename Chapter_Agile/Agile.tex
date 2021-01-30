@@ -13,21 +13,21 @@
   }
 
 \begin{document}
-The following chapter introduces the Agile philosophy, including a comparison with traditional waterfall methods. The chapter then continues with the definition of Scrum methodology, giving a overview of the tools, processes and roles related to it.\\
+After a introduction of the Agile philosoy, the chapter introduces and analyze the Scrum methodology including a comparison with traditional waterfall methods. In part related to Scrum a overview of tools, processes and roles is given.\\
 The focus is going to be mainly software related, as those method originated as a way to efficiently develop software projects.
 \section{Agile philosophy}
 By reading the previous lines we need to put extra effort into analyzing each word. 
 \textit{Agile} has been coupled from the beginning of the Chapter only with \textit{philosophy}.  
-The word philosophy emphasises the fact that we are referring to a way of thinking but also on the other hand that we are not trying to give any method to support this way of thinking. Then we have the word Agile, which firmly add dynamism to this way of thinking.\\ 
-The Agile philosophy definition can be therefore reported as dynamic way based on iterative cycles to approach project development.
-\subsection{History of the Agile methodology}
+The word philosophy emphasises the fact that we are referring to a way of thinking but also on the other hand that we are not trying to give any method to support this way of thinking. Paired with philosophy we have the word Agile, which firmly add dynamism to this way of thinking.\\ 
+The Agile philosophy definition can be therefore reported as dynamic way to approach project development.
+\subsection{History of the Agile philosophy}
 The definition of a word Agile as a theorized philosophy for product development came only in the early 90´as a result of the Agile Manifesto. It´s important to keep in mind that there where previously approaches that resemble, if not match Agile, those can be inserted under the umbrella term IID, \textit{Iterative Incremental Approaches}.\\
 As most of the innovation also the IID ones come from the criticism of previously used methods. In the past most of the methodology to develop product and in particular to develop software where based on a series of sequential steps which output could only be seen at the end of the process. The series of steps was sometimes so long that the product was already out of the market once completed.\\
 The criticism in regard to those methods suggested alternatives approaches which where actually unconsciously filled by Agile ideas such as the response to changes, customer involvement, and working software over documentation.\\
 By reading the paper by \citet{larman2003iterative} the traces of iterative and incremental development approaches can already be found in the 30´. \\
-Bell Labs, one of the center that provided the greatest innovation in recent history, the invention of the transistor is also the one who first applied with sufficient success IID method. Walter Shewahrt in 1930 posed a series of short "plan-do-study-act" (PSDA) cycles for quality improvement. This method was a great success and the PSDA was vigorously promoted starting from the 40.\\ 
+Bell Labs, one of the center that provided some of the greatest innovations in history, is also the one who first applied with sufficient success IID method. Walter Shewahrt in 1930 posed a series of short "plan-do-study-act" (PSDA) cycles for quality improvement. This method was a great success and the PSDA was vigorously promoted starting from the 40.\\ 
 Tanks to the success the next step for IID was to flood military projects. Iterative approaches were used in the development of the X-15 hyper-sonic jet in which the "Agile like" practices contributed majorly to its success.\\ Post war IDD experience and experts arrived at NASA, which in the 60´was US government top priority with the ongoing cold war.\\
-Project Mercury, the first human spaceflight program of the United States, used short half day iterations. The Development Team performed technical review of all the changes, and applied a super early version of Extreme Programming practice of "test first" development. This consist in writing test before each micro increment. They also applied top-down development with the usage of stubs. Stubs simulate the behaviour of code or is used as a substitute to yet-to-be-developed code.\\ 
+Project Mercury, the first human spaceflight program of the United States, used short half day iterations. The Development Team performed technical review of all the changes, and applied a super early version of Extreme Programming practice (later theorized Agile-based method) of "test first" development. This consist in writing test before each micro increment. They also applied top-down development with the usage of stubs in the development. A \textit{stub} simulate the behaviour of code or is used as a substitute to yet-to-be-developed code.\\ 
 \subsection{Agile Manifesto}
 The influences continued until a real theorizing was made in 2001 by software developer that, tired of inefficient way to develop software summed all up under the slogan "\textit{We are uncovering better ways of developing software by doing it and helping others do it}". \\
 The proponents of the Manifest found them self in a situation in which no software development methodology or techniques enabled them to succeed in a constant manner. As reported \citet{schmidt2013software} the Manifesto was to established a guild surrounding a set of principles for software development based on rapid prototyping, incremental product delivery, and absolutely no product design. The Manifesto highlighted 4 values:
@@ -38,21 +38,18 @@ The proponents of the Manifest found them self in a situation in which no softwa
     \item \textit{responding to change over following a plan.}
 \end{itemize}
 
-\paragraph{Individuals and interactions over processes and tools}
-One of Agile goals is the one to enhance the communications inside teams. With this principle this goal is underlined. The importance of having good interactions between the team members surpass the focus of having high-tech tools or complex processes. \\
-The main problem with tools and process is that they push towards a certain conformity. 
-Conformity makes it hard to accommodate new ideas, requirements and way of thinking. 
-Other than that the more robust a process or a tool is, the more time it require to "translate" everything in order to fit it. 
-Agile stays human-centric and team focused. Every member need to be an active participants. 
-\paragraph{Working software over comprehensive documentation}
-One of the flaws of waterfall method is that can happen that a working software version arrives when the initial requirements are already outdated. To criticize this mechanism it´s important to deeply working software as soon as possible during the development process. Having a working product as early as possible is also use full for getting customer feedback on it, as the next values will underline. 
-It´s important to state that documentation don´t need to be completely left out but it´s important to focus more on what´s important and what´s not in terms of documentation artifacts. Documentation requires indeed not only a lot of time to be set up, but also to be maintained. 
-\paragraph{Customer collaboration over contract negotiation}
+\subsubsection{Individuals and interactions over processes and tools}
+One of Agile goals is to enhance the communications inside teams. With this principle this goal is underlined. The importance of having good interactions between the team members surpass the focus of having high-tech tools or complex processes. \\
+The main problem with tools and process is that they push towards a certain conformity. Conformity makes it hard to accommodate new ideas, requirements and way of thinking. Using tools that push towards conformity requires time to "translate" concepts in a tool-understandable way from a team one, indeed consuming time. Agile stays human-centered and team focused. Every member need to be an active participants. 
+\subsubsection{Working software over comprehensive documentation}
+One of the flaws of waterfall method is that can happen that a working software version arrives when the initial requirements are already outdated. To criticize this mechanism it´s important to deploy working software as soon as possible during the development process. Having a working product as early as possible is also use full for getting customer feedback on it, as the next values will underline. 
+It´s important to state that documentation don´t need to be completely left out but it´s important to focus more on what bring value.
+\subsubsection{Customer collaboration over contract negotiation}
 This value stresses the importance of encouraging customer and developer team collaboration over the product, other than seeing each other as adversaries in the contract negotiation part.
-Creating a strong customer relationship translates to more frequent and accurate customer feedback. The more a customer is involved in the product the more the outcome of a product is shared between developers and the customer itself. Thus the push in the direction of success is stronger.  
-\paragraph{Responding to change over following a plan}
-This stands as the most innovative values out of the four. The ability not only to respond to changes but to welcome it during the developing process is a really important tool for Agile. Differently from other approaches, as for example QFD, in Agile as time and knowledge over the product increases the ability to make changes stay unvaried. This is a really innovative concept. The cost related to changes ideally stay the same until product delivery. In traditional method this cost tend to infinite when getting near the product delivery.
-\begin{figure}
+Creating a strong customer relationship translates into more frequent and accurate customer feedback. The more a customer is involved in the product the more the outcome of a product is shared between developers and the customer itself, thus the push in the direction of success is stronger.  
+\subsubsection{Responding to change over following a plan}
+This stands as the most innovative values out of the four. The ability not only to respond to changes but to welcome them during the developing process is a really important tool for Agile. Differently from other approaches, as for example QFD, in Agile as time and knowledge over the product increases the ability to make changes stay unvaried. This is a really innovative concept. The cost related to changes ideally stay the same until product delivery. In traditional method this cost tend to infinite when getting near the product delivery.
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}
   \draw[->] (0, 0) -- (8, 0) node[right] {\scriptsize $time$};
@@ -75,33 +72,29 @@ This stands as the most innovative values out of the four. The ability not only 
 \caption{Agile vs Waterfall}
     \label{fig:agilevswaterfall}
 \end{figure}
-
-
-
-
-% \resizebox{\textwidth}{7cm}{
-\begin{figure}
-\centering
-    \begin{tikzpicture}[>=stealth]
-      \node[phase]                       (requirements) {\small Requirements};
-      \node[phase,previous=requirements] (design)       {\small Design};
-      \node[phase,previous=design]       (coding)       {\small Coding and\\unit test};
-      \node[phase,previous=coding]       (integration)  {\small System\\integration};
-      \node[phase,previous=integration]  (operation)    {\small Operation and\\maintenance};
-      \connecttw{requirements}{design};
-      \connecttw{design}{coding};
-      \connecttw{coding}{integration};
-      \connecttw{integration}{operation};
-    \end{tikzpicture}
-\caption{Agile model}
-\end{figure}
-% }
+% % \resizebox{\textwidth}{7cm}{
+% \begin{figure}
+% \centering
+%     \begin{tikzpicture}[>=stealth]
+%       \node[phase]                       (requirements) {\small Requirements};
+%       \node[phase,previous=requirements] (design)       {\small Design};
+%       \node[phase,previous=design]       (coding)       {\small Coding and\\unit test};
+%       \node[phase,previous=coding]       (integration)  {\small System\\integration};
+%       \node[phase,previous=integration]  (operation)    {\small Operation and\\maintenance};
+%       \connecttw{requirements}{design};
+%       \connecttw{design}{coding};
+%       \connecttw{coding}{integration};
+%       \connecttw{integration}{operation};
+%     \end{tikzpicture}
+% \caption{Agile model}
+% \end{figure}
+% % }
 \section{Scrum Methodology}
-As previously underlined, the Agile philosophy does not present a specific set of practices with which approach product (or software) development. Scrum, on the other hand, provides a structured framework to approach product development based on Agile principles.\\
+As previously underlined, the Agile philosophy does not present a specific set of practices with which approach product (or software) development. Scrum, on the other hand, provides a structured \textit{framework} to approach development based on Agile principles.\\
 The word frameworks intend to underline a concrete set of procedures that allow Agile like practises to be applied in a development process.\\
 The definitions from the creators of Scrum (\citet{Scrum}) is the following:
 \begin{quote}
-\textit{Scrum is not a process, technique, or definitive method. Rather, it is a framework within which you can employ various processes and techniques. Scrum makes clear the relative efficacy of your product management and work techniques so that you can continuously improve the product, the team, and the working environment.}
+Scrum is not a process, technique, or definitive method. Rather, it is a framework within which you can employ various processes and techniques. Scrum makes clear the relative efficacy of your product management and work techniques so that you can continuously improve the product, the team, and the working environment.
 \end{quote}
 The Scrum framework consist of:
 \begin{itemize}
@@ -110,7 +103,7 @@ The Scrum framework consist of:
     \item Rules, bind together the roles, events, and artifacts, governing the relationships and interaction between them.
 \end{itemize}
 \subsection{Scrum teams}
-Scrum teams are composed by a Product Owner, the Development Team and a Scrum Master. Outside the Scrum team we find also A Business Owner, the Stakes-holder and the Subjects Matter Experts (SME). 
+Scrum teams are composed by a Product Owner, the Development Team and a Scrum Master. Outside the Scrum team can also be found a Business Owner, the Stakes-holder and the Subjects Matter Experts (SME). 
 \begin{figure}[H]
     \centering
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
@@ -185,9 +178,9 @@ Scrum teams are composed by a Product Owner, the Development Team and a Scrum Ma
     \caption{Scrum team structure}
 \end{figure}
 Scrum Teams are a self-organizing and cross functional. The self organization is needed to better decide with the team how to get work done, rather than having this decided from the outside.\\
-Cross-functional team have all competencies needed to complete the task. A team need to be composed by what \citeauthor{Scrumastery} defines as T-shaped people. The name comes from the fact that the vertical shaft of the T represent the depth of their chosen preferred skill, while the horizontal bar of the T represents the diversity of other skills they can dip into in order to collaborate. Obviously T-shaped people antagonist are the I-shaped people, that have a set of skills, therefore, that is deeper than broad, resembling the letter I.\\
+Cross-functional team have all competencies needed to complete the task. A team need to be composed by what \citeauthor{Scrumastery} defines as T-shaped people. The name comes from the fact that the vertical shaft of the T represent the depth of their chosen preferred skill, while the horizontal bar of the T represents the diversity of other skills they can dip into in order to collaborate. Obviously T-shaped people antagonist are the I-shaped people, that have a set of skills that is deeper than broad, resembling the letter I.\\
 The sole goal of Scrum teams is to deliver products iteratively and incrementally, maximizing opportunities for feedback. 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
@@ -277,13 +270,13 @@ In the block scheme in \ref{figscrum} the Scrum process is reported. From the sc
 \end{itemize}
 \subsubsection{The sprint}
 The heart of the scrum is a Sprint, a time-box of one month or less in which a "Done", usable and potentially releasable product increment is created. In general sprints are consequential to each other, so as soon as a sprint ends a new one stars. \\
-Sprint can be thought as a project with a short horizon. As projects also sprint need to accomplish something. Each sprint therefor has a goal of what is to be build, a design and a  flexible pane that will guide the development team.\\
+Sprint can be thought as a project with a short horizon. As projects also sprint need to accomplish something. Each sprint therefor has a goal of what is to be build, a design and a flexible pane that will guide the development team.\\
 The time limitation of the sprint avoids the risk of changes in what is being build. With long sprint complexity of the goal may arise, and with that also the risk of failing. Having a sprint with a maximum length of a month ensures that at least monthly an adaptation and inspection of the progress toward a new sprint goal is implemented. 
 \subsubsection{Sprint Planning}
 The work to be performed in the Sprint is planned in this event. The collaborative team create a plan to work on for the next sprint. \\
 Sprint planning is also a time-boxed event, which duration may vary in regard to the duration of the sprint.\\
 In this event the development team forecast the functionality that will be developed during the Sprint. The product Owner discuss the objective that the sprint should achieve. The team than decide which items present in the product backlog integrate in the sprint and define a spring goal to go along with it.\\
-The input of this meeting are the Product Backlog and the latest increment. The teams select the product backlog items and defines a goal. With the performance during last increment the team also define the load of work it needs to take on for the next sprint. All of this together compose the so called \textit{Sprint Backlog}.\\
+The inputs of this meeting are the Product Backlog and the latest increment. The teams select the product backlog items and defines a goal. With the performance during last increment the team also define the load of work it needs to take on for the next sprint. All of this together compose the so called \textit{Sprint Backlog}.\\
 The Sprint goal is an objective set for the Sprint that can be met thought the implementation of the Sprint Backlog. 
 \subsubsection{Daily Scrum}
 Daily scrum is a 15-minute time-boxed event for the development team, the meeting is held every day.\\
@@ -309,13 +302,14 @@ Artifacts are composed both by tools but also team defined concepts such as the 
 \end{itemize}
 \subsubsection{Product Backlog}
 The product Backlog list all the requirements that the final product need. Obviously the initial lay out of the Backlog is not the complete one. At the beginning this Artifact list only the available requirements. Then, with the product evolving through the development process, the Backlog gets updated with new requirements.\\
-The fact that the Backlog continuously changes reflect one important Agile principle, the one of accepting new requirements throughout the whole development process. It is in the Scrum nature to welcome changes during the whole development.\\
-The backlog not only gets updated withe new requirements but also "refined". The act of adding details, estimating and ordering a Product Backlog is called "Refinement". With this process items of the Backlog are reviewed and revised. The backlog is also ordered in such a way that the highly ordered product items are usually cleaner and more detailed that the lowered ordered ones. High Backlog items are in general "more" ready to be inserted in the Sprint, as the presence of more detailing reflects the fact that the team understand what and how the item can become part of the product. \\
+The fact that the Backlog continuously changes reflect one important Agile principle, the one of accepting new requirements throughout the whole development process. It´s in the Scrum nature to welcome changes during the whole development.\\
+The backlog not only gets updated with new requirements but also "refined". The act of adding details, estimating and ordering a Product Backlog is called "Refinement". With this process items of the Backlog are reviewed and revised. The backlog is also ordered in such a way that the highly ordered product items are usually cleaner and more detailed that the lowered ordered ones. High Backlog items are in general "more" ready to be inserted in the Sprint, as the presence of more detailing reflects the fact that the team understand what and how the item can become part of the product. \\
 Another important usage of the Product Backlog is related to monitoring the progress towards goals. Via the Backlog the product owner can easily tack the total work remaining to complete all the items, and therefor complete the product. 
 \subsubsection{Sprint Backlog}
 The Sprint Backlog is the set of Product Backlog items selected for a certain sprint, plus a plan for delivering the product increment and therefor full fill the sprint goal.\\
 Via the Sprint Backlog the team has a shared visualization of what is necessary to complete the Sprint Goal.\\
 To ensure continuous improvement, the Sprint Backlog need to include at least a major Backlog items, that really add something conspicuous to the final product. This allow a stronger feedback at the end of the Sprint, which is fundamental to the Scrum process. 
+% 1st READ
 \subsubsection{Increment}
 The Increment is the sum of all completed Product Backlog items completed during the Sprint. The increment sums up to all the previously released increments, composing the Product.\\
 An increment need to full fill the team definition of "Done".
