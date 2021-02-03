@@ -156,10 +156,29 @@ The back end is the interface between the code and the actual CPU, therefor is C
     \item Code generation, the code is translated into the native machine language of the system. This involves final storage decision and scheduling. 
 \end{itemize}
 \section{Model based design}
-\subsection{What is model based design}
+\subsection{Introduction}
+Inside the automotive world the trend that has drawn more differences in the way car are constructed is in the electronic components side. if the cost related to the development of mechanical components, safety features and logistic increased constantly through the years, the cost related to the electronic components exponentially increased. What once was a mechanical system is most probably going to be a embedded system nowadays. The increase in hardware related to embedded components requires an increase in the software in order to control it. The yearly increase in lines of code for car is a statement in support of the importance of software. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/Yearly-increase-in-automotive-software-complexity-shown-by-million-lines-of-code-of-1-ConvertImage.png}
+    \caption{Yearly increase in automotive software complexity}
+    \label{fig:yearlyincreas}
+\end{figure}
+Software development therefor faces new challenges, related to shorten development time, a high need of scalability  not only in the software but also in the development platforms, complex safety requirements and adaptability over continuously changing hardware.\\
+Model based design has entered the automotive conversation because it can full fill the previously reported challenges. The model based approach brings two main characteristic to the table: on the one hand it gives a development platform which is component independent, therefor allowing for better integration through rapidly changing hardware, on the other hand makes the integration of new features not time depended. In this sense it recall a concept similar to Scurm, where changes are welcomed during the whole development process. in this case, with model based design, changes are welcomed during the whole life of the software.
+\subsection{Model based design}
+Model-Based Design provides a mathematical and visual approach to develop complex control and signal processing systems. It centers on the use of system models throughout the development process for design, analysis, simulation, automatic code generation and verification \cite{Mathworks}. The main features are abstraction and automation. As reported by \cite{modelbased} model based tackle complexity via abstraction and automation. Abstraction is achieved by the using suitable models of a software system, while automation is achieved by systematically transform these models into executable source code.\\
+Engineers create a model to specify the behavior of an embedded system; the model, which consists of block diagrams, textual programs, and other graphical elements, is an executable specification that lets engineers run simulations to test ideas and verify designs throughout the development process. The main advantages are
+\begin{itemize}
+    \item The design can be tested, refined and retested throughout the development process, thus increasing product quality. Test and validation are done continuously rather than at the end of the process. Error can be found before hardware is required for testing
+    \item Simplification of complex system, by providing a graphical design models simplify the creation of high complexity functions, especially when compared with hand code components. This advantage as it enhance and simplify communication inside the team, as it is easy to understand the models. 
+    \item Embedded code can be generate automatically from the models. To adapt the model to different hardware there´s the need to adjust the compiler, not every single model. This allow for great adaptability to rapidly changing hardware. 
+\end{itemize}
 \subsection{From functions to c code or other type of artifacts}
 \section{Ecu structure}
 \subsection{Electrical ecu structure}
 \subsection{Software ecu structure}
+\section{Scons - build organization}
+
 \cleardoublepage
 \end{document}
