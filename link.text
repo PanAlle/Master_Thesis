@@ -1,4 +1,7 @@
-Buid:
+Build:
+    -   Build process:
+        -   https://scmquest.com/software-build-knowledge/
+        -   https://pmihaylov.com/the-build-process-of-programming-languages/
     -   Model based desing :
         -   https://www.public.asu.edu/~gfaineko/pub/thesis/kermani_2013_ms_thesis.pdf
         -   https://webthesis.biblio.polito.it/12441/1/tesi.pdf
@@ -6,7 +9,17 @@ Buid:
     -   Ecu structure:
         -   https://corescholar.libraries.wright.edu/cgi/viewcontent.cgi?article=3296&context=etd_all
         -   file:///C:/Users/q510015/Downloads/ModelBasedVerification_v5.pdf
+        -   https://www.slideshare.net/AnkulGupta2/electronic-control-unitecu
     -   AUTOSAR:
+        -   https://people.kth.se/~kallej/papers/can_necs_handbook05.pdf
+        -   https://www.embitel.com/blog/embedded-blog/what-is-autosar-communication-stack-comstack
+        -   http://publications.lib.chalmers.se/records/fulltext/219822/219822.pdf
         -   https://automotivetechis.wordpress.com/autosar-concepts/
     -   DATABASE:
         -   https://www.researchgate.net/publication/234094925_MASTER_THESIS_Framework_for_SQL_Modification_and_Analysis
+    -   SCM:
+        -   https://en.wikipedia.org/wiki/Software_build
+        -   https://en.wikipedia.org/wiki/Software_configuration_management#:~:text=In%20software%20engineering%2C%20software%20configuration,and%20the%20establishment%20of%20baselines.
+        -   https://scmquest.com/software-configuration-management-scm/
+    -   CI, CD, CV
+        -   https://scmquest.com/continuous-integration-vs-continuous-delivery-vs-continuous-deployment/

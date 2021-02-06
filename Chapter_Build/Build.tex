@@ -8,13 +8,34 @@
 
 \section{Introduction}
 In the following chapter the theory behind compiler and the build process is introduced. At the end a introduction over the Sconc build framework is reported. The Scons framework is the basic structure upon which the generation of Ecu code is based. 
+\section{Build process}
+The build is the process of creating a the application program for a software easily, by taking the initial source and via various steps to output an executable program. the build process is composed by different steps, the most important in it is the compiler step, which will be analyzed in details in the next section. The build process schema is here reported.
+\begin{figure}[h]
+  \centering
+\begin{tikzpicture}[scale=0.85,transform shape]
+    \node [block, name=text1] {Source code};
+    \node [block, right of=text1] (text2) {Compiler};
+    \node [block, right of=text2] (text3) {Assembler};
+    \node [block, right of=text3] (text4) {Linker};
+    \node [block, right of=text4] (text5) {Locator};
+    \node [block, right of=text5] (text6) {Executable file};
+    \node [container,fit=(text2) (text3) (text4) (text5)] (container) {};
+
+    \draw [->] (text1) -- (text2);
+    \draw [->] (text2) -- node {} (text3);
+    \draw [->] (text3) -- node {} (text4);
+    \draw [->] (text4) -- node {} (text5);
+    \draw [->] (text5) -- node {} (text6);
+\end{tikzpicture}
+  \caption{Build process overview}
+\end{figure}
 
 \section{Compiler}
 A compiler is a complex machine that bridges the gap between human readable code and computer readable code.\\
 In a model based manner the compiler takes as input source code in a high-level programming language (such as C, C++, Python) and return as a output code in a low level language that compose the executable program. 
 \begin{figure}[h]
   \centering
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.85,transform shape]
     \node [block, name=text1] {Source code};
     \node [block, right of=text1] (text2) {Front End};
     \node [block, right of=text2] (text3) {Middle End};
@@ -45,7 +66,7 @@ int main() {
   \end{lstlisting}
 \begin{figure}[h]
   \centering
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.85,transform shape]
     \node [block, name=text1] {Source code};
     \node [block, right of=text1] (text2) {Scanning};
     \node [block, right of=text2] (text3) {Parsing};
@@ -106,7 +127,7 @@ The steps in which the front end is articulated are the following:
 \subsection{The middle end}
 \begin{figure}[h]
   \centering
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.85,transform shape]
     \node [block, name=text1] {IR};
     \node [block, right of=text1] (text2) {Local optimization};
     \node [block, right of=text2] (text3) {Global optimization};
@@ -130,9 +151,9 @@ The middle end, better known as the optimized, is in charge of performing optimi
 \subsection{Back End}
 \begin{figure}[h]
   \centering
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.85,transform shape]
     \node [block, name=text1] {Machine code};
-    \node [block, right of=text1] (text2) {CPU dependent opti.};
+    \node [block, right of=text1] (text2) {CPU dependent opt.};
     \node [block, right of=text2] (text3) {Code generation};
     \node [block, right of=text3] (text4) {Executable code};
     \node [container,fit=(text2) (text3) ] (container) {};
@@ -155,6 +176,7 @@ The back end is the interface between the code and the actual CPU, therefor is C
     The expression n.3 is the one related to the actual allocation of number \texttt{3} to the variable \texttt{x}.
     \item Code generation, the code is translated into the native machine language of the system. This involves final storage decision and scheduling. 
 \end{itemize}
+
 \section{Model based design}
 \subsection{Introduction}
 Inside the automotive world the trend that has drawn more differences in the way car are constructed is in the electronic components side. if the cost related to the development of mechanical components, safety features and logistic increased constantly through the years, the cost related to the electronic components exponentially increased. What once was a mechanical system is most probably going to be a embedded system nowadays. The increase in hardware related to embedded components requires an increase in the software in order to control it. The yearly increase in lines of code for car is a statement in support of the importance of software. 
