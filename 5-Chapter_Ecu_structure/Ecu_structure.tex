@@ -1,0 +1,105 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+In the following chapter a general overview over the ECU structure is given, the focus will be then directed towards the communications protocols between different ECUs and between the ECU and the embedded code that lays in them with an analysis of the AUTOSAR standard. 
+\section{ECUs in a modern vehicle}
+In the automotive industry there´s been a remarkable evolution over the last few years in which embedded control systems have grown from stand alone control to highly integrated networked control systems \cite{Johansson_vehicleapplications}. The growth require a process of implementing the scalability also in the development process, via efficient communication protocols and standardize software interfaces passing through the control units. 
+ECU can be considered as the brain of the modern cars. The ECU uses a closed loop control system that based on the system outputs control the inputs in order to make the engine works.\\
+The key to a fast response is a fast computation time. The ECU code need to be optimized to run as fast as possible in order to reposed efficiently to the fast changing engine parameters. 
+It´s possible to enumerate the main control units present in most of modern vehicles:
+\begin{itemize}
+    \item ECU, Engine control module, ensure the correct functionality of everything related to the engine
+    \item BCM, Brake control module, control the part related to break and breaking systems, such as ABS.
+    \item TCM, Transmission control module, control the transmission.
+    \item TCU, Telematic control unit, control the HMI and other user services offered by the vehicle. 
+    \item SCM, Suspensions control unit, control suspension, especially with upcoming technology related to active suspension control. 
+\end{itemize}
+
+
+\section{Hardware structure of an ECU}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/electronic-control-unitecu-6-638.jpg}
+    \caption{ECU structure}
+    \label{fig:ECUHW}
+\end{figure}
+The hardware structure of an ECU is composed by complex series of components, to better understand the overall organization, without entering in to much of a engineering detail a block scheme overview is offered by \ref{fig:ECUHW}.\\
+It´s possible to easily differentiate between four different parts:
+\begin{itemize}
+    \item Power supply, handle the power input for the board and for the power components such as the motor driver or other power electronics components needed to drive the controlled parts. 
+    \item Inputs, which can be either analog and digital inputs
+    \item Communications link, such as CAN and LIN.
+    \item Outputs, the output are mainly composed by mechanical components that require electrical actuation in order to perform engine required tasks. Other output that can be found are related to the sharing of information with other ECUs.
+    \item MPU, Microprocessor unit and memory, in general Flash and RAM. 
+\end{itemize}
+\subsection{CAN - Communication protocols in ECU}
+The Controll Area Network (CAN) is a serial communication protocol suited for networking sensors, actuators and other node in real-time systems. The CAN specifications define the protocols only for the physical layers and the data link layers. These layers are part of the OSI, Open System Interconnections, an abstraction model for communication protocol. 
+\begin{figure}[h]
+    \centering
+\begin{tikzpicture}[box/.style={on chain,join,draw,minimum width=4cm,minimum height=1cm,
+align=center},start chain=going below, node distance=5mm,font=\sffamily,fbox/.style={draw,thick,fill=white}]
+  \node[box] (a) {Application layer};
+  \node[box] (b) {Presentation layer};
+  \node[box] (c) {Session layer};
+  \node[box] (d) {Transport layer};
+  \node[box] (e) {Network layer};
+  \node[box] (f) {Data Link layer};
+  \node[box] (g) {Physical layer};
+  \node[above=1cm, xshift=1mm] (l) {Application A};
+  \begin{scope}[on background layer]
+   \node[fbox,fit=(a|-l.north) (g),inner xsep=3mm] (f1){};
+  \end{scope}
+\end{tikzpicture}
+    \caption{OSI}
+    \label{fig:ECUstructure}
+\end{figure}
+The OSI is an abstraction model for the communications protocols. The main layer that are needed to be analyzed are the physical layer and the Data link layer. Just for reference purpose the top upper layer, the application layer defines what to do with the data received in the physical layer.\\
+The physical layer is indeed composed by the physical transport media, form cables to the plug and sockets. CAN use a twisted pair in which the differential voltage between the couple is used to represent the bits transmitted. The Data link layer defines the MAC, Media Access Control Methods. In CAN this is set to CSMA/CA or Carrier Sense Multiple Access/ Collision Avoidance. What this complex series of acronyms stand for is that in CAN on the bus a message can be sent only if the bus is free, in case two nodes send a message contemporaneously, then the message with the highest priority win and the node with the low priority message retrieve to a receiver status.
+\subsubsection{CAN message format}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/can message.png}
+    \caption{CAN message structure}
+    \label{fig:CANMSG}
+\end{figure}
+CAN distinguish different message formats, in here it´s analyzed only the data frame format. The data frame consist essentially of:
+\begin{itemize}
+    \item SOF, start-of-frame, which denotes the start of the transmission. The length is 1 bit. 
+    \item Identifier, the 11 bit identifier is used not only to identify the message but to define its priority. 
+    \item RTR, remote transmission request, define the difference between a message sent and a remote request. 
+    \item Control bits, consist of 6 bits and define how many bites of data follow in the data field. In theory not all of the 6 control bits are used to identify the length of the data, since this one is limited to a maximum of 8 bytes. With that being said the actual number of bits reserved to define the data length is 4, which is a bit more than necessary. This is done to allow controller to send data which is more than 8 bytes (9 - 15) in special cases.
+    \item Data, actual data to be sent, with a maximum of 8 bytes ($64$ bits = maximum value that can be sent is $2^64 - 1$).
+    \item CRC, cyclic redundancy checks, enable the receiver to chunk if the received bits have been corrupted. The techniques used are bit monitoring and bit stuffing.
+    \item ACK, consist of a two bit acknowledgement used by the transmitter to receive an acknowledgment of validity form the receiver.
+    \item EOF, end-of-frame, is a seven bit signal that define the end of communications. 
+\end{itemize}
+\subsubsection{CAN arbitration}
+Arbitration is the mechanism that handle bus access conflict. As already underlined when describing the can Data link layer, based on collision avoidance every node can start sending if the bus is free, in the eventuality in which two nodes start the communication simultaneously arbitration comes into place, solving the conflict. During the arbitration phase each transmitting node send the identifier and compares it with the other by motoring the level of the bus. Whenever a node sense a dominant level on the bus, while sending a recessive one, than the node stop the communications and become a receiver. In CAN a recessive level is couple with the bit 1, while a dominant with 0. Consider having three nodes with the following identifiers:
+\begin{equation}
+I_{1} = 11001101010
+\end{equation}
+\begin{equation}
+I_{2} = 11001011011
+\end{equation}
+\begin{equation}
+I_{3} = 11001011001
+\end{equation}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/can_arbitration.png}
+    \caption{CAN arbitration}
+    \label{fig:CANABR}
+\end{figure}
+As exemplified in \ref{fig:CANABR} the nodes starts by sending the SOF, then the identifier comes into play. The nodes continue to send their identifier until all are equal to each other. At bit number 6  the $I_1$ set the bus on a recessive level while sensing both from $I_2$ and $I_3$ a dominant level, therefor $I_1$ stop the communication and switch to a receiver mode. Since the tenth bit of $I_2$ is at recessive level while $I_3$ is at dominant. Node $I_3$ is the transmitter and therefor continue with the transmission of the other part of the data frame. CAN is affected by starvation´s problems. Low priority nodes may expect large latency in case of high priority units being very active. \\
+It´s important to underline the fact that there is no message destination address in CAN, instead each node picks up all the traffic on the bus.\\
+In order to better understand the can arbitration mechanism consider the following example in which the can nodes are exemplified by open collector transistors. 
+The level of the bus is at a low level (dominant) in case any number of transistor in the network output a dominant level (that is why zero is dominant, only one transistor is closed an the whole bus sees a zero on it). The bus will only be at high level (recessive) when all the transistors in the network output a recessive level (the transistors are open, putting a 1 on the bus).
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/can_arbitration.png}
+    \caption{CAN arbitration}
+    \label{fig:CANABR}
+\end{figure}
+\section{Autosar standards}
+
+\cleardoublepage
+\end{document}
