@@ -12,9 +12,12 @@ Build:
         -   https://www.slideshare.net/AnkulGupta2/electronic-control-unitecu
     -   AUTOSAR:
         -   https://people.kth.se/~kallej/papers/can_necs_handbook05.pdf
+        -   https://circuitdigest.com/article/understanding-autosar-and-its-architecture#:~:text=AUTOSAR%20(Automotive%20Open%20System%20Architecture,affecting%20the%20current%20operating%20model.
+        -   https://www.btc-es.de/en/blog/autosar-what-every-function-developer-should-know.html
         -   https://www.embitel.com/blog/embedded-blog/what-is-autosar-communication-stack-comstack
         -   http://publications.lib.chalmers.se/records/fulltext/219822/219822.pdf
         -   https://automotivetechis.wordpress.com/autosar-concepts/
+        -   https://hpi.de/fileadmin/user_upload/fachgebiete/giese/Ausarbeitungen_AUTOSAR0809/Software_Architecture_Warschofsky.pdf
     -   DATABASE:
         -   https://www.researchgate.net/publication/234094925_MASTER_THESIS_Framework_for_SQL_Modification_and_Analysis
     -   SCM:

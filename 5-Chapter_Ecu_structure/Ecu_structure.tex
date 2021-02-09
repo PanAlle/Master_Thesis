@@ -99,7 +99,52 @@ The level of the bus is at a low level (dominant) in case any number of transist
     \caption{CAN arbitration}
     \label{fig:CANABR}
 \end{figure}
-\section{Autosar standards}
+\section{AUTOSAR}
+AUTomotive Open System ARchitecture (AUTOSAR) is an open and standardize automotive software architecture, jointly develop by automobile manufacturers, supplier and tool developer. AUTOSAR architecture was introduced to promote standardization of the software development process of Automotive Electronic Control Units (German: Steuergerät). Prior to the introduction of Autosar ECU software needed to be completely fitted around the components architecture, decreasing to close to zero the portability over different ECU platforms and between different producer. 
+AUTOSAR introduced a layer in between the software and the hardware that ensures that the developed application is completely independent from the hardware platform. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/autosarcapture.jpg}
+    \caption{Autosar interface}
+    \label{fig:AUTCA}
+\end{figure}
+\subsection{AUTOSAR Architecture}
+The architectural structure of the AUTOSAR standard is used to divide the hardware-independent software and the hardware-oriented software. Three main layers can be identified:
+\begin{itemize}
+    \item Application software, host all the functions that control the vehicle capabilities. In the AUTOSAR language functions are also called SWC (software components). An example of functions could be the software driving the windshield wipers. These software need to be able to receive a switch input in order to activate and give an output to light up the relative led on the dashboard. 
+    \item Basic Software (BSW), includes low level software like services and hardware specific software. Related to the previous example this gives the input output functionality required by the windshield wipers function. 
+    \item Run-time Environment (RTE), abstraction layer that manage the interface between the tow other layers. 
+    \item Virtual Functional Bus (VFB), this is an additional architectural strategy introduced by autosar to decouple applications (windshield wiping) from the hardware infrastructure. The virtual bus map the two main type of communication between SWCs (intra-ECU and inter-ECUs) to the same function, allowing the user to simply define a communication, without having to bother about the protocol required (inter-ECUs is generally based on CAN while intra uses shared memory). The connection mapping is implemented by the RTE and becomes the concrete interface between individuals SWCs and between SWCs and the BSW.
+\end{itemize}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/878x-autosar_layers.b68.png}
+    \caption{Autosar layers}
+    \label{fig:AUTLAY}
+\end{figure}
+\subsection{Application Software Layer}
+The application layer consist of the various software components interacting together. 
+To connect software components, each component has well defined ports through which the component can communicate with other components or with Basic Software modules. The autosar architecture defines 2 types of software components:
+\begin{itemize}
+    \item Application SWC, implement an application. This SWC type can use all the AUTOSAR communication mechanism but can communicate to the sensors only via a Sensor-Actuator type software component. 
+    \item Sensor-Actuator type SWC, has access to ECU specific hardware I/O signals. This SWC is responsible for reading a sensor and provide its data to other components or to set the status of an actuator. 
+\end{itemize}
+The SWC communicates via Ports. A port is used to send or request information. Once a port is definited it needs to be associated with the interface that define the information exchange. The main interaces that can are supplied by AUTOSAR are the following:
+\begin{itemize}
+    \item Sender/Receiver, defines a set of data elements that are sent from one components to another. 
+    \item Client/Server, a server can implement a set of operation and make the result available to the clients. This work as a function call for the clients. 
+    \item Parameter interface, define a set of parameters (constant or calibrate)
+    \item Non-volatile data access, provides access to Non volatile data. 
+    \item Trigger interface, give a SWC the ability to trigger another SWC. This works as an interrupt. 
+    \item Mode-Switch, activate particular modes of use. 
+\end{itemize}
+\subsection{SWC structure - AUTOSAR Internal Behaviour}
+Every SWC is not just composed by runnable code, in order to withstand the AUTOSAR standar a certain architecture need to beimplemtned in every SWC. The main IB elements of an SWC are the following:
+\begin{itemize}
+    \item Runnables, these are the pieces of code which implement the SWC functionality. A single SWC can have multiple runnables. 
+    \item RTE-Event, in real time environment such as the ECU the scheduling information of an SWC, its priority and frequency of execution need to be defined. Those can be found inside the RTE-Events. 
+    \item Access Point, the access point specify how each runnable expect to access the information conveyed through the SWC connection interfaces. 
+\end{itemize}
 
 \cleardoublepage
 \end{document}
