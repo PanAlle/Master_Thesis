@@ -145,7 +145,17 @@ Every SWC is not just composed by runnable code, in order to withstand the AUTOS
     \item RTE-Event, in real time environment such as the ECU the scheduling information of an SWC, its priority and frequency of execution need to be defined. Those can be found inside the RTE-Events. 
     \item Access Point, the access point specify how each runnable expect to access the information conveyed through the SWC connection interfaces. 
 \end{itemize}
-
+\subsection{Example implementation of a windshild wiper control}
+Having defined the AUTOSAR standard structure, it´s useful to define an example of implementation to better understand. Consider the function windshield wiping. The function graphical structure can be defined as follows:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/{AE149F77-9676-4E55-B728-C6B8FD1F5218}.png}
+    \caption{Windshield wipers implementation}
+    \label{fig:WINWIP}
+\end{figure}
+The contains tree instances of the Sensor-Actuator SWC. The first is the sensor reading the status of the windshield wiper switch, the read is done via the IO labeled port. The status is transmitted via a service. The other sensor instead check the status of the vehicle, on weather or not this is on or off. The transmission is done via a sender receiver. The main difference between the two is that the server/client configuration that the data from a server is only available to the client requesting the data. On the other hand a receiver/sender configuration the data is "published" on the RTE, and the connected receiver/writer can access/modify the data.\\
+The only actuator SWC is the one in charge of controlling the windwipers motor. The managing component is the one who compile the logic of the acutaion. It is client of the Swithc, and can therfore request the status (the request periodicity is defined by it´s RTE event element). Based on it and on the information from \textit{Car status} define an actuation that is given as service to the client \textit{Actuator Windschield}. The managging components also have a Nvblock which allow it to save its interanl state to the non volatile memory. 
+The design can be done aoviding entering inECU specific details. To create a real application two more steps are required. The first one is to define the manging block behaviour through an executable and the second one is the passage from VFB commnication to real ECU. This is done by the runtime einvoroamnte 
 
 \section{Model based design}
 \subsection{Introduction}
