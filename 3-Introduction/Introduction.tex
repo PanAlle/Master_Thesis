@@ -55,7 +55,7 @@ The input to the \textit{vehicle system} can be an array of driver commands, suc
             % \node [container,fit=(controller) (mechanics) (sum_A)] (container) {};
             \end{tikzpicture}
         \end{center}
-        \caption{'Sub block division'}
+        \caption{Sub block division}
     \end{figure}       
 These two blocks are strictly interconnected. The electronics drive the mechanics which output is given back as a feedback to correct the response. Continuing with the analogies, the system vehicle can be considered as a complex version of an embedded system where electronics drive mechanics following a logic described in lines of code.
 Every mechanical component in cars has probably some electronic hardware related to it which is controlled by one of the many ECUs (Electronic control Units) in the vehicle. The increasing presence of embedded devices in the vehicle required a rapid increase in the software in order to control it. The yearly increase in lines of code for cars reported in \ref{fig:yearlyincreas} is a statement supporting of the importance of software. 
@@ -69,6 +69,12 @@ The fact that line of code are increasing mean a increasing complexity in the de
 \section{ECU software}
 The development of Software for ECUs is an extremely complex task, a single ECU can control up to a 1000 functions, and the number can be also higher for the control of complex parts, such as the motor.
 Consider the following example. The function related to the control of the windshield wipers. In a scheme block manner we can see that the first indication comes from the driver, which activates the switch for the control of the windshield wipers. The signal travel to the ECU where it´s analyzed based on a logic stated in code lines. the output of the logic is then sent to the actuators specific board, which in this case actuates a motor that control the windshield wipers.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\linewidth, angle = 90]{images_folder/windshieldwipersfunction.jpeg}
+    \caption{Windshield wipers function}
+    \label{fig:WWFunct}
+\end{figure}
 The task seems like a basic one, consider now thousand of task sending contemporaneously information to the ECU. The ECU, indeed,  elaborates thousand of input signals every second and output the control at the same rate. In order to make everything work there are major problem that need to be considered:
 \begin{itemize}
     \item Task prioritization, every function need to be assigned a priority, in order to be executed from the ECU. Windshield wiping need to have a lower priority than airbag deployment. Every task arriving to the ECU need to be prioritize following a logic. 
@@ -92,7 +98,31 @@ The software is developed using a model based design approach. By using the Matl
     \item IO capabilities, if a function require the read of particular sensors in order to compute the logic. 
 \end{itemize}
 All those information need to be packed in a readable format for the ECU hardware. The process of compilation of the code, integration with the system and IO functionalities need is taken care by a dedicated software. 
-At BMW this dedicated software has been internally in python. The software takes as input all the functions and gives as an output the artifacts useful to be flashed in the ECU. 
+At BMW this dedicated software has been internally developed in python. The software takes as input all the functions and gives as an output the artifacts useful to be flashed in the ECU. 
 The ECU can´t read a Matlab block, so the first step is to create executable code. 
+\subsection{Build Process}
+\label{subsection:Build process}
+The build software has the function of compiling, linking, integrating, testing and validating the different functions developed for a certain ECUs. \\
+The build process perform the following tasks:
+\begin{itemize}
+    \item Compilation and linking, the build compile the single function, generation executable code. 
+    \item Architectural check, the build, after having build all the function, integrates them. For example multiple function can require the output of another one. There is the need to check if this output is available and therefore the different function can integrate together.
+    \item Quality checks, every software unit need to be checked based on Misra rules and other coding standards for developing safety-critical systems as the ECU.
+    \item Unit Testing and static code analysis, that analyze the software before this is compiled and deployed in the ECU
+    \item Documentation, generate documentation for every software components. 
+    \item Artifacts archiving, the output artifacts need to be published in a repository. 
+\end{itemize}
+The output of the build run is what BMW provide to the actual ECU makers, such as Bosch and Vitesco, they add their software part, closely related to the hardware that they develop. The composition of this package is flashed on the ECU, on which is further tested via HIL, SIL practices.\\
+After testing the ECUs are installed on the car.
+\section{Thesis Objective}
+The build system analysis underline a complex set of data that is generated throughout the process. Referring to \ref{subsection:Build process} it´s easy to grasp the complexity of the process. It´s important also to highlight the fact that each of the steps of the process are supervised by different people. This makes sometimes output information hard to grasp for the developer that is not in charge of the specific process. Even if the Agile like practices makes cooperation strong in between the team that develop and maintain the build software and also with the teams that develop function, a central view on all the artifacts is missing.\\
+The objective of my thesis is the one to develop a way to create a data dashboard that can support the developer in tracking all the aspects of development of function for the ECU and for the aspect related to taking care of the build software.\\
+The initial requirements related to the dashboard are the following:
+\begin{itemize}
+    \item Usability, the dashboard need to be easy to use and interactive, in the term that need to provide a rapid way to look for data from different sources. 
+    \item Accessibility, all the team need to have access to the visualization
+    \item Real time data, the dashboard need to be backed by always updating data. This allow to have a real time picture of the full ECU software build. 
+    \item 
+\end{itemize}
 \cleardoublepage
 \end{document}
