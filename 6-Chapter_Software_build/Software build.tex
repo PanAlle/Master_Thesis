@@ -1,11 +1,45 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
-The chapter discuss the Software Configuration Manager. This practice is not a development practice, as Scrum, but mainly set guidelines to how the software should be indeed developed. Defining how to treat the artifacts and to keep track of versioning. The chapter introduces then the practice related to continuous integration, delivery and deployment and their relation to SCM. Most of the tools reported are being used during the developemnt of the thesis project 
-\section{SCM }
+The chapter discuss the Software Configuration Manager. This practice is not a development practice, as Scrum, but mainly set guidelines to how the software should be indeed developed. Defining how to treat the artifacts and to keep track of versioning. The chapter introduces then the practice related to continuous integration, delivery and deployment and their relation to SCM. Most of the tools reported are being used during the development of the thesis project 
+\section{SCM - Software configuration Management}
+Software configuration management is an umbrella of activities that is applied throughout the software development process. The main focus of SCM is related to the changes made during the process. For this reason the main activities of software configuration management are developed to identify changes, control changes, ensure that changes are properly implemented and report changes to to the stakeholders team.\\
+SCM is not a methodology such as Scrum, the two coexist in parallel. Changes done working in a Scrum manner are taken care by applying SCM principles.\\
+A more theoretical description of SCM comes form \cite{10.1007/978-3-319-32467-8_110}, According to \citet{10.1007/978-3-319-32467-8_110} SCM is defined as the discipline of identifying the configuration of a system at a discrete points in time for purpose of systematically controlling changes to this configuration and maintaining the integrity and traceability of this configuration throughout the system life cycle.
+\subsection{SCM Components}
+To have a better overview of how the SCM process is structured it´s import at to have an overview of the main tools that are used in the process. The components interacts together to create the system big picture. The main components in Software configuration Managements are:
+\begin{itemize}
+    \item Software configuration Items; collection of the artifacts created during the software development process. 
+    \item Baselines; defines a software configuration in a certain point of times
+    \item Repository; container that stores information regarding a system configuration and configuration items. 
+    \item Version Control; set of tools and practices to track and manage the development of different Software configuration. 
+\end{itemize}
+\subsubsection{Software Configuration Items}
+Configuration items are a collection of artifacts ranging form software to hardware that need to be managed during the SCM process. In general these items are composed by:
+\begin{itemize}
+    \item Results of the software development process. 
+    \item System specification and system design information
+    \item Test data, output of testing phases. 
+    \item Documentation
+\end{itemize}
+The collection of those artifacts is considered as a single entity in the development process and need to be identified uniquely in order to be able to differentiate it from the other configuration items. 
+\subsubsection{Baselines}
+A baseline is essentially the state of configuration artifacts items that full fill certain criteria at some point in time. A baseline need to withstand both time criteria but also functionality criteria. For software development the functional criteria could be related to passing system test and having no defects with high severity. Having a stable baseline is key in SCM process.\\
+All new addiction to the project will be based on a baseline, therefor there is the need for stability to start up on, other than that a baseline is also the starting point to the production baseline, or the project version that is deployed to the customer.\\
+In Agile software development a baseline is deployed at the end of a sprint. The project baseline instead can be deployed once every three sprints. 
+\subsubsection{Repository}
+A repository is simply a structured repository on a server that stores each versioned files separately. The simple definition of repository hide the complexity that the repository structure need to have for complex projects. A project item becomes a Configuration item as soon as it enters a versioned repository. \\
+Repository can be organized to differentiate between base and slave directories. Indeed production artifact are stored under strict modification rule, that require all the changes to receive an authorization.  In general repositories are strictly connected with baseline to ensure consistency. 
+\subsubsection{Version control}
+Version control is essentially the management of changes to a set of configuration items, most commonly source code and documents stored in a repository. Each change creates a new version.\\ 
+The main difference between versions and baseline is that each artifacts in a configuration set has its own version, while the group of artifacts with a specific version define a baseline. If only one item in a baseline gets modified, and therefore gets an updated version, then the the configuration set is not in at the baseline level anymore. At the same time in the same baseline can be present artifact whit completely different versions.\\
+Some of the main things related to version control are the following:
+\begin{itemize}
+    \item Check in, define the process of adding or updating an item in a repository. In order to check in in the working directory some type of testing and review is required. For software a requirement could be that the code build and work. 
+    \item Check out, process of requesting a version controlled item in order to apply changes on it. After a modification the version control procedure continue with a check-in of the modified item. 
+    \item Branching, A branch is a deviation from the main development of a configuration item, and allows for more than one person to work on the same configuration item. A branch can be seen as a image of the repository taken at a certain period of time. On this copy modification can be made and tested. The main goal is the one of keeping a stable main branch (the one on which the baseline stand) and test modification on side branches before merging those modification back on the main branch.
+    \item Merging, as noted changes in branches need to be incorporated into the main line for that configuration item. The act of incorporating changes from a branch tin to the main line, or in another branch is called merging. If changes have been made to different parts of an item, e.g., different lines in the source code, the merge is trivial, and can be done automatically by most software. The problem comes if two people have done changes to the same place, then the merge is no longer trivial and has to be handled manually.
+\end{itemize}
 \section{Software build}
-\section{Scons}
 \section{Continuous integration}
-\section{Jenkins}
-\section{Jira planning}
 \cleardoublepage
 \end{document}
