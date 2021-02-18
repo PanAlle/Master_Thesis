@@ -112,6 +112,21 @@ The build process perform the following tasks:
     \item Documentation, generate documentation for every software components. 
     \item Artifacts archiving, the output artifacts need to be published in a repository. 
 \end{itemize}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[mindmap, grow cyclic, every node/.style=concept, concept color=gray!10, text width=]
+    \node{Build}
+    	child { node {Compilation}}
+    	child { node {Architectural Check}}
+    	child { node {Quality Checks}}
+    	child { node {Documentation}}
+    	child { node {Unit Testing}}
+    	child { node {Linking}}
+    	child { node {Artifacts Archiving}};
+\end{tikzpicture}
+    \caption{Caption}
+    \label{fig:my_label}
+\end{figure}
 The output of the build run is what BMW provide to the actual ECU makers, such as Bosch and Vitesco, they add their software part, closely related to the hardware that they develop. The composition of this package is flashed on the ECU, on which is further tested via HIL, SIL practices.\\
 After testing the ECUs are installed on the car.
 \section{Thesis Objective}
