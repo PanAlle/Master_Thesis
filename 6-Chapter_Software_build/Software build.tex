@@ -59,7 +59,24 @@ Configuration Status Accounting is the means to record and report product config
 Configuration Verification Review and SCM Audit is the means to assess that the final product design is completely documented, the final product design satisfies all performance requirements of the specification(s), the initially produced product meets the design disclosure of its governing documentation, and the Configuration Management assets are sufficient to achieve that goals \cite{ieestandard}.
 \section{Software build}
 The definition of software build reported by Wikipedia \cite{builddef} refers to build as the process of converting source code files in a standalone software artifacts that can be run on a computer, or the result of doing so. The build build process includes step such as retrieving the correct components, compiling, running scripts that generates source files.\\
-
+\subsection{Relationship between Build process, SCM and Scrum}
+The build process insert itself in the SCM process as the one responsible of modifying the configurations artifacts. Via the build and other auxiliary step the artifact are modified and new are created, requiring therefor all the previously explained SCM operations.  Other than that the build the process is the junction point of SCM with Agile development. 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{images_folder/Sdhemabuild.jpeg}
+    \caption{Build process}
+    \label{fig:build process}
+\end{figure}
+Modification to the source files mainly comes from a Scrum item. Consider during a Scrum sprint that a changes or a new feature is required for the output artifacts. The modification need to be first implemented in the source code. To do that a branch from the baseline is created. On this branch the modification are implemented by the developer. Once a modification is implemented the build process can start. The artifacts are created. Before those artifacts become part of a configuration items (i.e. before they get proper versioning) they need to be tested. In this case unit test and a review of the output artifacts is implemented. Once all the review process is completed a versioned repository is created. Based on the sum of different mods a new baseline is created. Baselining can be based on number of modification or just on a temporal manner. Baseline have the same time frequency as sprints, this means that once a new sprint start a new baseline is created. There could also be differences between a production baseline, which need to be more stable, and therefor only changes that have passed a lengthy review can be deployed in which a new baseline can be created also once every four or five sprint.\\
+Another example, close to the automotive world is the homologation baseline, after a baseline receive the homologation tag, changes allowed are limited or not allowed at all. 
+\subsection{Build types}
+In general three types of build are part of the environment of SCM. Each type of build has a different scope and also a different frequency at which is run. The main types are:
+\begin{itemize}
+    \item Private Build, the developer in its own private work space run the build process. As reported next, some build software allow for partial build. The developer can only "run" the part in which the changes have been applied. This is particularly useful since local build can be computationally heavy and time consuming for developer. 
+    \item Integration build, after a private build the developer commit its changes to the current baseline branch. The sum of changes that the different developer implement are then run together, composing a integration build. 
+    \item Release build, package the software release. The main point is to create the releasable product for the customer. Differently from the integration step, in this step the output product is packed and ready to be deployed to the customer. This may require more steps that are omitted in the integration step. An example can be the creation of documentation or some artifacts useful only for developers. 
+\end{itemize}
+\subsection{Software build systems}
 \section{Continuous integration}
 \cleardoublepage
 \end{document}
