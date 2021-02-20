@@ -39,7 +39,27 @@ Some of the main things related to version control are the following:
     \item Branching, A branch is a deviation from the main development of a configuration item, and allows for more than one person to work on the same configuration item. A branch can be seen as a image of the repository taken at a certain period of time. On this copy modification can be made and tested. The main goal is the one of keeping a stable main branch (the one on which the baseline stand) and test modification on side branches before merging those modification back on the main branch.
     \item Merging, as noted changes in branches need to be incorporated into the main line for that configuration item. The act of incorporating changes from a branch tin to the main line, or in another branch is called merging. If changes have been made to different parts of an item, e.g., different lines in the source code, the merge is trivial, and can be done automatically by most software. The problem comes if two people have done changes to the same place, then the merge is no longer trivial and has to be handled manually.
 \end{itemize}
+\section{SCM operations}
+SCM activities are organized into four functions:
+\begin{itemize}
+    \item configuration identification, in this step the configuration items are identified.
+    \item configuration control, control the changes to the previously defined configuration items throughout the product life
+    \item configuration status accounting, recording and reporting the status of configuration items
+    \item configuration audit, verifying the completeness of the items. 
+\end{itemize}
+The following subsections report the main information's and requirement related to each activities.
+\subsubsection{Configuration Identification}
+The fist phase in SCM is the identification of Configurations items. In this step the team not only defines which items are worth tracking during the development process, but also identify a structure of such components and a proper naming convention. This make the process of versioning and items accessing easier.\\
+Even if the structure can be later adjusted, this steps lay the foundations for the way the project is handled in the future. Therefor an efficient and clear organization is a first step towards SCM success \cite{ieestandard}.
+\subsubsection{Configuration control}
+Configuration Control is the means to assess and record changes to the functional characteristics of a Configuration Item, revisions to the  Configuration Item definition data and monitoring such changes during preparation, review, approval and implementation. Configuration control activities request, evaluate, approve or disapprove, and implement changes to baselined CIs. Changes can include both error correction and enhancement \cite{ieestandard}.
+\subsubsection{Configuration Status Accounting}
+Configuration Status Accounting is the means to record and report product configuration evolution history, Change processing and implementation status and Product documentation status and history \cite{ieestandard}.
+\subsubsection{Configuration Audit}
+Configuration Verification Review and SCM Audit is the means to assess that the final product design is completely documented, the final product design satisfies all performance requirements of the specification(s), the initially produced product meets the design disclosure of its governing documentation, and the Configuration Management assets are sufficient to achieve that goals \cite{ieestandard}.
 \section{Software build}
+The definition of software build reported by Wikipedia \cite{builddef} refers to build as the process of converting source code files in a standalone software artifacts that can be run on a computer, or the result of doing so. The build build process includes step such as retrieving the correct components, compiling, running scripts that generates source files.\\
+
 \section{Continuous integration}
 \cleardoublepage
 \end{document}
