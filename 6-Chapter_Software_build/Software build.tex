@@ -60,6 +60,44 @@ Configuration Verification Review and SCM Audit is the means to assess that the 
 \section{Software build}
 The definition of software build reported by Wikipedia \cite{builddef} refers to build as the process of converting source code files in a standalone software artifacts that can be run on a computer, or the result of doing so. The build build process includes step such as retrieving the correct components, compiling, running scripts that generates source files.\\
 \subsection{Relationship between Build process, SCM and Scrum}
+
+\begin{figure}[H]
+    \begin{center}
+        \begin{tikzpicture}[scale=0.7,transform shape,node distance=4cm,>=latex']
+        \node [input3, left of=sum ] (requirements) {$Requirements$};
+        \node [sum2, right of=requirements] (sum) {};
+        \draw [->] (requirements) -- node [left] {} (sum);
+        \node [block, right of=sum] (changes) {$Changes\;Implementation$};
+        \draw [->] (sum) -- node {} (changes);
+        \node [block, right of=changes] (build) {$Build$};
+        \draw [->] (changes) -- node {} (build);
+        \node [block, right of=build] (test) {$Test$};
+        \draw [->] (build) -- node {} (test);
+        \node [block, right of=test] (review) {$Review$};
+        \draw [->] (test) -- node {} (review);
+        \draw[->] (review)--++(-90:1) coordinate (A)--++(-90:4.5) coordinate (B)-|(sum);
+        \node [block, above of=review] (versioning) {$Versioning$};
+        \draw [->] (review) -- node [above, pos=0.79] {} (versioning);
+        \node [block, above of=versioning] (repository) {$Repository$};
+        \draw [<-] (versioning) -- node {} (repository);
+        
+        \node [block, above of=sum] (branch) {$Branch$};
+        \draw [<-] (sum) -- node {} (branch);
+        \node [block, above of=branch] (Baseline) {$Baseline$};
+        \draw [<-] (branch) -- node {} (Baseline);
+        \node [sum2, above of=Baseline] (sum1) {};
+        \draw [<-] (Baseline) -- node {} (sum1);
+        \draw [->] (repository) |- node {} (sum1);
+        
+        \node [input2, name=input, left of=sum1] {};
+        \draw [draw,->] (input) -- node [above left] {$Other\;changes$} (sum1);
+        
+        \end{tikzpicture}
+    \end{center}
+    \caption{Scrum process}\label{figscrum}
+\end{figure}
+
+
 The build process insert itself in the SCM process as the one responsible of modifying the configurations artifacts. Via the build and other auxiliary step the artifact are modified and new are created, requiring therefor all the previously explained SCM operations.  Other than that the build the process is the junction point of SCM with Agile development. 
 \begin{figure}
     \centering
