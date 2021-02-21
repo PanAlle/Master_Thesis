@@ -1,4 +1,5 @@
 \documentclass[../main.tex]{subfiles}
+\tikzstyle{container} = [draw, rectangle, inner sep=0.3cm]
 \begin{document}
 The chapter discuss the Software Configuration Manager. This practice is not a development practice, as Scrum, but mainly set guidelines to how the software should be indeed developed. Defining how to treat the artifacts and to keep track of versioning. The chapter introduces then the practice related to continuous integration, delivery and deployment and their relation to SCM. Most of the tools reported are being used during the development of the thesis project 
 \section{SCM - Software configuration Management}
@@ -113,7 +114,32 @@ In general three types of build are part of the environment of SCM. Each type of
     \item Release build, package the software release. The main point is to create the releasable product for the customer. Differently from the integration step, in this step the output product is packed and ready to be deployed to the customer. This may require more steps that are omitted in the integration step. An example can be the creation of documentation or some artifacts useful only for developers. 
 \end{itemize}
 \subsection{Software build tools}
+Software build tools are used to automate the creation of executable application starting from source code. The most basic and most known software build tool is gcc (GNU software build) to create the executable from a generic c file. 
+\begin{center}
+    \texttt{gcc -o Helloworldexe HelloWorld.c}
+\end{center}
+In a block scheme manner the task that the gcc build system complete are reported in \ref{Build process overview}:
+\tikzstyle{block} = [draw, rectangle, text width=2cm, text centered, minimum height=1.2cm, node distance=3cm]
+\begin{figure}[h]
+  \centering
+\begin{tikzpicture}[scale=0.85,transform shape]
+    \node [block, name=text1] {Source code};
+    \node [block, right of=text1] (text2) {Compiler};
+    \node [block, right of=text2] (text3) {Assembler};
+    \node [block, right of=text3] (text4) {Linker};
+    \node [block, right of=text4] (text5) {Locator};
+    \node [block, right of=text5] (text6) {Executable file};
+    \node [container,fit=(text2) (text3) (text4) (text5)] (container) {};
 
+    \draw [->] (text1) -- (text2);
+    \draw [->] (text2) -- node {} (text3);
+    \draw [->] (text3) -- node {} (text4);
+    \draw [->] (text4) -- node {} (text5);
+    \draw [->] (text5) -- node {} (text6);
+\end{tikzpicture}
+  \caption{Build process overview}
+\end{figure}
+The only taks that are run by gcc is the creation of executable files. More actual software build tools run different tasks such as downloading dependencies, compiling and packing code, running test and deploy artifacts of the build process. The actual usefulness of build tools comes into place in big projects, where it´s hard to keep track of what need to be build, there are complex dependencies and sometimes a single full build can take up also hours. In this case by the use of build tools we can define the dependencies tree and execute tasks sequentially. This mean that via the use of buidl tools the developer can run only the build process from the last modified steps. If a developer implement a mod in the last buidl step then only this is goin to require an update 
 \section{Continuous integration}
 \cleardoublepage
 \end{document}
