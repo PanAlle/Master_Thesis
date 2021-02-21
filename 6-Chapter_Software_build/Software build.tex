@@ -94,10 +94,8 @@ The definition of software build reported by Wikipedia \cite{builddef} refers to
         
         \end{tikzpicture}
     \end{center}
-    \caption{Scrum process}\label{figscrum}
+    \caption{Build Approach}\label{figscrum}
 \end{figure}
-
-
 The build process insert itself in the SCM process as the one responsible of modifying the configurations artifacts. Via the build and other auxiliary step the artifact are modified and new are created, requiring therefor all the previously explained SCM operations.  Other than that the build the process is the junction point of SCM with Agile development. 
 \begin{figure}
     \centering
@@ -110,11 +108,12 @@ Another example, close to the automotive world is the homologation baseline, aft
 \subsection{Build types}
 In general three types of build are part of the environment of SCM. Each type of build has a different scope and also a different frequency at which is run. The main types are:
 \begin{itemize}
-    \item Private Build, the developer in its own private work space run the build process. As reported next, some build software allow for partial build. The developer can only "run" the part in which the changes have been applied. This is particularly useful since local build can be computationally heavy and time consuming for developer. 
-    \item Integration build, after a private build the developer commit its changes to the current baseline branch. The sum of changes that the different developer implement are then run together, composing a integration build. 
+    \item Private Build, the developer in its own private work space run the build process. As reported next, some build software allow for partial build. The developer can "run" only the part in which the changes have been applied. The developer verify the correctness o of the implemented changes before committing them to the code line where they will be available to the rest of the team. 
+    \item Integration build, the integration build is used to incorporate the newly developed changes and verifying that the sum of all the changes output a stable and consistent result. In general this build can therefor be used as a versioned one. Developer are going to use this version to implement further changes. 
     \item Release build, package the software release. The main point is to create the releasable product for the customer. Differently from the integration step, in this step the output product is packed and ready to be deployed to the customer. This may require more steps that are omitted in the integration step. An example can be the creation of documentation or some artifacts useful only for developers. 
 \end{itemize}
-\subsection{Software build systems}
+\subsection{Software build tools}
+
 \section{Continuous integration}
 \cleardoublepage
 \end{document}
