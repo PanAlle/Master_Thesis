@@ -129,15 +129,16 @@ The build process perform the following tasks:
 \end{figure}
 The output of the build run is what BMW provide to the actual ECU makers, such as Bosch and Vitesco, they add their software part, closely related to the hardware that they develop. The composition of this package is flashed on the ECU, on which is further tested via HIL, SIL practices.\\
 After testing the ECUs are installed on the car.
-\section{Thesis Objective}
-The build system analysis underline a complex set of data that is generated throughout the process. Referring to \ref{subsection:Build process} it´s easy to grasp the complexity of the process. It´s important also to highlight the fact that each of the steps of the process are supervised by different people. This makes sometimes output information hard to grasp for the developer that is not in charge of the specific process. Even if the Agile like practices makes cooperation strong in between the team that develop and maintain the build software and also with the teams that develop function, a central view on all the artifacts is missing.\\
-The objective of my thesis is the one to develop a way to create a data dashboard that can support the developer in tracking all the aspects of development of function for the ECU and for the aspect related to taking care of the build software.\\
-The initial requirements related to the dashboard are the following:
+\section{Statement of Problem}
+The build system analysis underline a complex set of data that is generated throughout the process. Referring to \ref{subsection:Build process} it´s easy to grasp the complexity of the process. It´s important also to highlight the fact that each of the steps of the process are supervised by different people. This makes the output information hard to grasp for the developer that is not in charge of the specific part of the process. Even if the Agile like practices makes cooperation strong in between the team that develop and maintain the build software and also with the teams that develop function, a central view on all the artifacts is missing.\\
+The need for a centralized overview that can allow the developers to surf through different information regarding the whole developer step is missing. A way to efficiently give a overview of the process is the use of a dashboard, that not only would allow for a graphical visualization but also for an easy way to look for data. In order to be useful inside a fast phased project the dashboard need to have the following characteristics:
 \begin{itemize}
     \item Usability, the dashboard need to be easy to use and interactive, in the term that need to provide a rapid way to look for data from different sources. 
     \item Accessibility, all the team need to have access to the visualization
-    \item Real time data, the dashboard need to be backed by always updating data. This allow to have a real time picture of the full ECU software build. 
-    \item 
+    \item Real time data, the dashboard need to be backed by always updating data. This allow to have a real time picture of the full ECU software build. This is required because as multiple developer make changes on different parts of the process, if the dashboard is not able to quickly give a feedback of these changes than it´s not useful for the developer as a source of feedback. 
 \end{itemize}
+\section{Thesis Motivation}
+\section{Thesis Goals}
+\section{Contribution to the thesis}
 \cleardoublepage
 \end{document}
