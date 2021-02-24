@@ -30,6 +30,12 @@ In Agile software development a baseline is deployed at the end of a sprint. The
 \subsubsection{Repository}
 A repository is simply a structured repository on a server that stores each versioned files separately. The simple definition of repository hide the complexity that the repository structure need to have for complex projects. A project item becomes a Configuration item as soon as it enters a versioned repository. \\
 Repository can be organized to differentiate between base and slave directories. Indeed production artifact are stored under strict modification rule, that require all the changes to receive an authorization.  In general repositories are strictly connected with baseline to ensure consistency. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/repobroswer.png.jpg}
+    \caption{Example of different branch repository at BMW via SVN}
+    \label{fig:BMWREPO}
+\end{figure}
 \subsubsection{Version control}
 Version control is essentially the management of changes to a set of configuration items, most commonly source code and documents stored in a repository. Each change creates a new version.\\ 
 The main difference between versions and baseline is that each artifacts in a configuration set has its own version, while the group of artifacts with a specific version define a baseline. If only one item in a baseline gets modified, and therefore gets an updated version, then the the configuration set is not in at the baseline level anymore. At the same time in the same baseline can be present artifact whit completely different versions.\\
@@ -95,7 +101,7 @@ The definition of software build reported by Wikipedia \cite{builddef} refers to
         
         \end{tikzpicture}
     \end{center}
-    \caption{Build Approach}\label{figscrum}
+    \caption{Build Approach}\label{BuildApproach}
 \end{figure}
 The build process insert itself in the SCM process as the one responsible of modifying the configurations artifacts. Via the build and other auxiliary step the artifact are modified and new are created, requiring therefor all the previously explained SCM operations.  Other than that the build the process is the junction point of SCM with Agile development. 
 \begin{figure}
