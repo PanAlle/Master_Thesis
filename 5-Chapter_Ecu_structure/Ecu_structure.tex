@@ -139,13 +139,13 @@ The SWC communicates via Ports. A port is used to send or request information. O
     \item Mode-Switch, activate particular modes of use. 
 \end{itemize}
 \subsection{SWC structure - AUTOSAR Internal Behaviour}
-Every SWC is not just composed by runnable code, in order to withstand the AUTOSAR standar a certain architecture need to beimplemtned in every SWC. The main IB elements of an SWC are the following:
+Every SWC is not just composed by runnable code, in order to withstand the AUTOSAR standar a certain architecture need to be implemented in every SWC. The main IB elements of an SWC are the following:
 \begin{itemize}
     \item Runnables, these are the pieces of code which implement the SWC functionality. A single SWC can have multiple runnables. 
     \item RTE-Event, in real time environment such as the ECU the scheduling information of an SWC, its priority and frequency of execution need to be defined. Those can be found inside the RTE-Events. 
     \item Access Point, the access point specify how each runnable expect to access the information conveyed through the SWC connection interfaces. 
 \end{itemize}
-\subsection{Example implementation of a windshild wiper control}
+\subsection{Example implementation of a windshield wiper control}
 Having defined the AUTOSAR standard structure, it´s useful to define an example of implementation to better understand. Consider the function windshield wiping. The function graphical structure can be defined as follows:
 \begin{figure}[H]
     \centering
@@ -153,10 +153,9 @@ Having defined the AUTOSAR standard structure, it´s useful to define an example
     \caption{Windshield wipers implementation}
     \label{fig:WINWIP}
 \end{figure}
-% always have fun
-The contains tree instances of the Sensor-Actuator SWC. The first is the sensor reading the status of the windshield wiper switch, the read is done via the IO labeled port. The status is transmitted via a service. The other sensor instead check the status of the vehicle, on weather or not this is on or off. The transmission is done via a sender receiver. The main difference between the two is that the server/client configuration that the data from a server is only available to the client requesting the data. On the other hand a receiver/sender configuration the data is "published" on the RTE, and the connected receiver/writer can access/modify the data.\\
-The only actuator SWC is the one in charge of controlling the windwipers motor. The managing component is the one who compile the logic of the acutaion. It is client of the Swithc, and can therfore request the status (the request periodicity is defined by it´s RTE event element). Based on it and on the information from \textit{Car status} define an actuation that is given as service to the client \textit{Actuator Windschield}. The managging components also have a Nvblock which allow it to save its interanl state to the non volatile memory. 
-The design can be done aoviding entering inECU specific details. To create a real application two more steps are required. The first one is to define the manging block behaviour through an executable and the second one is the passage from VFB commnication to real ECU. This is done by the runtime einvoroamnte 
+The contains tree instances of the Sensor-Actuator SWC. The first is the sensor reading the status of the \textit{WindeshieldsWipersSwitch}, the read is done via the IO labeled port. The status is transmitted via a service. The other sensor, \textit{CarStatus} instead check the status of the vehicle, on weather or not this is on or off. The transmission is done via a sender receiver. The main difference between the two is that the server/client configuration that the data from a server is only available to the client requesting the data. Instead a receiver/sender configuration the data is "published" on the RTE, and the connected receiver/writer can access/modify the data.\\
+The only actuator SWC is the one in charge of controlling the windshield wipers motor, \textit{WindshiedsWipersMotor}. The managing component, \textit{WindshieldWipersManager} is the one who compile the logic of the actuation. It is client of the Switch, and can therefore request the status (the request periodicity is defined by it´s RTE event element). Based on it and on the information from \textit{CarStatus} define an actuation that is given as service to the client \textit{WindshieldsWipersMotor}. The managing components also have a \textit{Nvblock} which allow it to save its internal state to the non volatile memory. 
+The design can be done avoiding entering in ECU specific details. To create a real application two more steps are required. The first one is to define the managing block behaviour through an executable and the second one is the passage from VFB communication to real ECU, exiting the AUOTSAR layer of abstraction and entering in more ECU specific details. This is done by the run-time environment. 
 
 \section{Model based design}
 \subsection{Introduction}
