@@ -110,16 +110,15 @@ The build software has the function of compiling, linking, integrating, testing 
     \centering
     \begin{tikzpicture}[mindmap, grow cyclic, every node/.style=concept, concept color=gray!10, text width=]
     \node{Build}
-    	child { node {Compilation}}
     	child { node {Architectural Check}}
     	child { node {Quality Checks}}
     	child { node {Documentation}}
     	child { node {Unit Testing}}
-    	child { node {Linking}}
+    	child { node {Compilation and Linking}}
     	child { node {Artifacts Archiving}};
 \end{tikzpicture}
-    \caption{Caption}
-    \label{fig:my_label}
+    \caption{Build functionality}
+    \label{fig:buildfucntionality}
 \end{figure}
 The output of a build run is provided by BMW to the actual ECU makers, such as Bosch and Vitesco. They add to the compiled software their part, closely related to the hardware that they develop. The complete software is flashed on the ECU. After having passed all the HIL testing, the ECU is homologated and enters production, to be later mounted on actual vehicles.
 \section{Statement of Problem}
