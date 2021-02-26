@@ -70,46 +70,40 @@ The definition of software build reported by Wikipedia \cite{builddef} refers to
 
 \begin{figure}[H]
     \begin{center}
-        \begin{tikzpicture}[scale=0.7,transform shape,node distance=4cm,>=latex']
-        \node [input3, left of=sum ] (requirements) {$Requirements$};
-        \node [sum2, right of=requirements] (sum) {};
+        \begin{tikzpicture}[scale=0.7,transform shape,node distance=1cm and 1cm,>=latex']
+        \node [input3, left =of sum ] (requirements) {$Requirements$};
+        \node [sum2, right =of requirements] (sum) {};
         \draw [->] (requirements) -- node [left] {} (sum);
-        \node [block, right of=sum] (changes) {$Changes\;Implementation$};
+        \node [block, right= of sum] (changes) {$Changes\;Implementation$};
         \draw [->] (sum) -- node {} (changes);
-        \node [block, right of=changes] (build) {$Build$};
+        \node [block, right =of changes] (build) {$Build$};
         \draw [->] (changes) -- node {} (build);
-        \node [block, right of=build] (test) {$Test$};
+        \node [block, right =of build] (test) {$Test$};
         \draw [->] (build) -- node {} (test);
-        \node [block, right of=test] (review) {$Review$};
+        \node [block, right =of test] (review) {$Review$};
         \draw [->] (test) -- node {} (review);
-        \draw[->] (review)--++(-90:1) coordinate (A)--++(-90:4.5) coordinate (B)-|(sum);
-        \node [block, above of=review] (versioning) {$Versioning$};
+        \draw[->] (review)--++(-90:1) coordinate (A)--++(-90:2.5) coordinate (B)-|(sum);
+        \node [block, above =of review] (versioning) {$Versioning$};
         \draw [->] (review) -- node [above, pos=0.79] {} (versioning);
-        \node [block, above of=versioning] (repository) {$Repository$};
-        \draw [<-] (versioning) -- node {} (repository);
+        \node [block, above =of versioning] (repository) {$Repository$};
+        \draw [->] (versioning) -- node {} (repository);
         
-        \node [block, above of=sum] (branch) {$Branch$};
+        \node [block, above =of sum] (branch) {$Branch$};
         \draw [<-] (sum) -- node {} (branch);
-        \node [block, above of=branch] (Baseline) {$Baseline$};
+        \node [block, above =of branch] (Baseline) {$Baseline$};
         \draw [<-] (branch) -- node {} (Baseline);
-        \node [sum2, above of=Baseline] (sum1) {};
+        \node [sum2, above =of Baseline] (sum1) {};
         \draw [<-] (Baseline) -- node {} (sum1);
         \draw [->] (repository) |- node {} (sum1);
         
-        \node [input2, name=input, left of=sum1] {};
+        \node [input2, name=input, left =of sum1] {};
         \draw [draw,->] (input) -- node [above left] {$Other\;changes$} (sum1);
         
         \end{tikzpicture}
     \end{center}
     \caption{Build Approach}\label{BuildApproach}
 \end{figure}
-The build process insert itself in the SCM process as the one responsible of modifying the configurations artifacts. Via the build and other auxiliary step the artifact are modified and new are created, requiring therefor all the previously explained SCM operations.  Other than that the build the process is the junction point of SCM with Agile development. 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\linewidth]{images_folder/Sdhemabuild.jpeg}
-    \caption{Build process}
-    \label{fig:build process}
-\end{figure}
+The build process insert itself in the SCM process as the one responsible of modifying the configurations artifacts. Via the build and other auxiliary step the artifact are modified and new are created, requiring therefor all the previously explained SCM operations.  Other than that the build the process is the junction point of SCM with Agile development.\\
 Modification to the source files mainly comes from a Scrum item. Consider during a Scrum sprint that a changes or a new feature is required for the output artifacts. The modification need to be first implemented in the source code. To do that a branch from the baseline is created. On this branch the modification are implemented by the developer. Once a modification is implemented the build process can start. The artifacts are created. Before those artifacts become part of a configuration items (i.e. before they get proper versioning) they need to be tested. In this case unit test and a review of the output artifacts is implemented. Once all the review process is completed a versioned repository is created. Based on the sum of different mods a new baseline is created. Baselining can be based on number of modification or just on a temporal manner. Baseline have the same time frequency as sprints, this means that once a new sprint start a new baseline is created. There could also be differences between a production baseline, which need to be more stable, and therefor only changes that have passed a lengthy review can be deployed in which a new baseline can be created also once every four or five sprint.\\
 Another example, close to the automotive world is the homologation baseline, after a baseline receive the homologation tag, changes allowed are limited or not allowed at all. 
 \subsection{Build types}
@@ -145,7 +139,14 @@ In a block scheme manner the task that the gcc build system complete are reporte
 \end{tikzpicture}
   \caption{Build process overview}
 \end{figure}
-The only taks that are run by gcc is the creation of executable files. More actual software build tools run different tasks such as downloading dependencies, compiling and packing code, running test and deploy artifacts of the build process. The actual usefulness of build tools comes into place in big projects, where it´s hard to keep track of what need to be build, there are complex dependencies and sometimes a single full build can take up also hours. In this case by the use of build tools we can define the dependencies tree and execute tasks sequentially. This mean that via the use of buidl tools the developer can run only the build process from the last modified steps. If a developer implement a mod in the last buidl step then only this is goin to require an update 
+The only tasks that are run by gcc is the creation of executable files. More actual software build tools run different tasks such as downloading dependencies, compiling and packing code, running test and deploy artifacts of the build process. The actual usefulness of build tools comes into place in big projects, where it´s hard to keep track of what need to be build, there are complex dependencies and sometimes a single full build can take up also hours. In this case by the use of build tools we can define the dependencies tree and execute tasks sequentially. This mean that via the use of build tools the developer can run only the build process from the last modified steps. If a developer implement a mod in the last build step then only this is going to require an update 
 \section{Continuous integration}
+The definition of continuous integration is already been given under different terms in the chapter. Continuous integration is a widely established development practice in software development industry, in which members of a team integrate and merge development work (e.g., code) frequently, for example multiple times per day \cite{fitzgerald2017continuous}. The use of CI allow companies to have frequent release cycles, improve the software quality via a constant feedback and enhance productivity \cite{fitzgerald2017continuous}. This practice include building and testing \cite{7057604}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{images_folder/CI.jpg}
+    \caption{Continuous integration Workflow}
+    \label{fig:Continous Integration}
+\end{figure}
 \cleardoublepage
 \end{document}
