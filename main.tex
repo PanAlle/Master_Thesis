@@ -71,7 +71,8 @@
 	l%
 	<{\egroup}%
 }
-
+\usepackage[nottoc,notlot,notlof]{tocbibind}
+\usepackage[toc]{glossaries}
 \usepackage{longtable}
 \usepackage{float}
 \usepackage{booktabs}
@@ -80,7 +81,7 @@
 
 \bibliographystyle{unsrtnat}
 \usepackage[numbers]{natbib}
-
+\usepackage{glossaries}
 
 
 
@@ -147,6 +148,8 @@
 }
 % imma have fun
 
+\makeglossaries
+
 \begin{document}
 \pagenumbering{gobble}
 	
@@ -212,9 +215,9 @@
 \subfile{9-Chapter_Conclusions_Future_Development/Conclusions_Future_Development}
 
 
+\subfile{glossaries}
+
 \cleardoublepage
-
-
 \bibliography{bibliography.bib}
 
 \listoffigures
