@@ -47,7 +47,7 @@ While for the case reported in \ref{fig:dbexample}:
 \end{equation}
 \begin{figure}[H]
     \centering
-\begin{tikzpicture}[scale=1.2]
+\begin{tikzpicture}[]
 \begin{axis}[xmin=0, ymin=0, xmax=400, ymax=800, samples= 100, xlabel=$time\;entries$,ylabel=$tot.\;cells$, legend pos=south east]
   \addplot[black, ultra thick, domain=0:1000] (x,3*x);
   \addplot[gray,  ultra thick, domain=0:1000] (x,2*x + 3*50);
@@ -66,10 +66,9 @@ It´s easy from the plot, that consider a fixed number of 50 Users that the stru
     \item Accessibility, database are meant to be worked on by multiple people in a concurrent manner, differently from spreadsheets. This mean a structured user hierarchy is determined in the database. 
 \end{itemize}
 
-\subsubsection{Types of databases}
-\subsection{Creation of a connection to database on a server}
-\subsection{SQL Database}
+\subsection{Relational database and SQL language}
 \subsubsection{Primary key and foreign key}
+\subsection{Creation of a connection to database on a server}
 \section{Slq alchemy}
 \subsubsection{ORM Layer}
 \subsection{Tables object}
