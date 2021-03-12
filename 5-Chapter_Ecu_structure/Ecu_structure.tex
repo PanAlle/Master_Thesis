@@ -30,7 +30,67 @@ It´s possible to easily differentiate between four different parts:
     \item Outputs, output are directed to actuator, when the output pass through power electronics or can be the communication interface with other \gls{ECU}s.
     \item \gls{MPU}, Microprocessor unit and memory, in general Flash and \gls{RAM}. 
 \end{itemize}
+\section{AUTOSAR}
+AUTomotive Open System ARchitecture (\gls{AUTOSAR}) is an open and standardize automotive software architecture, jointly develop by automobile manufacturers, supplier and tool developer. \gls{AUTOSAR} architecture was introduced to promote standardization of the software development process for Automotive Electronic Control Units. Prior to the introduction of \gls{AUTOSAR} \gls{ECU} software needed to be completely fitted around the hardware architecture, decreasing portability over different \gls{ECU} platforms and between different hardware producers. 
+In order to address the problem \gls{AUTOSAR} introduced a an abstraction layer between the software and the hardware, thus ensuring that the software can be developed independently from the hardware. It is then \gls{AUTOSAR} task to make the two communicates together.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/autosarcapture.jpg}
+    \caption{Autosar interface}
+    \label{fig:AUTCA}
+\end{figure}
+\subsection{AUTOSAR Architecture}
+The architectural structure of the \gls{AUTOSAR} standard is used to divide the hardware-independent software and the hardware-oriented software. Three main layers can be identified:
+\begin{itemize}
+    \item Application software, host all the functions that control the vehicle capabilities. In the \gls{AUTOSAR} language functions are also called \gls{SWC} (software components). An example of functions could be the software driving the windshield wipers. These software parts need to be able to receive a switch input in order to get triggered and give an output to light up the relative led on the cockpit dashboard.
+    % first read
+    \item Basic Software (\gls{BSW}), includes low level software like services and hardware specific software. Related to the previous example this gives the input output functionality required by the windshield wipers function. 
+    \item Run-time Environment (\gls{RTE}), abstraction layer that manage the interface between the tow other layers. 
+    \item Virtual Functional Bus (\gls{VFB}), this is an additional architectural strategy introduced by \gls{AUTOSAR} to decouple applications (windshield wiping) from the hardware infrastructure. The virtual bus map the two main type of communication between \gls{SWC} (intra-\gls{ECU} and inter-\gls{ECU}s) to the same function, allowing the user to simply define a communication, without having to bother about the protocol required (inter-\gls{ECU}s is generally based on \gls{CAN} while intra uses shared memory). The connection mapping is implemented by the RTE and becomes the concrete interface between individuals \gls{SWC} and between \gls{SWC}s and the \gls{BSW}.
+\end{itemize}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/878x-autosar_layers.b68.png}
+    \caption{Autosar layers}
+    \label{fig:AUTLAY}
+\end{figure}
+\subsection{Application Software Layer}
+The application layer consist of the various software components interacting together. To connect software components, each component has well defined ports through which the component can communicate with other components or with Basic Software modules. The \gls{AUTOSAR} architecture defines two types of software components:
+\begin{itemize}
+    \item Application \gls{SWC}, implement an application. This \gls{SWC} type can use all the \gls{AUTOSAR} communication mechanism but can communicate to the sensors only via a Sensor-Actuator type software component. 
+    \item Sensor-Actuator type \gls{SWC}, has access to \gls{ECU} specific hardware \gls{I/O} signals. This \gls{SWC} is responsible for reading a sensor and provide its data to other components or to set the status of an actuator. 
+\end{itemize}
+The \gls{SWC} communicates via Ports. A port is used to send or request information. Once a port is defined it needs to be associated with the interface that define the information exchange. The main interfaces that are supplied by \gls{AUTOSAR} are the following:
+\begin{itemize}
+    \item Sender/Receiver, defines a set of data elements that are sent from one components to another. 
+    \item Client/Server, a server can implement a set of operation and make the result available to the clients. This work as a function call for the clients. 
+    \item Parameter interface, define a set of parameters (constant or calibrate)
+    \item Non-volatile data access, provides access to Non volatile data. 
+    \item Trigger interface, give a \gls{SWC} the ability to trigger another \gls{SWC}. This works as an interrupt. 
+    \item Mode-Switch, activate particular modes of use. 
+\end{itemize}
+\subsection{SWC structure - AUTOSAR Internal Behaviour}
+Every \gls{SWC} is not just composed by runnable code, in order to withstand the \gls{AUTOSAR} standard a certain architecture need to be implemented in every \gls{SWC}. The main \gls{IB} elements of an SWC are the following:
+\begin{itemize}
+    \item Runnables, these are the pieces of code which implement the \gls{SWC} functionality. A single \gls{SWC} can have multiple runnables. 
+    \item RTE-Event, in real time environment such as the \gls{ECU} the scheduling information of an SWC, its priority and frequency of execution need to be defined. Those can be found inside the RTE-Events. 
+    \item Access Point, the access point specify how each runnable expect to access the information conveyed through the \gls{SWC} connection interfaces. 
+\end{itemize}
+\subsection{Example implementation of a windshield wiper control}
+Having defined the \gls{AUTOSAR} standard structure, it´s useful to define an example of implementation to better understand. Consider the function windshield wiping. The function graphical structure can be defined as follows:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/windshield_WIpers_aUtosar.jpeg}
+    \caption{Windshield wipers implementation}
+    \label{fig:WINWIP}
+\end{figure}
+The contains tree instances of the Sensor-Actuator \gls{SWC}. The first is the sensor reading the status of the \textit{WindeshieldsWipersSwitch}, the read is done via the \gls{I/O} labeled port. The status is transmitted via a service. The other sensor, \textit{CarStatus} instead check the status of the vehicle, on weather or not this is on or off. The transmission is done via a sender receiver. The main difference between the two is that the server/client configuration that the data from a server is only available to the client requesting the data. Instead a receiver/sender configuration the data is "published" on the \gls{RTE}, and the connected receiver/writer can access/modify the data.\\
+The only actuator \gls{SWC} is the one in charge of controlling the windshield wipers motor, \textit{WindshiedsWipersMotor}. The managing component, \textit{WindshieldWipersManager} is the one who compile the logic of the actuation. It is client of the Switch, and can therefore request the status (the request periodicity is defined by it´s RTE event element). Based on it and on the information from \textit{CarStatus} define an actuation that is given as service to the client \textit{WindshieldsWipersMotor}. The managing components also have a \textit{Nvblock} which allow it to save its internal state to the non volatile memory. 
+The design can be done avoiding entering in \gls{ECU} specific details. To create a real application two more steps are required. The first one is to define the managing block behaviour through an executable and the second one is the passage from \gls{VFB} communication to real \gls{ECU}, exiting the \gls{AUTOSAR} layer of abstraction and entering in more \gls{ECU} specific details. This is done by the run-time environment.
+Communication on the ECU is done via the use of a shared \gls{bus}, using the \gls{CAN} communication protocol. The details of the communication interface are defined in the following section.
+
 \subsection{CAN - Communication protocols in ECU}
+\gls{CAN} is the main communication protocol used in the automotive field. \gls{AUTOSAR} run-time environment is responsible of connecting the \gls{AUTOSAR} scheme with the \gls{CAN} capabilities related to the \gls{ECU} hardware.\\
 The Control Area Network (\gls{CAN}) is a serial communication protocol suited for networking sensors, actuators and other nodes in real-time systems. \gls{CAN} define the protocol of communication for two of the layer of \gls{OSI}, Open System Interconnections, an abstraction model for communication protocol. 
 \begin{figure}[H]
     \centering
@@ -99,63 +159,6 @@ The level of the bus is at a low level (dominant) in the case in which just one 
     \caption{CAN Arbitration -  electrical scheme}
     \label{fig:CANABRELT}
 \end{figure}
-\section{AUTOSAR}
-AUTomotive Open System ARchitecture (\gls{AUTOSAR}) is an open and standardize automotive software architecture, jointly develop by automobile manufacturers, supplier and tool developer. \gls{AUTOSAR} architecture was introduced to promote standardization of the software development process for Automotive Electronic Control Units. Prior to the introduction of \gls{AUTOSAR} \gls{ECU} software needed to be completely fitted around the hardware architecture, decreasing portability over different \gls{ECU} platforms and between different hardware producers. 
-In order to address the problem \gls{AUTOSAR} introduced a an abstraction layer between the software and the hardware, thus ensuring that the software can be developed independently from the hardware. It is then \gls{AUTOSAR} task to make the two communicates together.
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\linewidth]{images_folder/autosarcapture.jpg}
-    \caption{Autosar interface}
-    \label{fig:AUTCA}
-\end{figure}
-\subsection{AUTOSAR Architecture}
-The architectural structure of the \gls{AUTOSAR} standard is used to divide the hardware-independent software and the hardware-oriented software. Three main layers can be identified:
-\begin{itemize}
-    \item Application software, host all the functions that control the vehicle capabilities. In the \gls{AUTOSAR} language functions are also called \gls{SWC} (software components). An example of functions could be the software driving the windshield wipers. These software parts need to be able to receive a switch input in order to get triggered and give an output to light up the relative led on the cockpit dashboard.
-    % first read
-    \item Basic Software (\gls{BSW}), includes low level software like services and hardware specific software. Related to the previous example this gives the input output functionality required by the windshield wipers function. 
-    \item Run-time Environment (\gls{RTE}), abstraction layer that manage the interface between the tow other layers. 
-    \item Virtual Functional Bus (\gls{VFB}), this is an additional architectural strategy introduced by \gls{AUTOSAR} to decouple applications (windshield wiping) from the hardware infrastructure. The virtual bus map the two main type of communication between \gls{SWC} (intra-\gls{ECU} and inter-\gls{ECU}s) to the same function, allowing the user to simply define a communication, without having to bother about the protocol required (inter-\gls{ECU}s is generally based on \gls{CAN} while intra uses shared memory). The connection mapping is implemented by the RTE and becomes the concrete interface between individuals \gls{SWC} and between \gls{SWC}s and the \gls{BSW}.
-\end{itemize}
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\linewidth]{images_folder/878x-autosar_layers.b68.png}
-    \caption{Autosar layers}
-    \label{fig:AUTLAY}
-\end{figure}
-\subsection{Application Software Layer}
-The application layer consist of the various software components interacting together. To connect software components, each component has well defined ports through which the component can communicate with other components or with Basic Software modules. The \gls{AUTOSAR} architecture defines two types of software components:
-\begin{itemize}
-    \item Application \gls{SWC}, implement an application. This \gls{SWC} type can use all the \gls{AUTOSAR} communication mechanism but can communicate to the sensors only via a Sensor-Actuator type software component. 
-    \item Sensor-Actuator type \gls{SWC}, has access to \gls{ECU} specific hardware \gls{I/O} signals. This \gls{SWC} is responsible for reading a sensor and provide its data to other components or to set the status of an actuator. 
-\end{itemize}
-The \gls{SWC} communicates via Ports. A port is used to send or request information. Once a port is defined it needs to be associated with the interface that define the information exchange. The main interfaces that are supplied by \gls{AUTOSAR} are the following:
-\begin{itemize}
-    \item Sender/Receiver, defines a set of data elements that are sent from one components to another. 
-    \item Client/Server, a server can implement a set of operation and make the result available to the clients. This work as a function call for the clients. 
-    \item Parameter interface, define a set of parameters (constant or calibrate)
-    \item Non-volatile data access, provides access to Non volatile data. 
-    \item Trigger interface, give a \gls{SWC} the ability to trigger another \gls{SWC}. This works as an interrupt. 
-    \item Mode-Switch, activate particular modes of use. 
-\end{itemize}
-\subsection{SWC structure - AUTOSAR Internal Behaviour}
-Every \gls{SWC} is not just composed by runnable code, in order to withstand the \gls{AUTOSAR} standard a certain architecture need to be implemented in every \gls{SWC}. The main \gls{IB} elements of an SWC are the following:
-\begin{itemize}
-    \item Runnables, these are the pieces of code which implement the \gls{SWC} functionality. A single \gls{SWC} can have multiple runnables. 
-    \item RTE-Event, in real time environment such as the \gls{ECU} the scheduling information of an SWC, its priority and frequency of execution need to be defined. Those can be found inside the RTE-Events. 
-    \item Access Point, the access point specify how each runnable expect to access the information conveyed through the \gls{SWC} connection interfaces. 
-\end{itemize}
-\subsection{Example implementation of a windshield wiper control}
-Having defined the \gls{AUTOSAR} standard structure, it´s useful to define an example of implementation to better understand. Consider the function windshield wiping. The function graphical structure can be defined as follows:
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{images_folder/windshield_WIpers_aUtosar.jpeg}
-    \caption{Windshield wipers implementation}
-    \label{fig:WINWIP}
-\end{figure}
-The contains tree instances of the Sensor-Actuator \gls{SWC}. The first is the sensor reading the status of the \textit{WindeshieldsWipersSwitch}, the read is done via the \gls{I/O} labeled port. The status is transmitted via a service. The other sensor, \textit{CarStatus} instead check the status of the vehicle, on weather or not this is on or off. The transmission is done via a sender receiver. The main difference between the two is that the server/client configuration that the data from a server is only available to the client requesting the data. Instead a receiver/sender configuration the data is "published" on the \gls{RTE}, and the connected receiver/writer can access/modify the data.\\
-The only actuator \gls{SWC} is the one in charge of controlling the windshield wipers motor, \textit{WindshiedsWipersMotor}. The managing component, \textit{WindshieldWipersManager} is the one who compile the logic of the actuation. It is client of the Switch, and can therefore request the status (the request periodicity is defined by it´s RTE event element). Based on it and on the information from \textit{CarStatus} define an actuation that is given as service to the client \textit{WindshieldsWipersMotor}. The managing components also have a \textit{Nvblock} which allow it to save its internal state to the non volatile memory. 
-The design can be done avoiding entering in \gls{ECU} specific details. To create a real application two more steps are required. The first one is to define the managing block behaviour through an executable and the second one is the passage from \gls{VFB} communication to real \gls{ECU}, exiting the \gls{AUTOSAR} layer of abstraction and entering in more \gls{ECU} specific details. This is done by the run-time environment. 
 
 \section{Model based design}
 \subsection{Introduction}
