@@ -18,7 +18,7 @@ Data is related using common key (common fields) or common concepts. The use of 
 \end{figure}
 \begin{figure}[H]
 \begin{center}
-\begin{tabular}{ | m{2.5cm} | m{2.5cm}| m{2.5cm} | } 
+\begin{tabular}{ | m{2.5cm} | m{2.5cm}| c | } 
 \hline
 \textbf{Name} & \textbf{Surname} & \textbf{Time [h]} \\ 
 \hline
@@ -66,8 +66,15 @@ It´s easy from the plot, that consider a fixed number of 50 Users that the stru
     \item Accessibility, database are meant to be worked on by multiple people in a concurrent manner, differently from spreadsheets. This mean a structured user hierarchy is determined in the database. 
 \end{itemize}
 
-\subsection{Relational database and SQL language}
+\subsection{Relational database Management systems}
+The previously presented data structure is the one of a type of database defined \textit{Relational Database}. This family of databases uses a user defined structure to allows identify and access data in relation to another piece of data in the database. Often, data in a relational database is organized into tables.\\ A \gls{RDMS}, Relational Database Management System is used to organize, structure and maintain relational database that are based on the relational model. \gls{SQL} is the language used for handling relational database. \gls{SQL} query language is based on rational algebra and provide an internally consistent mathematical language that makes it easier to improve the performance of all database queries.
+\subsubsection{Tables}
+The data in \gls{RDMS} is stored in objects called tables. A tables, as the on reported in Fig. \ref{fig:dbexample} is a collection of related data entries organized in rows and columns.\\
+Tables are composed by fields and record. Field in SQL language is synonym of column and is design to maintain specific information about every record in the table.\\
+Record refer to a row of data, defined by the sum of the different fields.
 \subsubsection{Primary key and foreign key}
+The relationship between different tables in a relational database is the basic concept. In order to be effectively create data relations the database integrity need to be maintained each time data is added. To ensure that data has no duplicates a mechanism used in SQL is the creation of keys. There are mainly two types of key, primary keys and foreign keys.\\
+Each tables that qualify as a relational tables must have a primary key. The primary key consist of one or more columns whose data contained within are used to uniquely identify each row in the table. A primary key can be though as a memory address, it uniquely identify a location, in which data is stored. The relation between tables does not only pass from primry keys. In the RDMS a foreign key is a column or a combination of column that match a primary key in another table. Referring to Fig. \ref{fig:dbexample} a primary key is represented by the ID in the \textit{Users} table. The foreign key in this case corresponds to the primary key, because the relation between Users and Time table is done via the \textit{ID} field.
 \subsection{Creation of a connection to database on a server}
 \section{Slq alchemy}
 \subsubsection{ORM Layer}
