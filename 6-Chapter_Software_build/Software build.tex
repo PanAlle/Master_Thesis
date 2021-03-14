@@ -116,7 +116,7 @@ In general three types of build are part of the environment of SCM. Each type of
 \subsection{Software build tools}
 Software build tools are used to automate the creation of executable application starting from source code. The most basic and most known software build tool is gcc (GNU software build) to create the executable from a generic c file. 
 \begin{center}
-    \texttt{gcc -o Helloworldexe HelloWorld.c}
+    \texttt{gcc -o Helloworld.exe HelloWorld.c}
 \end{center}
 In a block scheme manner the task that the gcc build system complete are reported in \ref{Build process overview}:
 \tikzstyle{block} = [draw, rectangle, text width=2cm, text centered, minimum height=1.2cm, node distance=3cm]
@@ -139,9 +139,106 @@ In a block scheme manner the task that the gcc build system complete are reporte
 \end{tikzpicture}
   \caption{Build process overview}
 \end{figure}
-The only tasks that are run by gcc is the creation of executable files. More actual software build tools run different tasks such as downloading dependencies, compiling and packing code, running test and deploy artifacts of the build process. The actual usefulness of build tools comes into place in big projects, where it´s hard to keep track of what need to be build, there are complex dependencies and sometimes a single full build can take up also hours. In this case by the use of build tools we can define the dependencies tree and execute tasks sequentially. This mean that via the use of build tools the developer can run only the build process from the last modified steps. If a developer implement a mod in the last build step then only this is going to require an update 
+The only tasks that are run by gcc is the creation of executable files. State of the art software build tools as Ant or Scons run different tasks such as downloading dependencies, compiling and packing code, running test and deploy artifacts of the build process. The actual usefulness of build tools comes into place in big projects, where there's the need of easily control over what need to be build and in which order. Build software like Scons organize have dedicate files that define the flow of the build process. Via this files the build software build a a tree of dependencies between files, that not only define the succession between files but also some constraints that need to be full filled in order to process with the build process. In the Scons case different tasks are connected via ports, in a linear manner. A task can only start when the previous one is finished and some outputs are available in a specified port. The next task may need the output to start the execution process. Multiple task can run in a parallel manner in the case they do not intefer wiht eachtoher and are triggered by the same port outputs. Another important fact, is that by organiyigna programm compilation in task the output of each prot can be saved and stored as a checkpoint. This allow the build process to restart from the last succeffull port output publication. This case is common in complex programm, in whcih chenges in the last task would require to re-run the full build. In this manner only the last task can be re-build ensuring time saving . In this case by the use of build tools we can define the dependencies tree and execute tasks sequentially. This mean that via the use of build tools the developer can run only the build process from the last modified steps. If a developer implement a mod in the last build step then only this is going to require an update. 
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Rectangle [id:dp8270914998284196] 
+\draw   (100,121) -- (200,121) -- (200,170) -- (100,170) -- cycle ;
+%Shape: Rectangle [id:dp23417859595674706] 
+\draw   (310,121) -- (410,121) -- (410,170) -- (310,170) -- cycle ;
+%Shape: Rectangle [id:dp6248554362448269] 
+\draw   (240,120) -- (270,120) -- (270,140) -- (240,140) -- cycle ;
+%Shape: Rectangle [id:dp27589585736518707] 
+\draw   (240,150) -- (270,150) -- (270,170) -- (240,170) -- cycle ;
+%Shape: Rectangle [id:dp5883813410946752] 
+\draw   (520,121) -- (620,121) -- (620,170) -- (520,170) -- cycle ;
+%Shape: Rectangle [id:dp1170019747828861] 
+\draw   (450,135) -- (480,135) -- (480,155) -- (450,155) -- cycle ;
+%Straight Lines [id:da5130333476058844] 
+\draw    (270,160) -- (308,160) ;
+\draw [shift={(310,160)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da20487063638026526] 
+\draw    (270,130) -- (308,130) ;
+\draw [shift={(310,130)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da8262218954934673] 
+\draw    (200,160) -- (238,160) ;
+\draw [shift={(240,160)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da9837393153591754] 
+\draw    (200,130) -- (238,130) ;
+\draw [shift={(240,130)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da1306834064857445] 
+\draw    (410,145) -- (448,145) ;
+\draw [shift={(450,145)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da8060002888286144] 
+\draw    (480,145) -- (518,145) ;
+\draw [shift={(520,145)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Image [id:dp5269900599421633] 
+\draw (255,130.5) node  {\includegraphics[width=10.5pt,height=11.25pt]{images_folder/136443.png}};
+%Image [id:dp42456422714657904] 
+\draw (256,160.5) node  {\includegraphics[width=10.5pt,height=11.25pt]{images_folder/136443.png}};
+%Image [id:dp1481939162507082] 
+\draw (466,145.5) node  {\includegraphics[width=10.5pt,height=11.25pt]{images_folder/136443.png}};
+%Shape: Rectangle [id:dp8828311525056955] 
+\draw   (310,180) -- (410,180) -- (410,229) -- (310,229) -- cycle ;
+%Straight Lines [id:da2968573864523689] 
+\draw    (255,205) -- (308,205) ;
+\draw [shift={(310,205)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da19902971151232385] 
+\draw    (255,170) -- (255,205) ;
+%Straight Lines [id:da3830914957967655] 
+\draw    (410,206) -- (448,206) ;
+\draw [shift={(450,206)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Image [id:dp7812383507621843] 
+\draw (466,206.5) node  {\includegraphics[width=10.5pt,height=11.25pt]{images_folder/136443.png}};
+%Shape: Rectangle [id:dp8094421041024371] 
+\draw   (450,196) -- (480,196) -- (480,216) -- (450,216) -- cycle ;
+%Straight Lines [id:da9112107882737994] 
+\draw    (530,206) -- (530,172) ;
+\draw [shift={(530,170)}, rotate = 450] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da3143070711013838] 
+\draw    (480,206) -- (530,206) ;
+%Shape: Rectangle [id:dp1783948718964936] 
+\draw  [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][dash pattern={on 4.5pt off 4.5pt}][line width=0.75]  (234,110) -- (275,110) -- (275,180) -- (234,180) -- cycle ;
+%Shape: Rectangle [id:dp553145583526536] 
+\draw  [color={rgb, 255:red, 155; green, 155; blue, 155 }  ,draw opacity=1 ][dash pattern={on 4.5pt off 4.5pt}][line width=0.75]  (445,120) -- (486,120) -- (486,230) -- (445,230) -- cycle ;
+
+% Text Node
+\draw (123,136) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{pcr}\selectfont Task 1}};
+% Text Node
+\draw (333,136) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{pcr}\selectfont Task 2}};
+% Text Node
+\draw (544,136) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{pcr}\selectfont Task 4}};
+% Text Node
+\draw (201,114) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{pcr}\selectfont {\tiny O1T1}}};
+% Text Node
+\draw (201,144) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{pcr}\selectfont {\tiny O2T1}}};
+% Text Node
+\draw (279,144) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{pcr}\selectfont {\tiny I1T2}}};
+% Text Node
+\draw (279,114) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{pcr}\selectfont {\tiny I1T2}}};
+% Text Node
+\draw (412,124) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{pcr}\selectfont {\tiny O1T2}}};
+% Text Node
+\draw (498,125) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{pcr}\selectfont {\tiny I1T4}}};
+% Text Node
+\draw (333,196) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{pcr}\selectfont Task 3}};
+% Text Node
+\draw (281,185) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{pcr}\selectfont {\tiny I1T3}}};
+% Text Node
+\draw (412,183) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{pcr}\selectfont {\tiny O1T3}}};
+% Text Node
+\draw (498,185) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{pcr}\selectfont {\tiny I2T4}}};
+
+
+\end{tikzpicture}
+
 \section{Continuous integration}
-The definition of continuous integration is already been given under different terms in the chapter. Continuous integration is a widely established development practice in software development industry, in which members of a team integrate and merge development work (e.g., code) frequently, for example multiple times per day \cite{fitzgerald2017continuous}. The use of CI allow companies to have frequent release cycles, improve the software quality via a constant feedback and enhance productivity \cite{fitzgerald2017continuous}. This practice include building and testing \cite{7057604}.
+The definition of continuous integration is already been given under different terms in the chapter. Continuous integration is a widely established development practice in software development industry, in which members of a team integrate and merge development work (e.g. code) frequently, for example multiple times per day \cite{fitzgerald2017continuous}. The use of CI allow companies to have frequent release cycles, improve the software quality via a constant feedback and enhance productivity \cite{fitzgerald2017continuous}. This practice include building and testing \cite{7057604}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\linewidth]{images_folder/CI.jpg}
