@@ -143,12 +143,13 @@ The only tasks that are run by gcc is the creation of executable files. State of
 
 
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
-
-\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+\begin{figure}
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
 %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
 
 %Shape: Rectangle [id:dp8270914998284196] 
 \draw   (100,121) -- (200,121) -- (200,170) -- (100,170) -- cycle ;
+
 %Shape: Rectangle [id:dp23417859595674706] 
 \draw   (310,121) -- (410,121) -- (410,170) -- (310,170) -- cycle ;
 %Shape: Rectangle [id:dp6248554362448269] 
@@ -236,6 +237,10 @@ The only tasks that are run by gcc is the creation of executable files. State of
 
 
 \end{tikzpicture}
+    \centering
+    \caption{Build sequential organization}
+    \label{fig:squentaility}
+\end{figure}
 
 \section{Continuous integration}
 The definition of continuous integration is already been given under different terms in the chapter. Continuous integration is a widely established development practice in software development industry, in which members of a team integrate and merge development work (e.g. code) frequently, for example multiple times per day \cite{fitzgerald2017continuous}. The use of CI allow companies to have frequent release cycles, improve the software quality via a constant feedback and enhance productivity \cite{fitzgerald2017continuous}. This practice include building and testing \cite{7057604}.

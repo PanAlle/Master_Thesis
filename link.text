@@ -30,3 +30,6 @@ Build:
         -https://ase.in.tum.de/stars.globalse.org/stars1/Lectures/CM-Fall1999.pdf
     -   CI, CD, CV
         -   https://scmquest.com/continuous-integration-vs-continuous-delivery-vs-continuous-deployment/
+
+        DATABASE:
+        -   https://www.sqlshack.com/how-to-connect-to-a-remote-sql-server/

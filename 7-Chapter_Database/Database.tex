@@ -74,8 +74,77 @@ Tables are composed by fields and record. Field in SQL language is synonym of co
 Record refer to a row of data, defined by the sum of the different fields.
 \subsubsection{Primary key and foreign key}
 The relationship between different tables in a relational database is the basic concept. In order to be effectively create data relations the database integrity need to be maintained each time data is added. To ensure that data has no duplicates a mechanism used in SQL is the creation of keys. There are mainly two types of key, primary keys and foreign keys.\\
-Each tables that qualify as a relational tables must have a primary key. The primary key consist of one or more columns whose data contained within are used to uniquely identify each row in the table. A primary key can be though as a memory address, it uniquely identify a location, in which data is stored. The relation between tables does not only pass from primry keys. In the RDMS a foreign key is a column or a combination of column that match a primary key in another table. Referring to Fig. \ref{fig:dbexample} a primary key is represented by the ID in the \textit{Users} table. The foreign key in this case corresponds to the primary key, because the relation between Users and Time table is done via the \textit{ID} field.
+Each tables that qualify as a relational tables must have a primary key. The primary key consist of one or more columns whose data contained within are used to uniquely identify each row in the table. A primary key can be though as a memory address, it uniquely identify a location, in which data is stored. The relation between tables does not only pass from primary keys. In the RDMS a foreign key is a column or a combination of column that match a primary key in another table. Referring to Fig. \ref{fig:dbexample} a primary key is represented by the ID in the \textit{Users} table. The foreign key in this case corresponds to the primary key, because the relation between Users and Time table is done via the \textit{ID} field.
 \subsection{Creation of a connection to database on a server}
+the database creation require a storing location for the data. The \gls{RDMS} is the application that stores the database data and executes the SQL commands and queries to manipulate the relational database. Other than that, it also manages and performs all the database operations. In order to have access to a database from all the networked the \gls{TCP/IP} protocol is required. \gls{TCP/IP} (Transmission Control Protocol/Internet Protocol) is a set of protocols developed to allow networked computers to share resources over the network. In order to establish a remote connection to the database instances the protocol require that proper set up of Windows firewall. In order to have  a successful connection a tcp port is assigned to the database in a static manner. 
+This allow to connect every computer connected to the network to connect via the tcp protocol to the port, thus allowing to access the database instance. Accessing the database instance does not mean that the computer can access the data. Inside the database access rights are defined, as already reported in the section related to it.
+
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{figure}
+    \centering
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-0.8,xscale=0.8]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Image [id:dp6531549605845597] 
+\draw (386,154.71) node  {\includegraphics[width=81pt,height=97.93pt]{images_folder/database.png}};
+%Image [id:dp05605943116066481] 
+\draw (216,156) node  {\includegraphics[width=52.5pt,height=52.5pt]{images_folder/firewall-protection-2039809-1721228.png}};
+%Image [id:dp383039570021823] 
+\draw (64,102.71) node  {\includegraphics[width=34.5pt,height=35.57pt]{images_folder/pc.png}};
+%Image [id:dp5074894649578912] 
+\draw (64,163.71) node  {\includegraphics[width=34.5pt,height=35.57pt]{images_folder/pc.png}};
+%Image [id:dp8452106454068984] 
+\draw (63,223.71) node  {\includegraphics[width=34.5pt,height=35.57pt]{images_folder/pc.png}};
+%Image [id:dp3665068119749033] 
+\draw (595.5,100.21) node  {\includegraphics[width=48.75pt,height=51.32pt]{images_folder/935839-200.png}};
+%Image [id:dp45105133171160383] 
+\draw (595.5,160.21) node  {\includegraphics[width=48.75pt,height=51.32pt]{images_folder/935839-200.png}};
+%Image [id:dp1763171670611261] 
+\draw (595.5,221.21) node  {\includegraphics[width=48.75pt,height=51.32pt]{images_folder/935839-200.png}};
+%Straight Lines [id:da21693223941443396] 
+\draw    (100,101) -- (168.25,139.17) ;
+\draw [shift={(170,140.14)}, rotate = 209.21] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da3176124570414163] 
+\draw    (99,220) -- (168.26,181.12) ;
+\draw [shift={(170,180.14)}, rotate = 510.69] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da8563188339305701] 
+\draw    (100,159.14) -- (168,160.11) ;
+\draw [shift={(170,160.14)}, rotate = 180.82] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da10650658101917698] 
+\draw    (260,160.14) -- (328,161.11) ;
+\draw [shift={(330,161.14)}, rotate = 180.82] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da8525254743123636] 
+\draw    (439,120.14) -- (477.19,102) ;
+\draw [shift={(479,101.14)}, rotate = 514.5899999999999] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da9180864032323492] 
+\draw    (440,200.14) -- (478.19,218.28) ;
+\draw [shift={(480,219.14)}, rotate = 205.41] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da15194220294106842] 
+\draw    (440,161.14) -- (478,161.14) ;
+\draw [shift={(480,161.14)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da09311856378325101] 
+\draw    (521,101.14) -- (559,101.14) ;
+\draw [shift={(561,101.14)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da43474826611768935] 
+\draw    (521,160.14) -- (559,160.14) ;
+\draw [shift={(561,160.14)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da13431673428420954] 
+\draw    (521,221.14) -- (559,221.14) ;
+\draw [shift={(561,221.14)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Image [id:dp9305152591758974] 
+\draw (501.14,216.55) node  {\includegraphics[width=24.22pt,height=26.17pt]{images_folder/lock.png}};
+%Image [id:dp22011543040409642] 
+\draw (501.14,156.55) node  {\includegraphics[width=24.22pt,height=26.17pt]{images_folder/lock.png}};
+%Image [id:dp43535330126349736] 
+\draw (501.14,96.55) node  {\includegraphics[width=24.22pt,height=26.17pt]{images_folder/lock.png}};
+
+\end{tikzpicture}
+    \caption{Database tcp connection schema}
+    \label{fig:tcpdb}
+\end{figure}
+
 \section{Slq alchemy}
 \subsubsection{ORM Layer}
 \subsection{Tables object}
