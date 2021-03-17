@@ -30,6 +30,20 @@ It´s possible to easily differentiate between four different parts:
     \item Outputs, output are directed to actuator via power electronics or can be the communication interface with other \gls{ECU}s.
     \item \gls{MPU}, Microprocessor unit, composed by the microprocessor itself and memory, in general Flash and \gls{RAM}. 
 \end{itemize}
+\section{Model based design development}
+\subsection{Introduction}
+Inside the automotive world the trend that has drawn more differences in the way car are constructed is in the electronic components side. if the cost related to the development of mechanical components, safety features and logistic increased constantly through the years, the cost related to the electronic components exponentially increased. What once was a mechanical system is most probably going to be a embedded system nowadays. The increase in hardware related to embedded components requires an increase in the software in order to control it. The yearly increase in lines of code for car is a statement in support of the importance of software.
+Software development therefor faces new challenges, related to shorten development time, a high need of scalability  not only in the software but also in the development platforms, complex safety requirements and adaptability over continuously changing hardware.\\
+Model based design has entered the automotive conversation because it can full fill the previously reported challenges. The model based approach brings two main characteristic to the table: on the one hand it gives a development platform which is component independent, therefor allowing for better integration through rapidly changing hardware, on the other hand makes the integration of new features not time depended. In this sense it recall a concept similar to Scurm, where changes are welcomed during the whole development process. in this case, with model based design, changes are welcomed during the whole life of the software.
+\subsection{Model based design}
+Model-Based Design provides a mathematical and visual approach to develop complex control and signal processing systems. It centers on the use of system models throughout the development process for design, analysis, simulation, automatic code generation and verification \cite{Mathworks}. The main features are abstraction and automation. As reported by \cite{modelbased} model based tackle complexity via abstraction and automation. Abstraction is achieved by the using suitable models of a software system, while automation is achieved by systematically transform these models into executable source code.\\
+Engineers create a model to specify the behavior of an embedded system; the model, which consists of block diagrams, textual programs, and other graphical elements, is an executable specification that lets engineers run simulations to test ideas and verify designs throughout the development process. The main advantages are
+\begin{itemize}
+    \item The design can be tested, refined and retested throughout the development process, thus increasing product quality. Test and validation are done continuously rather than at the end of the process. Error can be found before hardware is required for testing
+    \item Simplification of complex system, by providing a graphical design models simplify the creation of high complexity functions, especially when compared with hand code components. This advantage as it enhance and simplify communication inside the team, as it is easy to understand the models. 
+    \item Embedded code can be generate automatically from the models. To adapt the model to different hardware there´s the need to adjust the compiler, not every single model. This allow for great adaptability to rapidly changing hardware. 
+\end{itemize}
+The interface between the code developed via the model based design approach and the \gls{ECU} hardware there is the \gls{AUTOSAR} standard. This standardize software architecture is the interface that stay in the middle, in between the hardware and the software. 
 \section{AUTOSAR}
 AUTomotive Open System ARchitecture (\gls{AUTOSAR}) is an open and standardize automotive software architecture, jointly develop by automobile manufacturers, supplier and tool developer. \gls{AUTOSAR} architecture was introduced to promote standardization of the software development process for Automotive Electronic Control Units. Prior to the introduction of \gls{AUTOSAR} \gls{ECU} software needed to be completely fitted around the hardware architecture, decreasing portability over different \gls{ECU} platforms and between different hardware producers. 
 In order to address the problem \gls{AUTOSAR} introduced an abstraction layer between the software and the hardware, thus ensuring that the software can be developed independently from the hardware. It is then \gls{AUTOSAR} task to make the two communicates together.
@@ -163,25 +177,7 @@ The level of the bus is at a low level (dominant) in the case in which just one 
     \label{fig:CANABRELT}
 \end{figure}
 
-\section{Model based design}
-\subsection{Introduction}
-Inside the automotive world the trend that has drawn more differences in the way car are constructed is in the electronic components side. if the cost related to the development of mechanical components, safety features and logistic increased constantly through the years, the cost related to the electronic components exponentially increased. What once was a mechanical system is most probably going to be a embedded system nowadays. The increase in hardware related to embedded components requires an increase in the software in order to control it. The yearly increase in lines of code for car is a statement in support of the importance of software. 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=\linewidth]{images_folder/Yearly-increase-in-automotive-software-complexity-shown-by-million-lines-of-code-of-1-ConvertImage.png}
-%     \caption{Yearly increase in automotive software complexity}
-%     \label{fig:yearlyincreas}
-% \end{figure}
-Software development therefor faces new challenges, related to shorten development time, a high need of scalability  not only in the software but also in the development platforms, complex safety requirements and adaptability over continuously changing hardware.\\
-Model based design has entered the automotive conversation because it can full fill the previously reported challenges. The model based approach brings two main characteristic to the table: on the one hand it gives a development platform which is component independent, therefor allowing for better integration through rapidly changing hardware, on the other hand makes the integration of new features not time depended. In this sense it recall a concept similar to Scurm, where changes are welcomed during the whole development process. in this case, with model based design, changes are welcomed during the whole life of the software.
-\subsection{Model based design}
-Model-Based Design provides a mathematical and visual approach to develop complex control and signal processing systems. It centers on the use of system models throughout the development process for design, analysis, simulation, automatic code generation and verification \cite{Mathworks}. The main features are abstraction and automation. As reported by \cite{modelbased} model based tackle complexity via abstraction and automation. Abstraction is achieved by the using suitable models of a software system, while automation is achieved by systematically transform these models into executable source code.\\
-Engineers create a model to specify the behavior of an embedded system; the model, which consists of block diagrams, textual programs, and other graphical elements, is an executable specification that lets engineers run simulations to test ideas and verify designs throughout the development process. The main advantages are
-\begin{itemize}
-    \item The design can be tested, refined and retested throughout the development process, thus increasing product quality. Test and validation are done continuously rather than at the end of the process. Error can be found before hardware is required for testing
-    \item Simplification of complex system, by providing a graphical design models simplify the creation of high complexity functions, especially when compared with hand code components. This advantage as it enhance and simplify communication inside the team, as it is easy to understand the models. 
-    \item Embedded code can be generate automatically from the models. To adapt the model to different hardware there´s the need to adjust the compiler, not every single model. This allow for great adaptability to rapidly changing hardware. 
-\end{itemize}
+
 
 \cleardoublepage
 \end{document}
