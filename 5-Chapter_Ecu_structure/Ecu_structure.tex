@@ -1,10 +1,10 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
-In the following chapter a general overview over the ECU structure is given, both in terms of hardware and software composition. The focus will be then directed towards the process involved in the development of \gls{ECU} software, with a remark in the communication protocol system such as the \gls{ECU}. 
+In the following chapter a general overview over the ECU structure is given, both in terms of hardware and software composition. The focus will be then directed towards the process involved in the development of \gls{ECU} software, with a remark in the communication protocol.
 \section{ECUs in a modern vehicle}
 In the automotive industry there has been a remarkable evolution over the last few years in which embedded systems have grown from stand alone control to highly integrated networked control systems \cite{Johansson_vehicleapplications}. In order to withstand this growth, there had been the need of creating higher scalability in the development process, via efficient communication protocols and standardize software development interfaces for the \gls{ECU}s.\\
 The \gls{ECU} can be considered as the brain of the modern cars, based on a closed loop control system it outputs the commands that drive most of the vehicle capabilities.\\
-In the logic of integrated networked control systems, the output arbitrated not only need to be logically correct, but need to abide time constraints. The complexity in both the control logic and the constraints related to the control increased both the hardware and software complexity in \gls{ECU}s.\\
+In the logic of integrated networked control systems, the output arbitrated not only need to be logically correct, but need to abide time constraints. The strict constraints in both the control logic and timing related to the control increased both the hardware and software complexity in \gls{ECU}s.\\
 In general in vehicles different control units are present, each responsible for different tasks, the main ones are:
 \begin{itemize}
     \item \gls{ECUM}, Engine control module, ensure the correct functionality of everything related to the power unit.
@@ -13,7 +13,7 @@ In general in vehicles different control units are present, each responsible for
     \item \gls{TCU}, Telematic control unit, control the \gls{HMI} and other user services offered by the vehicle. 
     \item \gls{SCM}, Suspensions control unit, control suspension, especially with upcoming technology related to active suspension control. 
 \end{itemize}
-As previously underlined, the different \gls{ECU}s communicate together and define what was previously referred as a networked control system. 
+The sum all of the \gls{ECU}s in a vehicle define what was previously referred as a networked control system.
 \section{Hardware structure of an ECU}
 \begin{figure}[h]
     \centering
@@ -21,29 +21,119 @@ As previously underlined, the different \gls{ECU}s communicate together and defi
     \caption{ECU structure}
     \label{fig:ECUHW}
 \end{figure}
-The hardware structure of an \gls{ECU} is a mixture of different electronics components, to better understand the overall organization, without entering to much in the electrical details a block scheme overview is offered by Fig.\ref{fig:ECUHW}. It´s possible to easily differentiate between four different parts:
+The hardware structure of an \gls{ECU} is a mixture of different electronics components, to better understand the overall organization, without entering to much in the electrical details a block scheme overview is offered by Fig.\ref{fig:ECUHW}. It's possible to easily differentiate between four different parts:
 \begin{itemize}
     \item Power supply, handle the power input for the board and for the power components such as the motor driver or other power electronics needed to drive the controlled parts. 
     \item Inputs, generic analog or digital inputs.
     \item Communications link, such as \gls{CAN} and \gls{LIN}.
-    \item Outputs, output are directed to actuator via power electronics or can be the communication interface with other \gls{ECU}s.
+    \item Outputs, output are directed to actuator via power electronics or can be directed to the communication interface with other \gls{ECU}s.
     \item \gls{MPU}, Microprocessor unit, composed by the microprocessor itself and memory, in general Flash and \gls{RAM}. 
 \end{itemize}
-If the hardware composition of different \gls{ECU}s may be similar to each other, this can indeed not be said for the software that control each \gls{ECU}. In order to increment the standardization in the software development process, different techniques are used. In particular the one of Model Based Design. 
+If the hardware composition of different \gls{ECU}s may be similar to each other, this can indeed not be said for the software that control each \gls{ECU}. In order to increment the standardization in the software development process, different techniques are used. The main one used by most of \gls{OEM} is Model Based Design. 
 \section{Model based design development}
-\subsection{Introduction}
-If the cost related to the development of mechanical components, safety features and logistic increased constantly through the years, the cost related to the electronic component had an exponential raise. The increase in hardware related to embedded components required an increase in the software in order to control it.
-Software development for \gls{ECU} therefor faces new challenges, related to shorten development time, a high need of scalability  not only in the software but also in the development platforms, complex safety requirements and adaptability over continuously changing hardware.\\
-Model Based Design is the automotive standard for software development since it almost completely full-fill the previously reported challenges. The Model Based Design approach brings two main characteristic to the table: on the one hand it gives a development platform which is component independent, therefor allowing for better integration throughout rapidly changing hardware, on the other hand makes the integration of new features not time depended. A great aim at scalability is the basis of this methodology. 
-\subsection{Model Based Design - Abstraction and Automation}
-Model-Based Design provides a mathematical and visual approach to develop complex control and signal processing systems. It centers on the use of system models throughout the development process for design, analysis, simulation, automatic code generation and verification \cite{Mathworks}. The main features are abstraction and automation. As reported by \cite{modelbased} model based tackle complexity via abstraction and automation. Abstraction is achieved by using suitable models of a software system, while automation is achieved by systematically transform these models into executable source code.\\
-Engineers create a model by specifying the behavior of an embedded system; the model, which consists of block diagrams, textual programs, and other graphical elements, is an executable specification that lets engineers run simulations to test ideas and verify designs throughout the development process. The main advantages are
+Model Based Design is the automotive standard for software development since it almost completely full-fill the main market requirements. In the last years cost related to development of mechanical components, safety features and logistic linearly increase, instead cost related to the development of software saw an exponential raise. The in crease in embedded systems in the car required an increase in software to control them. Therefore software development for \gls{ECU} faces new challenges, related to shorten development time, a high need of scalability  not only in the software but also in the development platforms, complex safety requirements and adaptability over continuously changing hardware.\\
+The Model Based Design approach brings two main characteristic to the table: on the one hand it gives a development platform which is component independent, therefor allowing for better integration throughout rapidly changing hardware, on the other hand makes the integration of new features not time depended therefor aiming at scalability is the basis of this methodology. 
+\subsection{Abstraction and Automation}
+Model Based Design provides a mathematical and visual approach to develop complex control and signal processing systems. It is centered on the use of system models throughout the development process for design, analysis, simulation, automatic code generation and verification \cite{Mathworks}. The main features are abstraction and automation. As reported by \cite{modelbased} model based tackle complexity via abstraction and automation. Abstraction is achieved by using suitable models of a software system, while automation is achieved by systematically transform these models into executable source code.\\
+Engineers create a model by specifying the behavior of the different component of an embedded system. The model consists of block diagrams, textual programs, and other graphical elements that allow engineers to run simulations to test ideas and verify designs throughout the development process. The main advantages related to the method are:
 \begin{itemize}
-    \item The design can be tested, refined and retested throughout the development process, thus increasing product quality. Test and validation are done continuously rather than at the end of the process. Error can be found before hardware is required for testing.
+    \item The design can be tested and refined throughout the development process in a cost effective manner, thus increasing the overall output product quality. Test and validation are done continuously rather than at the end of the process. Error, especially in the control logic can be found before hardware is required for testing.
     \item Simplification of complex system, providing a graphical design models simplify the creation of high complexity functions, especially when compared with hand code components. This enhance and simplify communication inside the team, as it is easy to understand the models. 
     \item Embedded code can be generate automatically from the models. To adapt the model to different hardware there's the need to adjust the compiler, not every single model. This allow for great adaptability to rapidly changing hardware. 
 \end{itemize}
-The interface between the code developed via the Model Based Design approach and the \gls{ECU} hardware there is the \gls{AUTOSAR} standard. If Model Based Desing is an abstraction closely related to software development, \gls{AUTOSAR} sits more closely near to the hardware side, as it makes hardware and software communicate.
+The interface between the code developed via the Model Based Design approach and the \gls{ECU} hardware is the \gls{AUTOSAR} standard. If Model Based Desing is an abstraction closely related to software development, \gls{AUTOSAR} sits more closely near to the hardware side, as it makes hardware and software communicate.
+\subsection{Example of Model Based Design Implementation}
+To better understand the concept of Model Based Design, a simple example is reported in Fig. \ref{fig:mbdapproach}. In this case the embedded system is composed by a spring-dumper system controlled by some type of electronic controller that output a control over the position of the system. Feedback loops are omitted in the representation.
+\begin{figure}[h]
+    \centering
+    \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Image [id:dp45873436542886603] 
+\draw (390.5,126.2) node  {\includegraphics[width=66.75pt,height=31.2pt]{images_folder/img32.png}};
+%Image [id:dp5717930622269549] 
+\draw (239.5,124.7) node  {\includegraphics[width=30.75pt,height=28.95pt]{images_folder/2443512-200.png}};
+%Shape: Rectangle [id:dp557905344356364] 
+\draw   (330,99.4) -- (450,99.4) -- (450,150.4) -- (330,150.4) -- cycle ;
+%Shape: Rectangle [id:dp9579400127156885] 
+\draw   (180,99.4) -- (300,99.4) -- (300,150.4) -- (180,150.4) -- cycle ;
+%Shape: Rectangle [id:dp4255540561741642] 
+\draw   (30,139.4) -- (150,139.4) -- (150,190.4) -- (30,190.4) -- cycle ;
+%Shape: Rectangle [id:dp724605953662121] 
+\draw   (330,180.4) -- (450,180.4) -- (450,230.4) -- (330,230.4) -- cycle ;
+%Shape: Rectangle [id:dp7795675118730296] 
+\draw   (180,180.4) -- (300,180.4) -- (300,230.4) -- (180,230.4) -- cycle ;
+%Image [id:dp5551589691776893] 
+\draw (403,205.7) node  {\includegraphics[width=30pt,height=25.95pt]{images_folder/Simulink_Logo.png}};
+%Image [id:dp6261231076420946] 
+\draw (255,205.7) node  {\includegraphics[width=30pt,height=25.95pt]{images_folder/Simulink_Logo.png}};
+%Image [id:dp4143604286022622] 
+\draw (102,165.7) node  {\includegraphics[width=30pt,height=25.95pt]{images_folder/Simulink_Logo.png}};
+%Straight Lines [id:da4839764870289438] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (390,152) -- (390,177.4) ;
+\draw [shift={(390,179.4)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+\draw [shift={(390,150)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da5312550115898644] 
+\draw [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ] [dash pattern={on 4.5pt off 4.5pt}]  (240,153) -- (240,178.4) ;
+\draw [shift={(240,180.4)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+\draw [shift={(240,151)}, rotate = 90] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,draw opacity=1 ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da7781424517496927] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (150.5,160) -- (169,160) ;
+%Straight Lines [id:da8646311911017381] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (169,160) -- (169,120) ;
+%Straight Lines [id:da3580033702139114] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (169,120) -- (177,120) ;
+\draw [shift={(179,120)}, rotate = 180] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da231105435155178] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (299.5,120) -- (327.8,119.63) ;
+\draw [shift={(329.8,119.6)}, rotate = 539.24] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da4305111820854073] 
+\draw [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ]   (449.5,120) -- (477.8,119.63) ;
+\draw [shift={(479.8,119.6)}, rotate = 539.24] [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Shape: Rectangle [id:dp7525834189557896] 
+\draw   (480,111) -- (550,111) -- (550,129.86) -- (480,129.86) -- cycle ;
+%Straight Lines [id:da5978362236852852] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (169,210) -- (177,210) ;
+\draw [shift={(179,210)}, rotate = 180] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da34688933937965305] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (299.5,210) -- (327.8,209.63) ;
+\draw [shift={(329.8,209.6)}, rotate = 539.24] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da6333194244201514] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (449.5,210) -- (477.8,209.63) ;
+\draw [shift={(479.8,209.6)}, rotate = 539.24] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+%Straight Lines [id:da6111339176644368] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (150.5,170) -- (169,170) ;
+%Straight Lines [id:da7518643682396269] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (169,210) -- (169,170) ;
+%Shape: Rectangle [id:dp3352826464511727] 
+\draw   (480,200) -- (548.5,200) -- (548.5,220) -- (480,220) -- cycle ;
+%Straight Lines [id:da13026407225887526] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (301,129.6) -- (320,129.6) ;
+%Straight Lines [id:da5149200822548123] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (319.5,200) -- (320,129.6) ;
+%Straight Lines [id:da12090569034753718] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (319.5,200) -- (328.5,200) ;
+\draw [shift={(330.5,200)}, rotate = 180] [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ][line width=0.75]    (6.56,-1.97) .. controls (4.17,-0.84) and (1.99,-0.18) .. (0,0) .. controls (1.99,0.18) and (4.17,0.84) .. (6.56,1.97)   ;
+
+% Text Node
+\draw (31,176) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{pcr}\selectfont {\tiny Control logic}}};
+% Text Node
+\draw (181,217.6) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{pcr}\selectfont {\tiny Electrical mod.}}};
+% Text Node
+\draw (331.8,217.6) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{pcr}\selectfont {\tiny Mechanical mod.}}};
+% Text Node
+\draw (483,205) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{pcr}\selectfont {\tiny Sim. output}}};
+% Text Node
+\draw (503,115) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{pcr}\selectfont {\tiny Output}}};
+
+
+\end{tikzpicture}
+    \caption{Model Based Design approach example}
+    \label{fig:mbdapproach}
+\end{figure}
+In a classic work manner, the developer follow the red lines to the output. At first the components are connected, then the logic is developed and tested on the the actual hardware. This require having a fully connected and working hardware in order to test the output. In a Model Based Design approach, instead a model is created of the parts composing the hardware, following the blue line. Building models of the electrical and mechanical parts allow to test everything in a virtual environment, without having the need of real hardware, at least in the initial testing phase. The process of testing can also be implemented on sub parts. As the example reports, once the electric model is fully validated, the software can be connected directly to the real electrical components, while maintaining a model for the mechanical part.\\
+Another great advantage of the use of a block scheme is that no hand code for control logic is written by the developer. This allow for a great portability. Once the electrical hardware changes, and therefor hand code type read by hardware the developer need only to change the information related to the compiler. 
 \section{AUTOSAR}
 AUTomotive Open System ARchitecture (\gls{AUTOSAR}) is an open and standardize automotive software architecture, jointly develop by automobile manufacturers, supplier and tool developer. \gls{AUTOSAR} architecture was introduced to promote standardization of the software development process for Automotive Electronic Control Units. Prior to the introduction of \gls{AUTOSAR} \gls{ECU} software needed to be completely fitted around the hardware architecture, decreasing portability over different \gls{ECU} platforms and between different hardware producers. 
 In order to address the problem \gls{AUTOSAR} introduced an abstraction layer between the software and the hardware, thus ensuring that the software can be developed independently from the hardware. It is then \gls{AUTOSAR} task to make the two communicates together.
@@ -59,7 +149,7 @@ The architectural structure of the \gls{AUTOSAR} standard is used to divide the 
     \item Application software, host all the functions that control the vehicle capabilities. In the \gls{AUTOSAR} language functions are also called \gls{SWC} (software components). An example of functions could be the software driving the windshield wipers. These software parts need to be able to receive inputs and output other than just producing logical computations.
     \item Basic Software (\gls{BSW}), includes low level software like services and hardware specific software. Related to the previous example this gives the input output functionality required by the windshield wipers function. 
     \item Run-time Environment (\gls{RTE}), abstraction layer that manage the interface between the two other layers. 
-    \item Virtual Functional Bus (\gls{VFB}), this is an additional architectural strategy introduced by \gls{AUTOSAR} to decouple applications (windshield wiping) from the hardware infrastructure. The virtual bus map the two main type of communication between \gls{SWC} (intra-\gls{ECU} and inter-\gls{ECU}s) to the same function, allowing the user to simply define a communication, without having to bother about the protocol required (inter-\gls{ECU}s is generally based on \gls{CAN} while intra-\gls{ECU}s uses shared memory). The connection mapping is implemented by the RTE and becomes the concrete interface between individuals \gls{SWC} and between \gls{SWC}s and the \gls{BSW}.
+    \item Virtual Functional Bus (\gls{VFB}), this is an additional architectural strategy introduced by \gls{AUTOSAR} to decouple applications (windshield wiping) from the hardware infrastructure. The virtual bus map the two main types of communication between \gls{SWC} (intra-\gls{ECU} and inter-\gls{ECU}s) to the same function, allowing the user to simply define a communication, without having to bother about the protocol required (inter-\gls{ECU}s is generally based on \gls{CAN} while intra-\gls{ECU}s uses shared memory). The connection mapping is implemented by the RTE and becomes the concrete interface between individuals \gls{SWC} and between \gls{SWC}s and the \gls{BSW}.
 \end{itemize}
 
 \begin{figure}[h]
@@ -69,9 +159,9 @@ The architectural structure of the \gls{AUTOSAR} standard is used to divide the 
     \label{fig:AUTLAY}
 \end{figure}
 \subsection{Application Software Layer}
-The application layer consist of the various software components interacting together. To connect software components, each component has well defined ports through which it can communicate with other components or with Basic Software modules. The \gls{AUTOSAR} architecture defines two types of software components:
+The application layer consist of the various software components interacting together. To connect software components, each one has well defined ports through which it can communicate with other components or with Basic Software modules. The \gls{AUTOSAR} architecture defines two types of software components:
 \begin{itemize}
-    \item Application \gls{SWC}, implement an application. This \gls{SWC} type can use all the \gls{AUTOSAR} communication mechanism but can communicate to the sensors only via a Sensor-Actuator type software component. 
+    \item Application \gls{SWC}, implement an application. This \gls{SWC} type can use all the \gls{AUTOSAR} communication mechanism but can communicate to peripherals only via a Sensor-Actuator type software component. 
     \item Sensor-Actuator type \gls{SWC}, has access to \gls{ECU} specific hardware \gls{I/O} signals. This \gls{SWC} is responsible for reading a sensor and provide its data to other components or to set the status of an actuator. 
 \end{itemize}
 \gls{SWC}s communicate via Ports. A port is used to send or request information. Once a port is defined it needs to be associated with the interface that define the information exchange. The main interfaces that are supplied by \gls{AUTOSAR} are the following:
@@ -98,17 +188,18 @@ Having defined the \gls{AUTOSAR} standard structure, it's useful to define an ex
     \caption{Windshield wipers implementation}
     \label{fig:WINWIP}
 \end{figure}
+The Fig. \ref{fig:WINWIP} report the graphical representation of an \gls{AUTOSAR} scheme, normally the structure is described via ARXML file, specific XML file in which the structure is defined in a machine friendly language. 
 The scheme contains tree instances of the Sensor-Actuator \gls{SWC}. The first is the sensor reading the status of the \textit{WindeshieldsWipersSwitch}, the read is done via the \gls{I/O} labeled port. The status is transmitted via a service. The other sensor, \textit{CarStatus} instead check the status of the vehicle, on weather or not this is on or off. The transmission is done via a sender receiver.\\
-The main difference between the two is that in the server/client configuration the data from a server is only available to the client requesting this data. Instead in a receiver/sender configuration the data is "published" on the \gls{RTE}, and the connected receiver/writer can access/modify the data.\\
+The main difference between the two is that in the server/client configuration the data from a server is only available to the client requesting this data. Instead in a receiver/sender configuration the data is "published" on the \gls{VFB}, and the connected receiver/writer can access/modify the data.\\
 The only actuator \gls{SWC} is the one in charge of controlling the windshield wipers motor, \textit{WindshiedsWipersMotor}. The managing component, \textit{WindshieldWipersManager} is the one who compile the logic of the actuation. It is client of the Switch, and can therefore request the status (the request periodicity is defined by its RTE event element). Based on it and on the information from \textit{CarStatus} the module defines an actuation that is given as service to the client \textit{WindshieldsWipersMotor}.\\
-The managing components also have a \textit{Nvblock} which allow it to save its internal state to the non volatile memory. \\
+The managing component also has a \textit{Nvblock} which allow it to save its internal state to the non volatile memory. \\
 The whole function design can be done avoiding entering in \gls{ECU} specific details. To create a real application two more steps are required. The first one is to define the managing block behaviour through an executable and the second one is the passage from \gls{VFB} communication to real \gls{ECU}, exiting the \gls{AUTOSAR} layer of abstraction and entering in more \gls{ECU} specific details. This is done by the run-time environment.\\
-In the definition of the run-time environment more hardware specific information are required.\\ The \gls{RTE} not only control the relation with the hardware but alos the interface between \gls{AUTOSAR} and the shared \gls{bus}.\\
-Communication on the ECU is indeed done via the use of a shared \gls{bus} via \gls{CAN} communication protocol. The details of the communication interface are defined in the following section.
+In the definition of the run-time environment more hardware specific information are required.\\ The \gls{RTE} not only control the relation with the hardware but also the interface between \gls{AUTOSAR} and the shared \gls{bus} and based on \gls{CAN} communication protocol.\\
+The details of the communication interface are defined in the following section.
 
-\subsection{CAN - Communication protocols in ECU}
+\section{CAN - Communication protocols in ECU}
 \gls{CAN} is the main communication protocol used in the automotive field. \gls{AUTOSAR} run-time environment is responsible for connecting the \gls{AUTOSAR} scheme with the \gls{CAN} capabilities related to the \gls{ECU} hardware.\\
-The Control Area Network (\gls{CAN}) is a serial communication protocol suited for networking sensors, actuators and other nodes in real-time systems. Inside the \gls{OSI} model, \gls{CAN} define the protocol of communication for two layers. \gls{OSI}, Open System Interconnections is an abstraction model for communication protocols. 
+The Control Area Network (\gls{CAN}) is a serial communication protocol suited for networking sensors, actuators and other nodes in real-time systems. Inside the \gls{OSI} model, \gls{CAN} define the protocol of communication for two layers. 
 \begin{figure}[htbp]
     \centering
 \begin{tikzpicture}[box/.style={on chain,join,draw,minimum width=4cm,minimum height=1cm,
@@ -169,7 +260,7 @@ As exemplified in \ref{fig:CANABR} the nodes starts by sending the \gls{SOF}, th
 \gls{CAN} is affected by starvation problems. Low priority nodes may expect large latency in case of high priority units being very active. \\
 It's important also to underline the fact that there is no message destination address in \gls{CAN}, instead each node picks up all the traffic on the bus.\\
 From and electrical standpoint \gls{CAN} arbitration mechanism work as follow. Consider the example in Fig. \ref{fig:CANABRELT} where \gls{CAN} nodes are exemplified by open collector transistors. 
-The level of the bus is at a low level (dominant) in the case in which just one of the of transistor in the network output a dominant level. This is also the explanation of why zero is dominant, only one transistor is needed in a closed configuration in order to set the \gls{bus} to a zero, all independently from the status of other transistors. The \gls{bus} will only be at high level (recessive) when all the transistors in the network output a recessive level or the transistors are all open, putting 1 on the \gls{bus}.
+The level of the bus is at a low level (dominant) in the case in which just one of the of transistor in the network output a dominant level. This is also the explanation of why zero is dominant, only one transistor is needed in a closed configuration in order to set the \gls{bus} to a zero, all independently from the status of other transistors. The \gls{bus} will only be at high level (recessive) when all the transistors in the network output a recessive level (transistors are all open) setting the \gls{bus} to 1.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.7\linewidth]{images_folder/controller-area-network-can-bus-bus-arbitration-3.jpg}
