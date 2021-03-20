@@ -251,5 +251,17 @@ The definition of continuous integration is already been given under different t
     \label{fig:Continous Integration}
 \end{figure}
 The process which is integrated by \gls{BMW} is reported in figure \ref{BuildApproach}. The main tool used to automate build and testing is Jenkins, a service that is based on Java-like scripts and allow for the implementation of pipelines. 
+
+\section{EA-Build}
+EA-Build is the name of the property software used at BMW to generate the flash able software for ECUs. The build software is based on the software build tools Scons. The input to the build process are the model developed following the model based design approach in Matlab, while the output is composed by a series of different file, mostly XML file, that can be flashed on the \gls{ECU}. The process main steps are reported in Fig.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/build_proc.png}
+    \caption{EA-build}
+    \label{fig:eabuild}
+\end{figure}
+The scope of the build is the one of building single software components. In general a release software for the \gls{ECU} has a hierarchical structure.\\
+The build is a program that can be executed locally, but the main focus is to automatically build all the components that make up of a project based on modification made to the component repository. Once a developer make a changes in a certain components, then commit to the a certain repository the build process automatically starts, creating the output artifacts and therefore validating the developer work. \\
+This automation is the quest of having a continuously integrated development process with always updated build artifacts. 
 \cleardoublepage
 \end{document}
