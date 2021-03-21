@@ -118,7 +118,7 @@ Software build tools are used to automate the creation of executable application
 \begin{center}
     \texttt{gcc -o Helloworld.exe HelloWorld.c}
 \end{center}
-In a block scheme manner the task that the gcc build system complete are reported in \ref{Build process overview}:
+In a block scheme manner the task that the gcc build system complete are reported in \ref{Buildpro}:
 \tikzstyle{block} = [draw, rectangle, text width=2cm, text centered, minimum height=1.2cm, node distance=3cm]
 \begin{figure}[h]
   \centering
@@ -138,6 +138,7 @@ In a block scheme manner the task that the gcc build system complete are reporte
     \draw [->] (text5) -- node {} (text6);
 \end{tikzpicture}
   \caption{Build process overview}
+  \label{Buildpro}
 \end{figure}
 The only tasks that are run by gcc is the creation of executable files. State of the art software build tools as Ant or Scons run different tasks such as downloading dependencies, compiling and packing code, running test and deploy artifacts of the build process. The actual usefulness of build tools comes into place in big projects, where there's the need of easily control over what need to be build and in which order. Build software like Scons organize have dedicate files that define the flow of the build process. Via this files the build software build a a tree of dependencies between files, that not only define the succession between files but also some constraints that need to be full filled in order to process with the build process. In the Scons case different tasks are connected via ports, in a linear manner. A task can only start when the previous one is finished and some outputs are available in a specified port. The next task may need the output to start the execution process. Multiple task can run in a parallel manner in the case they do not intefer wiht eachtoher and are triggered by the same port outputs. Another important fact, is that by organiyigna programm compilation in task the output of each prot can be saved and stored as a checkpoint. This allow the build process to restart from the last succeffull port output publication. This case is common in complex programm, in whcih chenges in the last task would require to re-run the full build. In this manner only the last task can be re-build ensuring time saving . In this case by the use of build tools we can define the dependencies tree and execute tasks sequentially. This mean that via the use of build tools the developer can run only the build process from the last modified steps. If a developer implement a mod in the last build step then only this is going to require an update. 
 

@@ -1,4 +1,5 @@
 \documentclass[../main.tex]{subfiles}
+\tikzstyle{container} = [draw, rectangle, inner sep=0.3cm]
 \begin{document}
 \section{Database}
 A database is defined as a collection of data and the organization given to this data. The data is organized in tables, in which the data has no formatting. The main difference between a database and a simple spreadsheet is not only the lack of formatting in the database tables, but most importantly the presence of relation that define a structure between the database tables.\\
@@ -152,7 +153,31 @@ This allow to connect every computer connected to the network to connect via the
     \label{fig:tcpdb}
 \end{figure}
 
-\section{Slq alchemy}
+\section{SQLAlchemy}
+SQLALchemy is a Python package that creates an abstraction (\gls{ORM}) that connect the rows of a relational database to objext in aprogramming language. Via SQLAlchemy the programmer instead of writing SQL queries, uses Pyhton classes for the design of tables and functions to access/modify the tables. SQLAlchemy uses the \gls{ORM} layer to interface between python code and database instances. 
+\gls{ORM} or Object Relational Mapping is a way to convert between rows in a relational database to an object in a programming language \cite{10.1145/1376616.1376773}. The \gls{ORM} sits between the programmer’s application and the database and helps the programmer by abstracting the SQL queries to access, remove and modify the data in the database.\\
+SQLAlchemy can be connected to a wide variety of DBMS. To be able to connect the database there is the need of a driver. The function of the driver is the one of translating the SQL queries send by the application to the underlying format the database is using. The scheme of the connection is reported in the following block diagram. 
+
+\tikzstyle{block} = [draw, rectangle, text width=2cm, text centered, minimum height=1.2cm, node distance=3cm]
+\begin{figure}[h]
+  \centering
+\begin{tikzpicture}[scale=0.85,transform shape]
+    \node [block, name=text1] {Python class};
+    \node [block, right of=text1] (text2) {SQL Alchemy};
+    \node [block, right of=text2] (text3) {Driver};
+    \node [block, right of=text3] (text4) {Table Object};
+    \node [block, right of=text4] (text5) {Database};
+    \node [container,fit=(text2) (text3) (text4) ] (container) {};
+
+    \draw [->] (text1) -- (text2);
+    \draw [->] (text2) -- node {} (text3);
+    \draw [->] (text3) -- node {} (text4);
+    \draw [->] (text4) -- node {} (text5);
+\end{tikzpicture}
+  \caption{ORM layer}
+  \label{ormlayer}
+\end{figure}
+
 \subsubsection{ORM Layer}
 \subsection{Tables object}
 \section{Database update mechanism}
