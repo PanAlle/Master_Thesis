@@ -154,9 +154,11 @@ This allow to connect every computer connected to the network to connect via the
 \end{figure}
 
 \section{SQLAlchemy}
-SQLALchemy is a Python package that creates an abstraction (\gls{ORM}) that connect the rows of a relational database to objext in aprogramming language. Via SQLAlchemy the programmer instead of writing SQL queries, uses Pyhton classes for the design of tables and functions to access/modify the tables. SQLAlchemy uses the \gls{ORM} layer to interface between python code and database instances. 
-\gls{ORM} or Object Relational Mapping is a way to convert between rows in a relational database to an object in a programming language \cite{10.1145/1376616.1376773}. The \gls{ORM} sits between the programmer’s application and the database and helps the programmer by abstracting the SQL queries to access, remove and modify the data in the database.\\
-SQLAlchemy can be connected to a wide variety of DBMS. To be able to connect the database there is the need of a driver. The function of the driver is the one of translating the SQL queries send by the application to the underlying format the database is using. The scheme of the connection is reported in the following block diagram. 
+\subsection{Object-relational Mapping}
+Object relational mapping is the procedure used to convert between rows in a relational database and object in a programming language \cite{10.1145/1376616.1376773}. The \gls{ORM} sits in between the programmer application and the database and help the programmer abstracting the SQL queries to access, remove and modify the data in the database. 
+\subsection{SQL Alchemy working principle}
+SQLALchemy is a Python package that develop in order to facilitate the job of creating and maintaining database. Instead of writing SQL queries the developer interface with the database using python. It is not to be forgot that the integration of database management in the python environment allow for flexibility in data storage for a wide range of application that alredy run on python. The organization of the tables is done via Python classes and using then the ORM layer to connect the classes with the tables in the database.\\
+SQLAlchemy can be connected to a wide variety of DBMS. To be able to connect the database there is the need of a driver. The function of the driver is the one of translating the SQL queries send by the application to the underlying format the database is using, since in general the database can read different flavours of the SQL language. The scheme of the connection is reported in the following block diagram. 
 
 \tikzstyle{block} = [draw, rectangle, text width=2cm, text centered, minimum height=1.2cm, node distance=3cm]
 \begin{figure}[h]
@@ -177,7 +179,53 @@ SQLAlchemy can be connected to a wide variety of DBMS. To be able to connect the
   \caption{ORM layer}
   \label{ormlayer}
 \end{figure}
+The following example, taken from the SQLAlchemy library showcase how the python code is used to create and update values in a table stored in a database. 
 
+\lstset{language=Python}
+\lstset{frame=lines}
+\lstset{caption={Insert code directly in your document}}
+\lstset{label={lst:code_direct}}
+\lstset{basicstyle=\footnotesize}
+\begin{lstlisting}
+from sqlalchemy import create_engine, MetaData, Table, Column, 
+Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
+engine = create_engine('sqlite:///college.db', echo = True)
+Session = sessionmaker(bind=engine)
+
+class User(Base):
+     __tablename__ = 'users'
+
+     id = Column(Integer, primary_key=True)
+     user_name = Column(String)
+     user_surname = Column(String)
+
+     def __init__(name, surname):
+        user_name = name
+        user_surname = surname
+        
+     def __repr__(self):
+        return "<User(name='%s', fullname='%s', nickname='%s')>" % (
+                            self.name, self.fullname, self.nickname)
+            
+# Create the table
+Base.metadata.create_all(engine)
+
+#Add new entries
+user1 = User("Mario", "Rossi")
+Session.add(user1)
+
+user2 = User("Frank", "Weber")
+Session.add(user2)
+
+Session.commit()
+
+# Delete entries
+Session.delete(user2)
+Session.commit()
+\end{lstlisting}
 \subsubsection{ORM Layer}
 \subsection{Tables object}
 \section{Database update mechanism}
