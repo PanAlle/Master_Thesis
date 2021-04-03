@@ -7,7 +7,7 @@ In the development of \gls{ECU} software most of the steps to create software ar
 The idea to create a database to store data in a readable form and the to create graphical visualization, namely dashboard of the data, is the idea that want to full fill the previous raised problem.\\
 Via a dashboard with updated data different developers in different teams can simultaneously surf thought the data and get real time information on the status of the process, thus increasing the feedback on every task and therefor the output result.
 \subsection{Data pipeline concept}
-The concept of having data flowing from the source that generates the data all the way to the dashboard can be summarized un der the name pipeline. This gives an idea of the basic concept that the flow of data need to have. The data need to be always updated, the flow need to be controlled by some mechanism that take the updating data and push it to the different steps of the pipe all the way to the dashboard itself. Three main steps cna be identified in the pipeline:
+The concept of having data flowing from the source that generates the data all the way to the dashboard can be summarized under the name pipeline. This gives an idea of the basic concept that the flow of data need to have. The data need to be always updated, the flow need to be controlled by some mechanism that take the updating data and push it to the different steps of the pipe all the way to the dashboard itself. Three main steps can be identified in the pipeline:
 
 \tikzstyle{block} = [draw, rectangle, text width=3.5cm, text centered, minimum height=1.2cm, node distance=6cm]
 \begin{figure}[h]
@@ -15,7 +15,7 @@ The concept of having data flowing from the source that generates the data all t
 \begin{tikzpicture}[scale=0.85,transform shape]
     \node [block, name=text1] {Data Source};
     \node [block, right of=text1] (text2) {Data Storage};
-    \node [block, right of=text2] (text3) {Data Visulization};
+    \node [block, right of=text2] (text3) {Data Visualization};
 
     \draw [->] (text1) -- (text2);
     \draw [->] (text2) -- node {} (text3);
@@ -47,6 +47,30 @@ In the structure the sum of different composition define a project. A project re
     \includegraphics[width=\linewidth]{images_folder/softwarestrucutre.png}
     \caption{Software structure}
     \label{fig:SWsTR}
+\end{figure}
+\subsection{Automatic data generation}
+the data generation process is the part of the project that is already present. the data is already there in the EA-build and gets generated every build run. Most of the time, as already mentioned the data gets stored under different formats, each of which is developer friendly, meaning that each developer know his own part of the data, and autonomously decides under which format to store the data under. 
+In order to centralize the data the integration of the capabilities to store data in a database have been introduced in the build. The process for integration the automatic data generation to the database have been the following:
+\begin{itemize}
+    \item Creation of a database integration package, the database created for the project has now a package inside EA-build. In the package the table model is first defined, then called in the position in which the data is generated.
+    \item Standardization in the mechanism for database update. Every time that a table needs to be updated there is the need to define a mechanism of updating. Sometimes old value are still relevant, other time is faster to just update old ones
+    \item Integration of data, using the basic previous underlined structure, since the build software is composed by multiple packages that generates data there is the need to integrate the database capabilities inside each package and more specifically in the location in which the data is generated. in the end also the integration in the automation pipeline for each part is needed.
+\end{itemize}
+\subsubsection{Creation of a database integration package}
+The database package is the python package which inside the build process is responsible for storing the definition of table, following SQLAlchemy (Section \ref{sec:SQLACHMEYMSEC}).
+The structure that allow to have a standardized method of integrating data in the database, and therefor in the pipeline is the following:
+\begin{itemize}
+    \item Each 
+\end{itemize}
+\subsection{Standardization of the database update mechanism}
+Most of the data in the dashboard has an update periodicity of twenty minutes. This is related to the fact that update or changes in the software that trigger a rebuild, as reported in Section \ref{sec:CIsec}. This mean that the data to store exponentially. Therefor having a fast updating mechanism in tha classic form, that checks what data is present and update only the data that changes is not feasible, or mostly not needed since in the dashboard the main focus is on a feedback directed to the current stauts of the software.
+Based on those idea the update mechanism has been translated to a renew mechanism. With the term renew mean that the tables gets fully overwritten every times new data comes in. Thus deliting old data and updating as a bulk the new one.\\
+It need to be underlined that the storage requirement highilithed at the beginning are still valid. Thus to fullfill this requriemnt, while keeping the data volume on the "production database" as low as possible a second database instance is created, namely "EA-Dashboard-storage". This database is updated from the "production" database once day, creating copies of all the tables and adding timestamping to the data, in order to keep track of the software stutus not only in a real time manner but also by having histoirc data on software versioons. This database is not still connected to any dashboard or visulization. Therefor is as fo today not possible to check the time eveluption of the data. 
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/dual_db.png}
+    \caption{Double database structure}
+    \label{fig:dds}
 \end{figure}
 \section{Hierarchical structure and primary key decisions}
 \section{MVP definition}
