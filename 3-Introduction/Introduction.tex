@@ -1,7 +1,7 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 \tikzstyle{container} = [draw, rectangle, inner sep=0.3cm, dashed, minimum height=3.5cm]
-In the last 50 years car have transitioned from being composed only by mechanical parts to being completely stacked with electronics. The complexity of vehicles arises every year and the industry continuously raise the bar on the state of the art. The transitions to electro-mobility, the \gls{ADAS} systems have done all but slowing down the development. The more a topic is market relevant, the higher the competition between companies, the faster the development in that field is going to be. The automakers are always ready to exploit or create new needs in order to adapt and attract customers. Automotive pulse of innovation and the "German Silicon Valley" is the place a engineer want to be to fell part of this complex, but for sure perfectly oiled machine.   
+In the last 50 years cars have transitioned from being composed only by mechanical parts to being completely stacked with electronics. The complexity of vehicles arises every year and the industry continuously raised the bar on the state of the art. The transitions to electro-mobility, the \gls{ADAS} systems have done all but slowing down the development. The more a topic is market relevant, the higher the competition between companies, the faster the development in that field is going to be. The automakers are always ready to exploit or create new needs in order to adapt and attract customers. Automotive pulse of innovation and the "German Silicon Valley" is the place an engineer want to be to feel part of this complex, but for sure perfectly oiled machine.   
 \begin{figure}
 \centering
 \begin{minipage}{.5\textwidth}
@@ -36,7 +36,7 @@ The complexity of a \textit{vehicle system} can be easily simplified by block sc
     \caption{Block Scheme of a car}
     \end{figure}
     
-The input to the \textit{vehicle system} can be an array of driver commands, such as the steering, throttle position and all the settings that control the car. The output of the system is not only the movement of the car, but also driver specific feelings such as the drive comfort or just the temperature in the vehicle. By further inspecting the system two blocks can be identified, the one responsible for the electronics and the one responsible for the mechanics. 
+The input to the \textit{vehicle system} can be an array of driver commands, such as the steering, throttle position and all the settings that control the car. The output of the system is not only the movement of the car, but also driver specific feelings such as the drive comfort or just the temperature in the vehicle. By further inspecting the system two blocks can be identified, a first one responsible for the electronics and a second one responsible for the mechanics. 
      \begin{figure}[ht]
         \begin{center}
   \begin{tikzpicture}[auto, node distance=3cm,>=latex', scale=0.7,transform shape]
@@ -59,7 +59,7 @@ The input to the \textit{vehicle system} can be an array of driver commands, suc
         \caption{Sub block division}
     \end{figure}       
 These two blocks are strictly interconnected. The electronics drive the mechanics which output is given back as a feedback to correct the response. The system vehicle can be thought as a complex version of an embedded system where electronics drive mechanics following a logic described in lines of code.
-Every mechanical component in cars has probably some electronic hardware related to it which is controlled by one of the many \gls{ECU}s (Electronic control Units) present in the vehicle. The logic behind the control is embedded in lines of code. The yearly increase in lines of code for cars reported in Fig.\ref{fig:yearlyincreas} is a statement to this growth. 
+Every mechanical component in cars has probably some electronic hardware related to it which is controlled by one of the many \gls{ECU}s (Electronic control Units) present in the vehicle. The logic behind the control is embedded in lines of code. The yearly increase in lines of code for cars reported in Figure \ref{fig:yearlyincreas} is a statement to this growth. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\linewidth]{images_folder/Yearly-increase-in-automotive-software-complexity-shown-by-million-lines-of-code-of-1-ConvertImage.png}
@@ -69,16 +69,17 @@ Every mechanical component in cars has probably some electronic hardware related
 With more code comes an increasing complexity in the development process, which translate to challenges such as higher scalability and portability demands. The Thesis is going to focus on how this software is developed, generated and adapted to different \gls{ECU}s by Automakers.
 \section{\gls{ECU} software}
 The development of Software for \gls{ECU}s is an extremely complex task, a single \gls{ECU} can control up to a 1000 functions, and the number can be also higher for the control of complex parts, such as the motor.
-Consider the following example. The function related to the control of the windshield wipers. In a scheme block manner we can see that the first indication comes from the driver, which activates the switch for the control of the windshield wipers. The signal travel to the \gls{ECU} where it´s analyzed based on a logic stated in code lines. The output of the logic is then sent to the actuators specific board, which in this case actuates a motor that control the windshield wipers.\\
+Consider the following example. The function related to the control of the windshield wipers. In a scheme block manner we can see that the first indication comes from the driver, which activates the switch for the control of the windshield wipers. The signal travel to the \gls{ECU} where it is analyzed based on a logic stated in code lines. The output of the logic is then sent to the actuators specific board, which in this case actuates a motor that controls the windshield wipers.\\
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.45\linewidth, angle = 90]{images_folder/windshieldwipersfunction.jpeg}
     \caption{Windshield wipers function}
     \label{fig:WWFunct}
 \end{figure}
-The task seems like a basic one, consider now thousand of task sending contemporaneously information to the \gls{ECU}. The \gls{ECU} need to effectively elaborate thousand of input signals every second and output control information at a similar rate. In order to make everything work there are major problems that need to be considered:
+Although the single task looks quite basic, the complexity increases by considering thousands of task sending contemporaneously information to the \gls{ECU}.
+The \gls{ECU} need to effectively elaborate thousand of input signals every second and output control information at a similar rate. In order to make everything work there are major problems that need to be considered:
 \begin{itemize}
-    \item Task prioritization, every function need to get a priority assigned, in order to be executed from the \gls{ECU}. Priority need to be logically assigned by the \gls{ECU} to each task. For example windshield wiping need to have a lower priority than airbag deployment. 
+    \item Task prioritization, every function needs to get a priority assigned, in order to be executed from the \gls{ECU}. Priority need to be logically assigned by the \gls{ECU} to each task. For example windshield wiping need to have a lower priority than airbag deployment. 
     \item Task scheduling, task need to be scheduled to meet deadlines, since \gls{ECU}s are Real Time System, one of the requirements is that the system not only provide an output but this output respects certain time constraints.
     \item Access to shared resources, multiple task may require the \gls{ECU} to read the same sensor or to act on the same actuator, or more deeply access the same memory location. The \gls{ECU} need to control the access to these resources in order to avoid error but also to avoid saturation of the resources, which can lead to restarts and failures.  
     \item Failure handling, the \gls{ECU} need to have the capabilities to avoid failure and to continue operating in case of failing hardware/software.
@@ -86,7 +87,7 @@ The task seems like a basic one, consider now thousand of task sending contempor
 \end{itemize}
 The work of developing not only the logic behind tasks, but also the logic that control how task need to work in the system is one of the complex parts in the \gls{ECU} design. In the next section an overview on this process is given. 
 \subsection{\gls{ECU} software design for tasks}
-The design of software for a single function, such as the one reported in Fig.\ref{fig:WWFunct} is done by following the method of model based design approach. This technique, that uses as main tool the Mathworks Simulink package, introduce a level of abstraction between the code line and the logic, allowing for better software scalbility and portability. By using the Matlab Simulink tool the developer create the logic for the single function using blocks that need to describe the whole tasks functionality. The Simulink models, therefor comprises the following macro information:
+The design of software for a single function, such as the one reported in Figure   \ref{fig:WWFunct} is done by following the method of model based design approach. This technique, that uses as main tool the Mathworks Simulink package, introduce a level of abstraction between the code line and the logic, allowing for better software scalbility and portability. By using the Matlab Simulink tool the developer create the logic for the single function using blocks that need to describe the whole tasks functionality. The Simulink models, therefor comprises the following macro information:
 \begin{itemize}
     \item Logical information, defines what the function actually does. 
     \item Integration information, how the function integrate with each other, which functions are related to the one developed. 
@@ -99,7 +100,7 @@ At \gls{BMW} this is done via a dedicated software, internally developed in Pyth
 \label{subsection:Build process}
 The build software has the function of compiling, linking, integrating, testing and validating the different functions developed for a certain \gls{ECU}. In more details the task performed are the following:
 \begin{itemize}
-    \item Compilation and linking, the build compile the single function, generating executable code. 
+    \item Compilation and linking, the build compiles the single function, generating executable code. 
     \item Architectural check, the build, after having compiled the functions, integrates them. For example multiple function can require the other ones. There is the need to check if a certain input or output is available for the required function and therefore test if the different function can integrate together.
     \item Quality checks, every software unit need to be test on Misra rules and other coding standards for developing safety-critical systems.
     \item Unit Testing and static code analysis, that analyze the software before this is compiled and deployed in the \gls{ECU}.
@@ -120,9 +121,9 @@ The build software has the function of compiling, linking, integrating, testing 
     \caption{Build functionality}
     \label{fig:buildfucntionality}
 \end{figure}
-The output of a build run is provided by \gls{BMW} to the actual \gls{ECU} makers, such as Bosch and Vitesco. They add to the compiled software their part, closely related to the hardware that they develop. The complete software is flashed on the \gls{ECU}. After having passed all the HIL testing, the \gls{ECU} is homologated and enters production, to be later mounted on actual vehicles.
+The output of a build run is provided by \gls{BMW} to the actual \gls{ECU} makers, such as Bosch and Vitesco. They add to the compiled software their part, closely related to the hardware that they develop. The complete software is flashed on the \gls{ECU}. After having passed all the \gls{HIL} testing, the \gls{ECU} is homologated and enters production, to be later mounted on actual vehicles.
 \section{Statement of Problem}
-During the build process not only executable code is generated. Each step of the process is accompanied by the generation of data that not only describe the output artifact but gives important information on the results of each steps. It´s important also to highlight the fact that each of the process steps is supervised by different people if not different departments. The high load of data is shared over different departments and different developer. This makes it hard for each developer to have a 360 degree view of every step of the process, and how every step is going in terms of quality of the work. Even if the Agile like practices makes cooperation strong in between the teams,  a central overview on the process is missing.\\
+During the build process not only executable code is generated. Each step of the process is accompanied by the generation of data that not only describe the output artifact but gives important information on the results of each steps. It is important also to highlight the fact that each of the process steps is supervised by different people if not different departments. The high load of data is shared over different departments and different developer. This makes it hard for each developer to have a 360 degree view of every step of the process, and how every step is going in terms of quality of the work. Even if the Agile like practices makes cooperation strong in between the teams,  a central overview on the process is missing.\\
 A centralized overview would allow the developers to surf through different information regarding the whole development process. A way to efficiently give a overview of the process is via the use of a dashboard, that not only would allow for a graphical visualization but also for a way to centralize the data. In order to be useful inside a fast phased project the dashboard need to have the following characteristics:
 \begin{itemize}
     \item Usability, the dashboard need to be easy to use and interactive, in the term that need to provide a rapid way to look for data from different sources. 
@@ -132,14 +133,14 @@ A centralized overview would allow the developers to surf through different info
 \end{itemize}
 \section{Thesis Motivation}
 The motivation behind the Thesis is related to the fact that in fast evolving environment, with multiple people required to cooperate together the creation of an overview on the process is crucial for allowing a better and more accurate feedback. 
-The Thesis analyze the whole development process, in order to allow the reader to grasp the complexity of the process in which the work was developed. Then the actual active development part comes in, with an explanation of the procedure and a description of the output artifacts, in this case a dashboard.\\
-A dashboard not only allow for an organization of the data but also to better non verbal interaction. The single developer can track the team accomplishment and therefore proceed in a less blind way. With the use of a dashboard each developer add another feedback loop to its own process, increasing the chances of eliminating the error and therefor developing better software, which translates to better products. It´s part of the automation definition the concept of reducing error by avoiding repetitive task, which is ultimately the goal of the dashboard. 
+The Thesis analyzes the whole development process, in order to allow the reader to grasp the complexity of the process in which the work was developed. Then the actual active development part comes in, with an explanation of the procedure and a description of the output artifacts, in this case a dashboard.\\
+A dashboard not only allows for an organization of the data but also to better non verbal interaction. The single developer can track the team accomplishment and therefore proceed in a less blind way. With the use of a dashboard each developer add another feedback loop to its own process, increasing the chances of eliminating the error and therefor developing better software, which translates to better products. It is part of the automation definition the concept of reducing error by avoiding repetitive task, which is ultimately the goal of the dashboard. 
 \section{Thesis Goals}
 The main goals of the Thesis are:
 \begin{itemize}
-    \item Analyze the software development process for complex embedded system such the car \gls{ECU}. Giving the reader an overview that allow to span from high level down to single tasks required. 
+    \item Analyze the software development process for complex embedded system such the car \gls{ECU}. Giving the reader an overview that allows to span from high level down to single tasks required. 
     \item Analyze the processes and methodology to tackle problem complexity. The reader is presented with Agile techniques and with other way to handle complexity in the software development environment.
-    \item Relying on the two previous goal the reader is taken through the development of the main Thesis goal, a pipeline in which the data can automatically flow from the different processes to a software dashboard in which a interactive visualization of the data is given. 
+    \item Relying on the two previous goal the reader is taken through the development of the main Thesis goal, a pipeline in which the data can automatically flow from the different processes to a software dashboard in which an interactive visualization of the data is given. 
 \end{itemize}
 \cleardoublepage
 \end{document}

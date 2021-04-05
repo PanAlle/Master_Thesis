@@ -21,7 +21,7 @@ The sum all of the \gls{ECU}s in a vehicle define what was previously referred a
     \caption{ECU structure}
     \label{fig:ECUHW}
 \end{figure}
-The hardware structure of an \gls{ECU} is a mixture of different electronics components, to better understand the overall organization, without entering to much in the electrical details a block scheme overview is offered by Fig.\ref{fig:ECUHW}. It's possible to easily differentiate between four different parts:
+The hardware structure of an \gls{ECU} is a mixture of different electronics components, to better understand the overall organization, without entering to much in the electrical details a block scheme overview is offered by Figure  \ref{fig:ECUHW}. It is possible to easily differentiate between four different parts:
 \begin{itemize}
     \item Power supply, handle the power input for the board and for the power components such as the motor driver or other power electronics needed to drive the controlled parts. 
     \item Inputs, generic analog or digital inputs.
@@ -43,7 +43,7 @@ Engineers create a model by specifying the behavior of the different component o
 \end{itemize}
 The interface between the code developed via the Model Based Design approach and the \gls{ECU} hardware is the \gls{AUTOSAR} standard. If Model Based Desing is an abstraction closely related to software development, \gls{AUTOSAR} sits more closely near to the hardware side, as it makes hardware and software communicate.
 \subsection{Example of Model Based Design Implementation}
-To better understand the concept of Model Based Design, a simple example is reported in Fig. \ref{fig:mbdapproach}. In this case the embedded system is composed by a spring-dumper system controlled by some type of electronic controller that output a control over the position of the system. Feedback loops are omitted in the representation.
+To better understand the concept of Model Based Design, a simple example is reported in Figure \ref{fig:mbdapproach}. In this case the embedded system is composed by a spring-dumper system controlled by some type of electronic controller that output a control over the position of the system. Feedback loops are omitted in the representation.
 \begin{figure}[h]
     \centering
     \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt
@@ -181,14 +181,14 @@ Every \gls{SWC} is not just composed by runnable code, in order to withstand the
     \item Access Point, the access point specify how each runnable expect to access the information conveyed through the \gls{SWC} connection interfaces. 
 \end{itemize}
 \subsection{Example implementation of a windshield wiper control}
-Having defined the \gls{AUTOSAR} standard structure, it's useful to define an example of implementation to better understand the presented concepts. Consider the function windshield wiping. The function graphical structure is the following:
+Having defined the \gls{AUTOSAR} standard structure, it is useful to define an example of implementation to better understand the presented concepts. Consider the function windshield wiping. The function graphical structure is the following:
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{images_folder/windshield_WIpers_aUtosar.jpeg}
     \caption{Windshield wipers implementation}
     \label{fig:WINWIP}
 \end{figure}
-The Fig. \ref{fig:WINWIP} report the graphical representation of an \gls{AUTOSAR} scheme, normally the structure is described via ARXML file, specific XML file in which the structure is defined in a machine friendly language. 
+The Figure   \ref{fig:WINWIP} report the graphical representation of an \gls{AUTOSAR} scheme, normally the structure is described via ARXML file, specific XML file in which the structure is defined in a machine friendly language. 
 The scheme contains tree instances of the Sensor-Actuator \gls{SWC}. The first is the sensor reading the status of the \textit{WindeshieldsWipersSwitch}, the read is done via the \gls{I/O} labeled port. The status is transmitted via a service. The other sensor, \textit{CarStatus} instead check the status of the vehicle, on weather or not this is on or off. The transmission is done via a sender receiver.\\
 The main difference between the two is that in the server/client configuration the data from a server is only available to the client requesting this data. Instead in a receiver/sender configuration the data is "published" on the \gls{VFB}, and the connected receiver/writer can access/modify the data.\\
 The only actuator \gls{SWC} is the one in charge of controlling the windshield wipers motor, \textit{WindshiedsWipersMotor}. The managing component, \textit{WindshieldWipersManager} is the one who compile the logic of the actuation. It is client of the Switch, and can therefore request the status (the request periodicity is defined by its RTE event element). Based on it and on the information from \textit{CarStatus} the module defines an actuation that is given as service to the client \textit{WindshieldsWipersMotor}.\\
@@ -258,8 +258,8 @@ I_{3} = 11001011001
 \end{figure}
 As exemplified in \ref{fig:CANABR} the nodes starts by sending the \gls{SOF}, then the identifier comes into play. The nodes continue sending on the \gls{bus} their identifier until a collision happen. After five bits where all the node have equal identifier, at bit number 6 the $I_1$ set the \gls{bus} on a recessive level while sensing both from $I_2$ and $I_3$ a dominant level, therefor $I_1$ stop the communication and switch to a receiver mode. Only $I_2$ and $I_3$ continue sending on the \gls{bus}. The tenth bit of $I_2$ is at recessive level while $I_3$ is at dominant. Node $I_3$ is the transmitter and therefor continue with the transmission of the other part of the data frame while $I_2$ becomes a receiver, thus completing the arbitration process.\\
 \gls{CAN} is affected by starvation problems. Low priority nodes may expect large latency in case of high priority units being very active. \\
-It's important also to underline the fact that there is no message destination address in \gls{CAN}, instead each node picks up all the traffic on the bus.\\
-From and electrical standpoint \gls{CAN} arbitration mechanism work as follow. Consider the example in Fig. \ref{fig:CANABRELT} where \gls{CAN} nodes are exemplified by open collector transistors. 
+It is important also to underline the fact that there is no message destination address in \gls{CAN}, instead each node picks up all the traffic on the bus.\\
+From and electrical standpoint \gls{CAN} arbitration mechanism work as follow. Consider the example in Figure   \ref{fig:CANABRELT} where \gls{CAN} nodes are exemplified by open collector transistors. 
 The level of the bus is at a low level (dominant) in the case in which just one of the of transistor in the network output a dominant level. This is also the explanation of why zero is dominant, only one transistor is needed in a closed configuration in order to set the \gls{bus} to a zero, all independently from the status of other transistors. The \gls{bus} will only be at high level (recessive) when all the transistors in the network output a recessive level (transistors are all open) setting the \gls{bus} to 1.
 \begin{figure}[ht]
     \centering
