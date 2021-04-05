@@ -221,7 +221,7 @@ align=center},start chain=going below, node distance=5mm,font=\sffamily,fbox/.st
 \end{figure}
 \gls{OSI} is an abstraction model for the communications protocols that describe the communication processes in a abstract manner. The description starts from the physical layer, which is the one relate to the physic of sending a message all the way to the Application layer, that defines what need to be done with the actual message. The layers in which \gls{CAN} introduces a standardization are the Physical layer and the Data link layer.\\
 The physical layer is indeed composed by the physical transport media, from cables plugs and sockets. \gls{CAN} uses a twisted pair in which the differential voltage between the couple represents the bits transmitted. The Data link layer defines instead the \gls{MAC}, Media Access Control Methods. In \gls{CAN} this is set to \gls{CSMA/CA} or Carrier Sense Multiple Access/ Collision Avoidance. This complex series of acronyms define the simple concept that on a \gls{CAN} \gls{bus} a message can be sent only if the \gls{bus} is free, in case two nodes start sending a message at the same time, then the message with the highest priority win and the node with the low priority message retrieve to a receiver status.
-\subsubsection{CAN message format}
+\subsection{CAN message format}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{images_folder/can message.png}
@@ -239,7 +239,7 @@ The physical layer is indeed composed by the physical transport media, from cabl
     \item \gls{ACK}, consist of a two bit acknowledgement used by the transmitter to receive an acknowledgment of validity form the receiver.
     \item \gls{EOF}, end-of-frame, is a seven bit signal that define the end of communications. 
 \end{itemize}
-\subsubsection{CAN arbitration}
+\subsection{CAN arbitration}
 Arbitration is the mechanism that handle \gls{bus} access conflict by \gls{CAN}. As already underlined when describing the can Data link layer, based on collision avoidance every node can start sending if the \gls{bus} is free. In the case in which two nodes start the communication simultaneously arbitration comes into place, resolving the conflict. Since the arbitration phase only take place when two nodes transmit at the same time, the identifier of the two nodes is present contemporaneously on the \gls{bus}. The comparison between identified is what define priority. Whenever a node sense a dominant level on the \gls{bus}, while sending a recessive one, than the node stop the communications and start listening to the \gls{bus} (become a receiver). In \gls{CAN} a recessive level is couple with the bit 1, while a dominant with 0. Consider having three nodes with the following identifiers:
 \begin{equation}
 I_{1} = 11001101010
