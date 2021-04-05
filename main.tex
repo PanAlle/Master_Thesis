@@ -164,16 +164,21 @@
 	\newpage
 	
 	\pagenumbering{arabic}
-	
-	\tableofcontents
-	\cleardoublepage
- 
 
+% Acknowledgements	
 \chapter*{}
-\addcontentsline{toc}{chapter}{Acknowledgements}
 \subfile{0-Acknowledgements/Acknowledgements}
+\cleardoublepage
 
+% Tables of content
+\tableofcontents
+\cleardoublepage
 
+% List of Acronyms
+\subfile{glossaries} 
+\cleardoublepage
+
+% Abstract
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 \subfile{1-Abstract/Abstract}
@@ -183,40 +188,44 @@
 % \addcontentsline{toc}{chapter}{AbstractITA}
 % \subfile{1-Abstract_ITA/Abstract_ITA}
 
+% Italian summary
 \chapter*{Sommario in lingua Italiana}
 \addcontentsline{toc}{chapter}{Sommario in lingua Italiana}
 \subfile{2-Chapter_Sommario_in_Italiano/Sommario}
 	
-
+% Intro
 \chapter{Introduction}
 \subfile{3-Introduction/Introduction}
 
-
+% Agile and Scrum
 \chapter{Agile and Scrum}
 \subfile{4-Chapter_Agile/Agile}	
 
+% Ecu structure
 \chapter{Ecu structure}
 \subfile{5-Chapter_Ecu_structure/Ecu_structure}	
 
+% Software build \& continuous integration
 \chapter{Software build \& continuous integration}
 \subfile{6-Chapter_Software_build/Software build}	
 
 % \chapter{Build}
 % \subfile{Chapter_Build/Build}	
 
+% Database
 \chapter{Database}
 \subfile{7-Chapter_Database/Database}
 
-
+% Dashboard Development
 \chapter{Dashboard Development}
 \subfile{8-Chapter_Dashboard_Development/Dashboard_Development}
 
-
+% Conclusions \& Future Development
 \chapter{Conclusions \& Future Development}
 \subfile{9-Chapter_Conclusions_Future_Development/Conclusions_Future_Development}
 
 
-\subfile{glossaries}
+
 
 \cleardoublepage
 \bibliography{bibliography.bib}
