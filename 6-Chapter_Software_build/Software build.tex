@@ -113,7 +113,7 @@ In general three types of build are part of the environment of SCM. Each type of
     \item Integration build, the integration build is used to incorporate the newly developed changes and verifying that the sum of all the changes output a stable and consistent result. In general this build can therefor be used as a versioned one. Developer are going to use this version to implement further changes. 
     \item Release build, package the software release. The main point is to create the releasable product for the customer. Differently from the integration step, in this step the output product is packed and ready to be deployed to the customer. This may require more steps that are omitted in the integration step. An example can be the creation of documentation or some artifacts useful only for developers. 
 \end{itemize}
-\subsection{Software build tools}
+\subsection{Software build tools}\label{ssec:scons12}
 Software build tools are used to automate the creation of executable application starting from source code. The most basic and most known software build tool is gcc (GNU software build) to create the executable from a generic c file. 
 \begin{center}
     \texttt{gcc -o Helloworld.exe HelloWorld.c}

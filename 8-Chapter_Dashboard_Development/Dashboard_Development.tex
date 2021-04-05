@@ -52,33 +52,59 @@ In the structure the sum of different composition define a project. A project re
 the data generation process is the part of the project that is already present. the data is already there in the EA-build and gets generated every build run. Most of the time, as already mentioned the data gets stored under different formats, each of which is developer friendly, meaning that each developer know his own part of the data, and autonomously decides under which format to store the data under. 
 In order to centralize the data the integration of the capabilities to store data in a database have been introduced in the build. The process for integration the automatic data generation to the database have been the following:
 \begin{itemize}
-    \item Creation of a database integration package, the database created for the project has now a package inside EA-build. In the package the table model is first defined, then called in the position in which the data is generated.
-    \item Standardization in the mechanism for database update. Every time that a table needs to be updated there is the need to define a mechanism of updating. Sometimes old value are still relevant, other time is faster to just update old ones
-    \item Integration of data, using the basic previous underlined structure, since the build software is composed by multiple packages that generates data there is the need to integrate the database capabilities inside each package and more specifically in the location in which the data is generated. in the end also the integration in the automation pipeline for each part is needed.
+    \item Creation of a database integration package, creation of a package to integrate database connectivity in the already present EA-build software.
+    \item Standardization in the mechanism for database update, define a time efficient way to have always updating data and a constant timestamped storage. 
+    \item Integration of data, workflow for the integration of new data inside the database.
 \end{itemize}
 \subsubsection{Creation of a database integration package}
+whcih step are needed in tetrms - pythocn code, session creation, psw
 The database package is the python package which inside the build process is responsible for storing the definition of table, following SQLAlchemy (Section \ref{sec:SQLACHMEYMSEC}).
-The structure that allow to have a standardized method of integrating data in the database, and therefor in the pipeline is the following:
+The structure that allow to have a data going thought the software to the database is the following:
 \begin{itemize}
-    \item Each 
+    \item Each table has a class, based on \gls{ORM} layer creates a connection between the database table and the python native class. 
+    \item A class responbile for storing connection parameter is present, in this class are stored information such as the ip address of the database, the port as well as the user for the server and database access. Different table uses different users related to different database schemas. 
+    \item Each conncetion has a own sempathore on the flow stream, that is the so-called \texttt{Session}, that creates a holding zone for the created objects. 
+        \lstset{language=Python}
+        \lstset{frame=lines}
+        \lstset{caption={Example of Session usage}}
+        \lstset{label={lst:code_direct}}
+        \lstset{basicstyle=\footnotesize}
+        \begin{lstlisting}
+            from sqlalchemy.orm import Session
+            
+            # create session and add objects
+            with Session(someclass.engine) as session:
+                session.add(some_object)
+                session.add(some_other_object)
+                session.commit()
+        \end{lstlisting}
 \end{itemize}
-\subsection{Standardization of the database update mechanism}
-Most of the data in the dashboard has an update periodicity of twenty minutes. This is related to the fact that update or changes in the software that trigger a rebuild, as reported in Section \ref{sec:CIsec}. This mean that the data to store exponentially. Therefor having a fast updating mechanism in tha classic form, that checks what data is present and update only the data that changes is not feasible, or mostly not needed since in the dashboard the main focus is on a feedback directed to the current stauts of the software.
-Based on those idea the update mechanism has been translated to a renew mechanism. With the term renew mean that the tables gets fully overwritten every times new data comes in. Thus deliting old data and updating as a bulk the new one.\\
-It need to be underlined that the storage requirement highilithed at the beginning are still valid. Thus to fullfill this requriemnt, while keeping the data volume on the "production database" as low as possible a second database instance is created, namely "EA-Dashboard-storage". This database is updated from the "production" database once day, creating copies of all the tables and adding timestamping to the data, in order to keep track of the software stutus not only in a real time manner but also by having histoirc data on software versioons. This database is not still connected to any dashboard or visulization. Therefor is as fo today not possible to check the time eveluption of the data. 
+\subsubsection{Standardization of the database update mechanism}
+Most of the data in the dashboard has an update periodicity of twenty minutes. This is related to the fact that update or changes in the software that trigger a rebuild, as reported in Section \ref{sec:CIsec}. This mean that the data to store exponentially. Therefor having a fast updating mechanism in the classic form, that checks what data is present and update only the data that changes is not feasible, or mostly not needed since in the dashboard the main focus is on a feedback directed to the current status of the software.
+Based on those idea the update mechanism has been translated to a renew mechanism. With the term renew mean that the tables gets fully overwritten every times new data comes in. Thus deleting old data and updating as a bulk the new one.\\
+It need to be underlined that the storage requirement highlighted at the beginning are still valid. Thus to full-fill this requirement, while keeping the data volume on the "production database" as low as possible a second database instance is created, namely "EA-Dashboard-storage". This database is updated from the "production" database once day, creating copies of all the tables and adding time stamping to the data, in order to keep track of the software status not only in a real time manner but also by having historic data on software versions. This database is not still connected to any dashboard or visualization. Therefor is as of today not possible to check the time evolution of the data. 
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{images_folder/dual_db.png}
     \caption{Double database structure}
     \label{fig:dds}
 \end{figure}
-\section{Hierarchical structure and primary key decisions}
-\section{MVP definition}
-\subsection{Double layering the primary key - Double layer of abstraction introduced}
-\section{Database integration}
-\section{Piepline steps definition}
-\section{Instantiation of a Jenkins job}
-\subsection{Propsor information}
-\subsection{BCI information}
+\subsubsection{Integration of data}
+In order to have new data inside the database and therefore flowing to the pipeline to be analyzed an showcased in a graphical manner in the dashboard some steps are required. Once the developer, together with the person in charge of the dashboard development decide that new data can be inserted in the process, thanks to the previously underline point the process is the following:
+\begin{itemize}
+    \item The developer highlight the data to the person in charge of integration, the main point that need to discussed is how the data gets connected to the data already present in the pipeline (choice of primary key)
+    \item The integration person creates a class for the new data, that connect to a table object in the database. The class is then integrated in the code part that generate the data, so that once the data is generated this is also send to the database.
+    \item The last step to full integration is adding a task, most of the time, based on Scons \ref{ssec:scon12} architecture, the right organization expect a task for each action, therefor the database integration is a new task, that is consequent to the data creation one, therefor the task need to be inserted in the application \texttt{.process} file, which defines which and how tasks run. 
+\end{itemize}
+\section{Data storage}
+In the following section the database organization and structure is presented. This includes how the table are handled in the database and the mechanism behind structural organization
+\subsection{Table organization}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/EADBEntity.png}
+    \caption{Database structure concept}
+    \label{fig:dbsterconce}
+\end{figure}
+\section{Double layering for structure creation}
 \cleardoublepage
 \end{document}
