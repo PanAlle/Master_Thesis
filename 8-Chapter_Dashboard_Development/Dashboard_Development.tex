@@ -115,5 +115,32 @@ given this constraints the structure in the database is simplistic, the main fla
 \end{figure} 
 
 \section{Data Visualization}
+In this section the data visualization tool is presented, as well as the concept used to create a visualization. 
+\subsection{QlikSense}
+QlikSense is a data analytic platform used to create interactive dashboards and reports. The tools allow connection with different data type, from excel sheets to database and via a SQL like language allow to query and manipulate data to create structured tables. From the structured table is then possible to create graphical visualisation of the data with interactive data search. The tool allow to develop interactive dashboard without the need of coding the graphic logic, but just the data structure behind the visualization.\\
+The tool is structured in three main parts, that follow the data flow from raw data to the output dashboard and reports for customer or stakeholders:
+\begin{itemize}
+    \item Prepare, part in which the data is loaded and the table structure is created via a SQL flavored language. 
+    \item Analyze, part in which the visualization is created, different visualization schemes and menu are presents. The graphic is mainly drag and drop but allow for a python like scripting to interface and insert formulas and conditions in the graphics.
+    \item Narrate, part in which reports can be created form the dashboard. Reporting ability is crucial to have report arriving directly to the developer.  
+\end{itemize}
+\subsection{Double primary key layer}
+Since QlikSense allow for a SQL like table structuring, based on table connected via key during the project it has been decided to manipulate the data in the QlikSense environment.\\
+This allows to keep the structure in the database simple, thus avoiding having data manipulation in the Python, which is used in production to create \gls{ECU} deliverable. Having the lowest possible impact on the software, especially in the production environment was one of the first quest upon which the whole pipeline development was based.\\
+Since data storage is not the first of the goal of the EA-build (Section \ref{sec:EA-buildsection}) keeping the part of the pipeline that connect the data generation and storage light as possible can be implemented. 
+The data structuring is done in QlikSense via the SQL like code. The tables are loaded from the database and then modified. An example is reported in Figure \ref{fig:doublelayer}, where the software structure is imported in a parent in parent child manner. The hierarchical structure is then created via SQL queries in QlikSense.  
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/doublalayer.png}
+    \caption{Double layer primary key}
+    \label{fig:doublelayer}
+\end{figure} 
+The concept of double layering for primary keys reports the idea that a primary key is defined both in the relational database environment. This primary key has the function of handling the update from the data generation, in terms that does not allow double data to be uploaded and define a initial data structure, not related to the visualization. The table in the database are uploaded as single instances in the QlikSense environment. Here a second primary key is defined, connecting the reorganized data. This primary key is the one in charge of connecting the data and allowing for for surfing thought the data in a interactive way. 
+Using a double primary key layering allows, therefor for the following advantages:
+\begin{itemize}
+\item Have less changes in the production code for integrating the database connection and data generation.
+\item During test and development phases having code defining the primary key connection in the QlikSense environment allow for a more flexibility, especially considering that in a database environment is more complex to redefine the table primary key. 
+\end{itemize}
+\subsection{EA Software dashboard}
 \cleardoublepage
 \end{document}
