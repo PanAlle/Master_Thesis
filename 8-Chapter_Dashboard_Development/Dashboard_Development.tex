@@ -36,7 +36,7 @@ The concept of having data flowing from the source that generates the data all t
     \caption{Pipeline structure}
     \label{fig:pipeline1}
 \end{figure}
-\section{Data Source}
+\section{Data Source}\label{sec:datasource}
 The first part of the chapter introduce how the data is generated and what is the data related to software structure. Therefore during the section the software structure for \gls{ECU} is given and the data with an example of some batch data already integrated in the pipeline.
 \subsection{Software structure for ECU}
 In order to access and structure data there is the need of having a backbone structure, at which all the data can be related and can also be used to easily surf thought the data to search for relevant information. In this regard the software structure for \gls{ECU}s comes really in hand.\\ 
@@ -98,13 +98,22 @@ In order to have new data inside the database and therefore flowing to the pipel
 \end{itemize}
 \section{Data storage}
 In the following section the database organization and structure is presented. This includes how the table are handled in the database and the mechanism behind structural organization
-\subsection{Table organization}
+\subsection{Database table structure}
+The requirements behind the first implementation in the production environment, coming from the product owner of the software in relation to the database integration were the following. Minimum changes in the production software allowed, this relates mainly to the data source (\ref{sec:datasource}) but greatly affect the complexity level allowed in the database organisation itself. Just to give an idea data can not be manipulated directly in the python code ,but need to be take as it is and then manipulated in the last step, data visualization. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{images_folder/EADBEntity.png}
     \caption{Database structure concept}
     \label{fig:dbsterconce}
 \end{figure}
-\section{Double layering for structure creation}
+given this constraints the structure in the database is simplistic, the main flaw that required a second data organization via SQL queries is related to the fact that the data is taken as it is in code, so most of the time in an unstructured format. In Figure \ref{fig:dbsterconce} the first structure given in the database can be seen.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{images_folder/databasetable.jpg}
+    \caption{Database tables}
+    \label{fig:dbtables}
+\end{figure} 
+
+\section{Data Visualization}
 \cleardoublepage
 \end{document}
