@@ -57,13 +57,12 @@ In order to centralize the data the integration of the capabilities to store dat
     \item Integration of data, workflow for the integration of new data inside the database.
 \end{itemize}
 \subsubsection{Creation of a database integration package}
-whcih step are needed in tetrms - pythocn code, session creation, psw
 The database package is the python package which inside the build process is responsible for storing the definition of table, following SQLAlchemy (Section \ref{sec:SQLACHMEYMSEC}).
 The structure that allow to have a data going thought the software to the database is the following:
 \begin{itemize}
     \item Each table has a class, based on \gls{ORM} layer creates a connection between the database table and the python native class. 
-    \item A class responbile for storing connection parameter is present, in this class are stored information such as the ip address of the database, the port as well as the user for the server and database access. Different table uses different users related to different database schemas. 
-    \item Each conncetion has a own sempathore on the flow stream, that is the so-called \texttt{Session}, that creates a holding zone for the created objects. 
+    \item A class responsible for storing connection parameter is present, in this class are stored information such as the ip address of the database, the port as well as the user for the server and database access. Different table uses different users related to different database schema. 
+    \item Each conncetion has a own semaphore on the flow stream, that is the so-called \texttt{Session}, that creates a holding zone for the created objects. 
         \lstset{language=Python}
         \lstset{frame=lines}
         \lstset{caption={Example of Session usage}}
@@ -142,5 +141,20 @@ Using a double primary key layering allows, therefor for the following advantage
 \item During test and development phases having code defining the primary key connection in the QlikSense environment allow for a more flexibility, especially considering that in a database environment is more complex to redefine the table primary key. 
 \end{itemize}
 \subsection{EA Software dashboard}
+The final product of the pipeline is the dashboard. In it the data is visualized in a graphical manner. This tool is specifically useful because it allow developer to have a direct graphic feedback on the status of software version. The data greatly vary from the RAM usage percentage a certain software version tested for all the way to the number of Misra rules not abode during static code analysis.\\
+The variety of data is big, but almost all the data is connected to the software strucre allowing for a easy serach and move thorught the data.\\
+There is a central menu, in which the functional area of data can be selected, in general eahc data section is composed by three pages, describing it:
+\begin{itemize}
+    \item Home page, where mainly general \gls{KPI} are shown and a selector for the data is present.
+    \item Overview page, with grpahical visulaziation of the data, grpah and other interactiv evisualization wihtouth any in depht information
+    \item In depht table, tbale with all the information regarding a certain data section. Most of the time a link to the production files is here preset, in case the data regards a package. 
+\end{itemize}
+With this organization the idea is that the developer filter the data in the first two pages, only selecting the data of interest, while in case more in depth information are needed those can be found in the third page.  
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/dashboard.png}
+    \caption{Some of the dashboard pages}
+    \label{fig:dashboardseite}
+\end{figure}
 \cleardoublepage
 \end{document}
