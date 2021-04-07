@@ -180,5 +180,24 @@ Nel capitolo infine è spiegato come avviene il collegamento tramite un semplice
     \label{fig:tcpdbita}
 \end{figure}
 \section{Sintesi italiana - Sviluppo della Dashboard}
+Il capitolo legato allo sviluppo della Dashboard è il capitolo principale e quello che riprende i concetti trattati precedentemente  e li lega allo sviluppo della Dashboard stessa.\\
+Il processo di sviluppo software prevede infatti la generazione di un'elevata mole di dati, i quali sono utilizzati dai singoli sviluppatori per avere un feedback sul processo di sviluppo software. Questi dati sono attualmente salvati sotto varie forme e in differente piattaforme. Manca una struttura generale che possa salvare e fornire una visualizzazione dei dati all'interno di una singola piattaforma. La Dashboard, come punto finale, e la struttura che c'è dietro a questa vuole fornire un modo per avere una visione d'insieme centralizzata sul processo, disponibile a tutti gli sviluppatori.\\
+Come sottolineato, la Dashboard e dunque la visualizzazione grafica dei dati è solamente il gradino finale di un processo che si articola in più punti, di seguito riportati:
+\begin{itemize}
+    \item Sorgente dei dati, i dati che vengono generati nel processo di compilazione software devono essere raccolti e inviati al database. Nel capitolo viene descritta la modalità con la quale questa integrazione è stata fatta. Inoltre vengono trattate alcune idee utilizzate per rendere efficiente questo scambio di dati.
+    \item Salvataggio dei dati, il salvataggio dei dati avviene in un database di tipo \gls{SQL} relazionale. Qui i dati vengono salvati sotto forma di tabelle collegate tra di loro per sfruttare al meglio le potenzialità dei database relazionali e ottimizzare lo spazio richiesto.
+    \item visualizzazione grafica dei dati, questo passaggio è quello dove la Dashborad viene creata. La sezione relativa tratta come tramite una rielaborazione dei dati via linguaggio SQL dal database venga creata una visualizzazione interattiva dei dati tramite grafici, \gls{KPI} e tabelle.
+\end{itemize}
+In Figura \ref{fig:pipelineita} viene riportato uno schema riassuntivo sulla struttura della pipeline dati, termine che vuole sottolineare come i dati viaggino dal software che li genera fino alla Dashborad dove possono essere idealmente istantaneamente visibili all'utente finale, in questo caso gli sviluppatori.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/pipeline_1.png}
+    \caption{Struttura della pipeline dati}
+    \label{fig:pipelineita}
+\end{figure}
+\section{Sintesi italiana - Conclusioni}
+Le conclusioni analizzano i risultati e riflettono sugli obiettivi prefissati per la tesi nel capitolo introduttivo. 
+L'analisi fatta del processo di sviluppo software, visto dal punto di vista interno in una grande azienda come \gls{BMW}. La complessità dei processi viene trattata durante tutta la prima parte della tesi, definendo passo per passo i vari processi e quindi affrontando la complessità dell'insieme pezzo per pezzo.\\
+In secondo luogo lo sviluppo della Dashboard, la quale fornisce uno strumento utile per rendere ancora più efficacie il feedback sullo stato del processo. Nelle conclusione vengono trattati i punti di forza e di debolezza dell'attuale implementazione e lo stato finale del progetto.
 \cleardoublepage
 \end{document}
