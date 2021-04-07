@@ -68,5 +68,117 @@ Nella parte legata al software seguendo una logica top down, partendo infatti da
     \caption{Standard AUTOSAR}
     \label{fig:autosar}
 \end{figure}
+
+\section{Sintesi italiana - Software build e integrazione continua}
+Il capitolo tratta temi legati ai concetti di Sfotware configuration managment. Questi concetti definiscono le basi di come sviluppare software. E' importante evidenziare il fatto che a differenza delle metodologie di sviluppo prodotto, le quali definiscono linee guida su come sviluppare un generico prodotto, i concetti di \gls{SCM} definiscono come sviluppare software. L'unione dei due è il metodo utilizzato per sviluppare software in \gls{BMW}, seguita dunque anche per lo sviluppo del progetto trattato nella tesi.\\
+Dopo un'introduzione legata ai concetto di \gls{SCM} il capitolo si sviluppa definedo il concetto di Software build. L'artefatto sul quale il progetto si basa è infatti un Build software responsbile dello sviluppo di codice compilabile per la centralina. In Figura \ref{fig:approachbuildingsoftware} viene riporato uno schema sul quale lo sviluppo di tale software è basato.
+\begin{figure}[H]
+    \begin{center}
+        \begin{tikzpicture}[scale=0.7,transform shape,node distance=1cm and 1cm,>=latex']
+        \node [input3, left =of sum ] (requirements) {$Requirements$};
+        \node [sum2, right =of requirements] (sum) {};
+        \draw [->] (requirements) -- node [left] {} (sum);
+        \node [block, right= of sum] (changes) {$Changes\;Implementation$};
+        \draw [->] (sum) -- node {} (changes);
+        \node [block, right =of changes] (build) {$Build$};
+        \draw [->] (changes) -- node {} (build);
+        \node [block, right =of build] (test) {$Test$};
+        \draw [->] (build) -- node {} (test);
+        \node [block, right =of test] (review) {$Review$};
+        \draw [->] (test) -- node {} (review);
+        \draw[->] (review)--++(-90:1) coordinate (A)--++(-90:2.5) coordinate (B)-|(sum);
+        \node [block, above =of review] (versioning) {$Versioning$};
+        \draw [->] (review) -- node [above, pos=0.79] {} (versioning);
+        \node [block, above =of versioning] (repository) {$Repository$};
+        \draw [->] (versioning) -- node {} (repository);
+        
+        \node [block, above =of sum] (branch) {$Branch$};
+        \draw [<-] (sum) -- node {} (branch);
+        \node [block, above =of branch] (Baseline) {$Baseline$};
+        \draw [<-] (branch) -- node {} (Baseline);
+        \node [sum2, above =of Baseline] (sum1) {};
+        \draw [<-] (Baseline) -- node {} (sum1);
+        \draw [->] (repository) |- node {} (sum1);
+        
+        \node [input2, name=input, left =of sum1] {};
+        \draw [draw,->] (input) -- node [above left] {$Other\;changes$} (sum1);
+        
+        \end{tikzpicture}
+    \end{center}
+    \caption{Approccio al modello di Build}
+    \label{fig:approachbuildingsoftware}
+\end{figure}
+Nella parte finale del capitolo il suddetto Build software, il cui nominativo è EA-build viene introdotto  e alcuni dei concetti utilizzati vengono analizzati. Il focus del capitolo è però anche quello dell'integrazione continua, concetto innovativo legato alla produzione di artefatti. 
+\section{Sintesi italiana - Database}
+All'interno del processo di analisi dei data provenienti dalle versioni software per le centraline un ruolo fondamentale è rivestito dal database relazionale di tipo \gls{SQL}. Nel capitolo vengono introdotti i concetti legati allo sviluppo di un database.\\
+Nella parte introduttiva viene analizzata la convenienza dell'utilizzo di un database di tipo relazionale rispetto ad altri modelli di salvataggio dati. \\
+Dopo aver introdotto i concetti principali legati ai database e ai sistemi che ne arbitrano il funzionamento viene introdotto il meccanismo tramite il quale il database viene collegato al Software di build (Figura \ref{fig:tcpdbita}). Dal momento che il software di build è scritto in linguaggio Python viene scelta una libraria per la connessione.\\
+Nel capitolo infine è spiegato come avviene il collegamento tramite un semplice esempio di implementazione. 
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\begin{figure}
+    \centering
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-0.8,xscale=0.8]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Image [id:dp6531549605845597] 
+\draw (386,154.71) node  {\includegraphics[width=81pt,height=97.93pt]{images_folder/database.png}};
+%Image [id:dp05605943116066481] 
+\draw (216,156) node  {\includegraphics[width=52.5pt,height=52.5pt]{images_folder/firewall-protection-2039809-1721228.png}};
+%Image [id:dp383039570021823] 
+\draw (64,102.71) node  {\includegraphics[width=34.5pt,height=35.57pt]{images_folder/pc.png}};
+%Image [id:dp5074894649578912] 
+\draw (64,163.71) node  {\includegraphics[width=34.5pt,height=35.57pt]{images_folder/pc.png}};
+%Image [id:dp8452106454068984] 
+\draw (63,223.71) node  {\includegraphics[width=34.5pt,height=35.57pt]{images_folder/pc.png}};
+%Image [id:dp3665068119749033] 
+\draw (595.5,100.21) node  {\includegraphics[width=48.75pt,height=51.32pt]{images_folder/935839-200.png}};
+%Image [id:dp45105133171160383] 
+\draw (595.5,160.21) node  {\includegraphics[width=48.75pt,height=51.32pt]{images_folder/935839-200.png}};
+%Image [id:dp1763171670611261] 
+\draw (595.5,221.21) node  {\includegraphics[width=48.75pt,height=51.32pt]{images_folder/935839-200.png}};
+%Straight Lines [id:da21693223941443396] 
+\draw    (100,101) -- (168.25,139.17) ;
+\draw [shift={(170,140.14)}, rotate = 209.21] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da3176124570414163] 
+\draw    (99,220) -- (168.26,181.12) ;
+\draw [shift={(170,180.14)}, rotate = 510.69] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da8563188339305701] 
+\draw    (100,159.14) -- (168,160.11) ;
+\draw [shift={(170,160.14)}, rotate = 180.82] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da10650658101917698] 
+\draw    (260,160.14) -- (328,161.11) ;
+\draw [shift={(330,161.14)}, rotate = 180.82] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da8525254743123636] 
+\draw    (439,120.14) -- (477.19,102) ;
+\draw [shift={(479,101.14)}, rotate = 514.5899999999999] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da9180864032323492] 
+\draw    (440,200.14) -- (478.19,218.28) ;
+\draw [shift={(480,219.14)}, rotate = 205.41] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da15194220294106842] 
+\draw    (440,161.14) -- (478,161.14) ;
+\draw [shift={(480,161.14)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da09311856378325101] 
+\draw    (521,101.14) -- (559,101.14) ;
+\draw [shift={(561,101.14)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da43474826611768935] 
+\draw    (521,160.14) -- (559,160.14) ;
+\draw [shift={(561,160.14)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Straight Lines [id:da13431673428420954] 
+\draw    (521,221.14) -- (559,221.14) ;
+\draw [shift={(561,221.14)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+%Image [id:dp9305152591758974] 
+\draw (501.14,216.55) node  {\includegraphics[width=24.22pt,height=26.17pt]{images_folder/lock.png}};
+%Image [id:dp22011543040409642] 
+\draw (501.14,156.55) node  {\includegraphics[width=24.22pt,height=26.17pt]{images_folder/lock.png}};
+%Image [id:dp43535330126349736] 
+\draw (501.14,96.55) node  {\includegraphics[width=24.22pt,height=26.17pt]{images_folder/lock.png}};
+
+\end{tikzpicture}
+    \caption{Schema di connessione al database}
+    \label{fig:tcpdbita}
+\end{figure}
+\section{Sintesi italiana - Sviluppo della Dashboard}
 \cleardoublepage
 \end{document}
