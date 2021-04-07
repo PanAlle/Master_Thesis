@@ -57,5 +57,16 @@ Il capitolo tratta dunque in modo completo tutto ciò che riguarda la metodologi
     \caption{Relazione Agile - Scrum}
     \label{fig:agilesrre}
 \end{figure}
+% Sintesi ECU strucutre
+\section{Sintesi italiana - Struttura ECU}
+Nel capitolo viene fornita un'introduzione iniziale alle centraline presenti nei veicoli. Le centraline possono infatti essere pensate come complesse versioni di sistemi embedded.\\
+Dopo aver introdotto le principali centraline presenti nel veicolo il capitolo continua nella trattazione descrivendo l'organizzazione delle \gls{ECU} dal punto di vista dell'hardware e del software. Il focus si sviluppa sulla parte software, in quanto quella che più importante per l'obiettivo della tesi.\\
+Nella parte legata al software seguendo una logica top down, partendo infatti dallo sviluppo delle logiche di controllo passando per l'interfaccia usata tra hardware e software fino ad arrivare a metodologie di comunicazione utilizzate sull'hardware delle centraline. Il capitolo inizia con l'introduzione del Model Based Design  e i relativi metodi di astrazione utile a sviluppare modelli di sistemi complessi e in particolare a sviluppare logiche di controllo per i suddetti modelli. Un esempio di sviluppo in Model Based Design viene riportato. Il capitolo continua introducendo lo standard \gls{AUTOSAR}, architettura create per interfacciare hardware e software in sistemi real time complessi come le \gls{ECU}. Lo standard \gls{AUTOSAR} introduce uno strato di astrazione (Figura \ref{fig:autosar}) tra il codice embedded e l'hardware della centraline, permettendo una maggior facilità nello sviluppo ma sopratutto una più elevata portabilità del codice su differenti versioni e tipologie di centraline. Questo aspetto è di vitale importanza sopratutto per l'incremento che lo sviluppo software sta avendo, richiedendo molte più risorse sopratutto dal punti di vista economico.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{images_folder/autosarcapture.jpg}
+    \caption{Standard AUTOSAR}
+    \label{fig:autosar}
+\end{figure}
 \cleardoublepage
 \end{document}
