@@ -17,7 +17,7 @@ The focus of the chapter is to give the reader an overview of product developmen
 The chapter is going to analyze Agile and its most famous branch, Scrum. After an introduction of the Agile philosophy, the chapter switch its focus on the Scrum methodology including a comparison with traditional waterfall methods. In the part related to Scrum an overview over tools, processes and roles is given.\\
 \section{Agile philosophy}
 Agile is presented as a philosophy rather than a methodology. This distinction need to be underlined because its important to understand the direction of the chapter and understand the difference between Agile and Scrum.
-The word philosophy is used to emphasize the fact that we are referring to a way of thinking but also on the other hand that we are not trying to give any method to support this way of thinking. Agile set guidelines while Scrum take those guidelines and tells the user exactly 'what to do'.
+The word philosophy is used to emphasize the fact that we are referring to a way of thinking but also on the other hand that we are not trying to give any method to support this way of thinking. Agile set guidelines while Scrum take those guidelines and tells the user exactly how to apply them in a concrete manner.
 \begin{figure}
     \centering
 \begin{tikzpicture}
@@ -31,15 +31,15 @@ The word philosophy is used to emphasize the fact that we are referring to a way
 \end{figure}
 
 \subsection{History of the Agile philosophy}
-The definition of a word Agile as a theorized philosophy for product development came only in the early 90´as a result of the Agile Manifesto. It is important to keep in mind that there where previously approaches that resemble, if not match Agile, those can be inserted under the umbrella term IID, \textit{Iterative Incremental Approaches}.\\
-As most of the innovation also the IID ones came from the criticism of previously used methods. In the past most of the methodologies to develop product and in particular to develop software where based on a series of sequential steps which output could only be seen at the end of the process. The series of steps was sometimes so long that the product was already out of the market once completed.\\
+The definition of a word Agile as a theorized philosophy for product development came only in the early 90´as a result of the Agile Manifesto. It is important to keep in mind that there where previously approaches that resemble, if not match Agile, those can be inserted under the umbrella term \gls{IID}, Iterative Incremental Approaches.\\
+As most of the innovation also the \gls{IID} ones came from the criticism of previously used methods. In the past most of the methodologies to develop product and in particular to develop software where based on a series of sequential steps which output could only be seen at the end of the process. The series of steps was sometimes so long that the product was already out of the market once completed.\\
 The criticism in regard to those methods suggested alternatives approaches which where actually unconsciously filled by Agile ideas such as the response to changes, customer involvement, and working software over documentation.\\
 By reading the paper by \citet{larman2003iterative} the traces of iterative and incremental development approaches can be already found in the 30´. \\
-Walter Shewahrt, an engineer at Bell Labs, in 1930 posed a series of short "plan-do-study-act" (PSDA) cycles for quality improvement. In those cycles he impemented constant review over results and used this feedback to continue in the development process. This method was a great success and PSDA was vigorously promoted starting from the 40´.\\ 
-Tanks to the success the next step for IID was to flood military projects. Iterative approaches were used in the development of the X-15 hyper-sonic jet in which the "Agile like" practices contributed majorly to its success.\\ Post war the IDD experience and experts arrived at NASA, which in the 60´was US government top priority with the ongoing cold war.\\
-Project Mercury, the first human spaceflight program of the United States, used short half day iterations. The Development Team performed technical review of all the changes, and applied a super early version of Extreme Programming practice (later theorized Agile-based method) of "test first" development. This consist in writing test before each micro increment. They also applied top-down development with the usage of stubs in the development. A \textit{stub} simulate the behaviour of code or is used as a substitute to yet-to-be-developed code.\\ 
+Walter Shewahrt, an engineer at Bell Labs, in 1930 posed a series of short "plan-do-study-act" (PSDA) cycles for quality improvement. In those cycles he implemented constant review over results and used this feedback to continue in the development process. This method was a great success and PSDA was vigorously promoted starting from the 40'.\\ 
+Tanks to the success the next step for \gls{IID} was to flood military projects. Iterative approaches were used in the development of the X-15 hyper-sonic jet in which the "Agile like" practices contributed majorly to its success.\\ Post war the \gls{IID} experience and experts arrived at NASA, which in the 60´was US government top priority with the ongoing cold war.\\
+Project Mercury, the first human spaceflight program of the United States, used short half day iterations. The Development Team performed technical review of all the changes, and applied a super early version of Extreme Programming practice (later theorized Agile-based method) of "test first" development. This consist in writing test before each micro increment. They also applied top-down development with the usage of stubs in the development. A Stub simulate the behaviour of code or is used as a substitute to yet-to-be-developed code.\\ 
 \subsection{Agile Manifesto}
-The influences continued until a real theorizing was made in 2001 by software developer that, tired of inefficient way to develop software summed all up under the slogan "\textit{We are uncovering better ways of developing software by doing it and helping others do it}". \\
+The influences continued until a real theorizing was made in 2001 by software developer that, tired of inefficient way to develop software summed all up under the slogan "We are uncovering better ways of developing software by doing it and helping others do it" \cite{beck2001agile}. \\
 The proponents of the Manifest found them self in a situation in which no software development methodology or techniques enabled them to succeed in a constant manner. As reported by \citet{schmidt2013software} the Manifesto was to establish a set of principles for software development based on rapid prototyping, incremental product delivery, and absolutely no product design. The Manifesto highlighted 4 values:
 \begin{itemize}
     \item Individuals and interactions over processes and tools;
@@ -58,7 +58,7 @@ It is important to state that documentation don´t need to be completely left ou
 This value stresses the importance of encouraging customer and developer team collaboration over the product, other than seeing each other as adversaries in the contract negotiation part.
 Creating a strong customer relationship translates into more frequent and accurate customer feedback. The more a customer is involved in the product the more the outcome of a product is shared between developers and the customer itself, thus the push in the direction of success is stronger.  
 \subsubsection{Responding to change over following a plan}
-This stands as the most innovative values out of the four. The ability not only to respond to changes but to welcome them during the development process is a really important tool for Agile. Differently from other approaches, as for example QFD, in Agile as time and knowledge over the product increases the ability to make changes stay unvaried. This is a really innovative concept. Changes are welcomed and the cost related to implementing changes ideally stay the same until product delivery. In traditional method this cost tend to become bigger as approaching the delivery deadline.
+This stands as the most innovative values out of the four. The ability not only to respond to changes but to welcome them during the development process is a really important tool for Agile. Differently from other approaches, as for example QFD, in Agile as time and knowledge over the product increases the ability to make changes stay unvaried. This is a really innovative concept. Changes are welcomed and the cost related to implementing changes ideally stay the same until product delivery, as can be noted in Figure \ref{fig:agilevswaterfall}. In traditional method this cost tend to become bigger as approaching the delivery deadline.
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
@@ -109,7 +109,7 @@ As previously underlined, Agile does not present a specific set of practices wit
 \end{itemize}
 
 \subsection{Scrum teams}
-Scrum teams are composed by a Product Owner, a Development Team and a Scrum Master. Outside the Scrum team there can also be a Business Owner, Stakeholders and Subjects Matter Experts (SME). 
+Scrum teams are composed by a Product Owner, a Development Team and a Scrum Master. Outside the Scrum team there can also be a Business Owner, Stakeholders and Subjects Matter Experts (SME). The team composition is also reported in Figure \ref{fig:scrumteamcompo}.
 \begin{figure}[H]
     \centering
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
@@ -182,10 +182,11 @@ Scrum teams are composed by a Product Owner, a Development Team and a Scrum Mast
 
 \end{tikzpicture}
     \caption{Scrum team structure}
+    \label{fig:scrumteamcompo}
 \end{figure}
 
 Scrum Teams are a self-organizing and cross functional. The self organization is needed to better decide with the team how to get the work done, rather than having this decided from the outside.\\
-Cross-functional team have all competencies needed to complete different tasks. A team need to be composed by what \citeauthor{Scrumastery} \cite{Scrumastery} defines as T-shaped people. The name comes from the fact that the vertical shaft of the T represent the depth of their chosen preferred skill, while the horizontal bar of the T represents the diversity of other skills they can dip into in order to collaborate. Obviously T-shaped are the antagonist of I-shaped people, that have a set of skills that is deeper than broad, resembling the letter I.\\
+Cross-functional team have all competencies needed to complete different tasks. A team need to be composed by what \citeauthor{Scrumastery} \cite{Scrumastery} defines as T-shaped people (Figure \ref{fig:\label{fig:Tshaped}}). The name comes from the fact that the vertical shaft of the T represent the depth of their chosen preferred skill, while the horizontal bar of the T represents the diversity of other skills they can dip into in order to collaborate. Obviously T-shaped are the antagonist of I-shaped people, that have a set of skills that is deeper than broad, resembling the letter I (Figure \ref{fig:\label{fig:Ishaped}}).\\
 \begin{figure}[H]
 \centering
 \begin{minipage}{.5\textwidth}
@@ -199,6 +200,7 @@ Cross-functional team have all competencies needed to complete different tasks. 
 \draw (191,35) node [anchor=north west][inner sep=0.75pt, yscale=0.7,xscale=0.7]   [align=left] {Design \ \ Analysis \ \ Develop \ \ Test \ \ Architect};
 \end{tikzpicture}
   \caption{I-shaped person}
+  \label{fig:Ishaped}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
@@ -212,6 +214,7 @@ Cross-functional team have all competencies needed to complete different tasks. 
 \draw (191,35) node [anchor=north west][inner sep=0.75pt, yscale=0.7,xscale=0.7]   [align=left] {Design \ \ Analysis \ \ Develop \ \ Test \ \ Architect};
 \end{tikzpicture}
   \caption{T-shaped person}
+  \label{fig:Tshaped}
 \end{minipage}
 \end{figure}
 Having a broad set of skill enhance collaboration and allow for better feedback inside the team itself. The end goal of Scrum teams is to deliver products iteratively and incrementally, while maximizing opportunities for feedback.
@@ -325,7 +328,7 @@ An increment need to full fill the team definition of "Done".
 \subsubsection{Definition of "Done"}
 A Sprint Backlog items can be defined as "Done" only if it meet the team definition of "Done". This definition is team-based, different teams can have different definition. The sum of all the "Done" items create a "Done" increment. This increment need to be usable. It is important that the definition is chosen internally by the team, obviously the definition can vary slightly during the development, even if some basic rules need to be applied.
 \subsection{Example of a Scrum application}
-Having described completely the theory behind the approach, the feeling is the one I personally had the first time learning about Scrum. The method have potentials, but the application does not seem that revolutionary. In this sense, I provide here an example which explain how a product is developed using Scrum. This should give a general idea over the method, helping to understand how a possible application can take place. In the \ref{fig:scrumprddev} the full development of a Product using Scrum is reported.
+Having described completely the theory behind the approach, the feeling is the one I personally had the first time learning about Scrum. The method have potentials, but the application does not seem that revolutionary. In this sense, I provide here an example which explain how a product is developed using Scrum. This should give a general idea over the method, helping to understand how a possible application can take place. In Figure \ref{fig:scrumprddev} the full development of a Product using Scrum is reported.
 \begin{figure}[htp]
     \centering
     \includegraphics[width=\linewidth]{images_folder/scrum.png}
@@ -353,14 +356,14 @@ In order to completely understand the advantages of Scrum in regard to classic t
 \caption{Waterfall model}
 \end{figure}
 
-Waterfall methods are still in great usage, the main feature is that the development is done step by step, flowing from a stage to the other. As \cite{Scrum} refers they based on a scheme where "each piece of the project cascade down to the next like a waterfall". The methodology lays out everything using the \textit{Gant charts}. One of the criticism that the authors of Scrum made is related exactly to those charts, that are as complex as wrong. Here is reported a development of a product similar to the one reported in \ref{figscrum} but using a waterfall approach.\\
+Waterfall methods are still in great usage, the main feature is that the development is done step by step, flowing from a stage to the other. As \cite{Scrum} refers they based on a scheme where "each piece of the project cascade down to the next like a waterfall". The methodology lays out everything using the \textit{Gant charts}. One of the criticism that the authors of Scrum made is related exactly to those charts, that are as complex as wrong. Here is reported a development of a product similar to the one reported in Figure \ref{figscrum} but using a waterfall approach.\\
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{images_folder/waterfall.png}
     \caption{Waterfall product development}
     \label{fig:swaterrddev}
 \end{figure}
-The task is the same described in the Scrum process, the required product is an automatic coffee machine. The team, following the waterfall method splits in sub teams for the first step of components design. The outputs of what in a time manner could be compared to a Scrum Sprint are the ideas on how to full fill the requirements. The next step is the production and unit test of each components. Each team in the example produces and test the assigned components. The output of the second step in the process are the fully completed components. The last step is integration. The teams, integrate the components with the other developed by different groups. Obviously the process is not flawless, because the team only discover at this step how the others developed a certain requirements. At the end the team full fill all the requirements and release a product identical to the one developed following the Scrum methodology.\\ There are, indeed a lot of differences, which favor the Scrum approach.
+The task is the same described in the Scrum process, the required product is an automatic coffee machine. The process is described in Figure \ref{fig:swaterrddev}. The team, following the waterfall method splits in sub teams for the first step of components design. The outputs of what in a time manner could be compared to a Scrum Sprint are the ideas on how to full fill the requirements. The next step is the production and unit test of each components. Each team in the example produces and test the assigned components. The output of the second step in the process are the fully completed components. The last step is integration. The teams, integrate the components with the other developed by different groups. Obviously the process is not flawless, because the team only discover at this step how the others developed a certain requirements. At the end the team full fill all the requirements and release a product identical to the one developed following the Scrum methodology.\\ There are, indeed a lot of differences, which favor the Scrum approach.
 \begin{itemize}
     \item During the whole development process the Waterfall approach has no direct feedback from the stakeholders, no coffee is drank by the team before the product is released. This mean that the first feedback arrives at the end of the development process where, recalling \ref{fig:agilevswaterfall} the cost for a adjustment is higher. 
     \item The team has no way of predicting the correct time that it will take to deliver a product. This can be really vary based on the integration between the different parts designed by the teams. A no fit in this situation would set the team back just for one of the components. 
