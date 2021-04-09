@@ -82,10 +82,10 @@ Tables are composed by fields and record. Field in \gls{SQL} language is synonym
 \subsubsection{Primary key and foreign key}
 The capabilities of creating relations between tables is the basic concept behind relational databases. In order to effectively create data relations the database integrity need to be maintained each time data is added. To ensure that data has no duplicates a mechanism used in SQL is the creation of keys. There are mainly two types of key, primary keys and foreign keys.\\
 Each tables that qualify as a relational tables must have a primary key. The primary key consist of one or more columns whose data contained within is used to uniquely identify each row in the table. A primary key can be though as a memory address, it uniquely identify a location, in which data is stored. The relation between tables does not only pass from primary keys. In the \gls{RDMS} a foreign key is a column or a combination of column that match a primary key in another table. Referring to Figure \ref{fig:dbexample} a primary key is represented by the ID in the \textit{Users} table. The foreign key in this case corresponds to the primary key, because the relation between Users and Time table is done via the \textit{ID} field.
-% First read
 \subsection{Creation of a connection to database on a server}
-the database creation require a storing location for the data. The \gls{RDMS} is the application that stores the database data and executes the SQL commands and queries to manipulate the relational database. Other than that, it also manages and performs all the database operations. In order to have access to a database from all the networked the \gls{TCP/IP} protocol is required. \gls{TCP/IP} (Transmission Control Protocol/Internet Protocol) is a set of protocols developed to allow networked computers to share resources over the network. In order to establish a remote connection to the database instances the protocol require that proper set up of Windows firewall. In order to have  a successful connection a tcp port is assigned to the database in a static manner. 
-This allow to connect every computer connected to the network to connect via the tcp protocol to the port, thus allowing to access the database instance. Accessing the database instance does not mean that the computer can access the data. Inside the database access rights are defined, as already reported in the section related to it.
+The database creation requires a storing location for the data. The \gls{RDMS} is the application that stores the database data and executes the SQL commands and queries to manipulate the relational database. Other than that, it also manages and performs all the database operations. In order to have access to a database from all the networked the \gls{TCP/IP} protocol is required. \gls{TCP/IP} (Transmission Control Protocol/Internet Protocol) is a set of protocols developed to allow networked computers to share resources over the network. In order to establish a remote connection to the database instances the protocol require that proper set up of Windows firewall. In order to have  a successful connection a TCP port is assigned to the database in a static manner. 
+This allows to connect every computer connected to the network to connect via the TCP protocol to the port, thus allowing to access the database instances. Accessing the database instances does not mean that the computer can access the data. Indeed the server itself has specific access right access rights are defined, as already reported in the Subsection 6.1.2.\\
+The scheme defining the access right is reported in Figure \ref{fig:tcpdb}.
 
 
 
@@ -156,10 +156,10 @@ This allow to connect every computer connected to the network to connect via the
 \section{SQLAlchemy}
 \label{sec:SQLACHMEYMSEC}
 \subsection{Object-relational Mapping}
-Object relational mapping is the procedure used to convert between rows in a relational database and object in a programming language \cite{10.1145/1376616.1376773}. The \gls{ORM} sits in between the programmer application and the database and help the programmer abstracting the SQL queries to access, remove and modify the data in the database. 
+Object relational mapping is the procedure used to convert rows in a relational database and object in a programming language \cite{10.1145/1376616.1376773}. The \gls{ORM} sits in between the programmer application and the database and help the programmer abstracting the SQL queries to access, remove and modify the data in the database. 
 \subsection{SQL Alchemy working principle}
-SQLALchemy is a Python package that develop in order to facilitate the job of creating and maintaining database. Instead of writing SQL queries the developer interface with the database using python. It is not to be forgot that the integration of database management in the python environment allow for flexibility in data storage for a wide range of application that alredy run on python. The organization of the tables is done via Python classes and using then the ORM layer to connect the classes with the tables in the database.\\
-SQLAlchemy can be connected to a wide variety of DBMS. To be able to connect the database there is the need of a driver. The function of the driver is the one of translating the SQL queries send by the application to the underlying format the database is using, since in general the database can read different flavours of the SQL language. The scheme of the connection is reported in the following block diagram. 
+SQLALchemy is a Python package developed in order to facilitate the job of creating and maintaining databases. Instead of writing SQL queries the developer interfaces with the database using Python. It is not to be forgotten that the integration of database management in the Python environment allow for flexibility in data storage for a wide range of application that already run on Python. The organization of the tables is done via Python classes and uses the \gls{ORM} layer to connect the classes with the tables in the database.\\
+SQLAlchemy can be connected to a wide variety of \gls{DBMS}. To be able to connect the database there is the need of a driver. The function of the driver is the one of translating the SQL queries send by the application to the underlying format the database is using, since each database reads different flavours of the SQL language. The scheme of the connection is reported in the following block diagram. 
 
 \tikzstyle{block} = [draw, rectangle, text width=2cm, text centered, minimum height=1.2cm, node distance=3cm]
 \begin{figure}[h]
@@ -180,7 +180,7 @@ SQLAlchemy can be connected to a wide variety of DBMS. To be able to connect the
   \caption{ORM layer}
   \label{ormlayer}
 \end{figure}
-The following example, taken from the SQLAlchemy library showcase how the python code is used to create and update values in a table stored in a database. 
+The following example, taken from the SQLAlchemy library showcase how the Python code is used to create and update values in a table stored in a database. 
 
 \lstset{language=Python}
 \lstset{frame=lines}
@@ -188,14 +188,17 @@ The following example, taken from the SQLAlchemy library showcase how the python
 \lstset{label={lst:code_direct}}
 \lstset{basicstyle=\footnotesize}
 \begin{lstlisting}
+# Library imports
 from sqlalchemy import create_engine, MetaData, Table, Column, 
 Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
+# Connection establishment
 Base = declarative_base()
-engine = create_engine('sqlite:///college.db', echo = True)
+engine = create_engine('mssql:///college.db', echo = True)
 Session = sessionmaker(bind=engine)
 
+# Working example
 class User(Base):
      __tablename__ = 'users'
 
@@ -227,7 +230,6 @@ Session.commit()
 Session.delete(user2)
 Session.commit()
 \end{lstlisting}
-Having a flawless interaction between the database and the Python code allow for a better integrated environment. Having a continuous flow of data, originated in the python script and directly, also via the python script send to the database allow for creating a fast updating platform for data analysis. Thanks to the potentiality of the SQL Alchemy library this quest is full filled. 
-\section{Database update mechanism}
+The use of SQLAlchemy allows for a flawless interaction between the data source (build software) part and the data storage part (database). the  Having a continuous flow of data, originated in the Python script and directly, also via the Python script send to the database allow for creating a fast updating platform for data analysis. Thanks to the potentiality of the SQL Alchemy library this quest is full filled. 
 \cleardoublepage
 \end{document}
