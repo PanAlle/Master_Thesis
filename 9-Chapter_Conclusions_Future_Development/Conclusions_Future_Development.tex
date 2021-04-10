@@ -2,24 +2,24 @@
 \begin{document}
 To conclude the work the thesis goal need to be analyzed as an end result of the process. The thesis was composed of three main goals, two of the one were mainly processes related and one project related. 
 
-The analysis of the software development process and of the methodologies related to it has been treated in a lengthy and exhaustive way. The main topic have been discussed with an attention to highlight the part that closely related to the processes that were daily treated during the internship period. Other than that the flow of the thesis resemble the flow of the development followed by \gls{BMW} in the field of software for \gls{ECU}s. 
+The analysis of the software development process and of the methodologies related to it has been treated in a lengthy and exhaustive way. The main topics have been discussed with an attention to highlight the part that closely related to the processes that were daily treated during the internship period. Other than that the flow of the thesis resemble the flow of the development followed by \gls{BMW} in the field of software for \gls{ECU}s. 
 
 The main outcome of this part, that is reported in the initial chapters is a mental model that can be useful to tackle complexity not only in complex problem, such as the one of developing software for \gls{ECU} but also in the one of organizing a big companies such as \gls{BMW}.
 
 In regard to the second part, the one that describe the project of creating a data pipeline, the goal has been partially met. The structure in order to set up a fully working pipeline is completed.\\
-The initial request had indeed no clear idea on how environment, and mainly the structure for the pipeline needed to be. In this regard a good job has been done in defining the automation structure to support the data flow. For what concerns the second requests, the one of having all the data in the dashboard, work still need to be done not only to integrate more data but to create visualization and reports that can give good feedback to the developers.
-The main pros of the implementation are the following:
+The initial request had indeed no clear idea on how the environment, and mainly the structure for the pipeline needed to be. In this regard a good job has been done in defining the automation structure to support the data flow. For what concerns the second requests, the one of having all the data in the dashboard, work still need to be done not only to integrate more data but to create visualization and reports that can give good feedback to the developers.
+The main pros of the actual implementation are the following:
 \begin{itemize}
     \item Definition of a structure and implementation of a working pipeline, even if the full data is not present in the pipeline yet, the basis for implementing more data is there, working and easy to use. 
     \item Focus on scalability, the main characteristic is that each step of the way is highly scalable. This is the main accomplishment from the internship, building scalable environment is key for building things that last.
     \item Storing timestamped and organized data in a single location, with the creation of a database and a connection to the production code the storage of data has been implemented. 
     \item Centralized overview, the developer via the dashboard have a single channel upon which they can search and get information on the status of the software development. 
 \end{itemize}
-The list of good attributes related to the dashboard should not distract from the present flaws in the projects, that need now to be taken into account and further developed. The main problem of the current implementation are:
+The list of good attributes related to the dashboard should not distract from the present flaws in the projects, that need now to be taken into account and further developed. The main problems of the current implementation are:
 \begin{itemize}
-    \item Implementation of more data, in order to take the project to next level, so to have it fully available to all the team that develop the software more data need to implemented in the pipeline. The more data is available the more complete the visualization is going to be.
-    \item High focus on the structure, during the development high focus has been put on choosing a scalable structure for the pipeline. Having a fully defined structure that work is a great accomplishment. Still the focus should now switch on the single step in order to debug every part of the process and make it more robust to random error, that are not allowed in a production environment.
-    \item Time consistency, when data with low update time gets inserted in the pipeline than there is the need to consider if the pipeline can update in a small amount of time, so time update need to become a design constraint. 
+    \item Implementation of more data, in order to take the project to next level, so to have it fully available to all the team that develop the software more data need to be implemented in the pipeline. The more data is available the more complete the visualization is going to be.
+    \item High focus on the structure, during the development high focus has been put on choosing a scalable structure for the pipeline. Having a fully defined structure that work is a great accomplishment. Still the focus should now switch on the single step in order to debug every part of the process and make it more robust to random errors, that are not allowed in a production environment.
+    \item Time consistency, when data with low update frequency gets inserted in the pipeline than there is the need to consider if the pipeline can update in a small amount of time, so time update need to become a design constraint. 
 \end{itemize}
 The project has a solid base upon which start. While there are still open points in the implementation, the current results are inspiring that in a short future the pipeline and the dashboard are going to be in full swing in the production cycle, helping developers in their daily work. 
 \cleardoublepage
