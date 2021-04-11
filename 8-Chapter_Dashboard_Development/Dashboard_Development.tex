@@ -97,9 +97,46 @@ The structure that allows to have a data going through the software to the datab
 Most of the data in the Dashboard has an update periodicity of twenty minutes. This is related to the fact that updates or changes in the software that trigger a rebuild are mainly checked every twenty minutes. This means that the data to store exponentially increases. Therefor having a fast updating mechanism in the classic form, that checks what data is present and update only the data that changes is not feasible, or mostly not needed since in the Dashboard the main focus is on a feedback directed to the current status of the software.\\
 Based on that the update mechanism has been translated to a so-called renew mechanism. The term renew mean that the tables gets fully overwritten every times new data comes in. Thus deleting old data and updating as a bulk the new one.\\
 It needs to be underlined that the storage requirement highlighted at the beginning are still valid. Thus to full-fill this requirement, while keeping the data volume on the "production database" (real time data one) as low as possible a second database instance is created, namely "EA-Dashboard-storage" (Figure \ref{fig:dds}). This database is updated from the "production" database once a day (at night, when the load on servers is lower), creating copies of all the tables and adding time stamping to the data, in order to keep track of the software status not only in a real time  but also by having historic data on software versions. This database is not still connected to any Dashboard or visualization. Therefor is as of today not possible to check the time evolution of the data. 
-\begin{figure}[h]
+
+\begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{images_folder/dual_db.png}
+        \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+            \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+            %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+            
+            %Image [id:dp6531549605845597] 
+            \draw (304.5,185.76) node  {\includegraphics[width=45.75pt,height=48.36pt]{images_folder/database.png}};
+            %Straight Lines [id:da13431673428420954] 
+            \draw    (210,190.14) -- (248,190.14) ;
+            \draw [shift={(250,190.14)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+            %Image [id:dp9896267444942071] 
+            \draw (305,69.76) node  {\includegraphics[width=45pt,height=48.36pt]{images_folder/database.png}};
+            %Shape: Circle [id:dp5880654133635292] 
+            \draw  [line width=1.5]  (89.48,190.86) .. controls (89.48,166.19) and (109.47,146.2) .. (134.14,146.2) .. controls (158.81,146.2) and (178.8,166.19) .. (178.8,190.86) .. controls (178.8,215.53) and (158.81,235.52) .. (134.14,235.52) .. controls (109.47,235.52) and (89.48,215.53) .. (89.48,190.86) -- cycle ;
+            \draw  [line width=1.5]  (124,141.2) .. controls (127.33,143.98) and (130.67,145.64) .. (134,146.2) .. controls (130.67,146.76) and (127.33,148.42) .. (124,151.2) ;
+            \draw  [line width=1.5]  (143,240.2) .. controls (139.67,237.42) and (136.33,235.76) .. (133,235.2) .. controls (136.33,234.64) and (139.67,232.98) .. (143,230.2) ;
+            \draw  [line width=1.5]  (84.98,197.18) .. controls (87.77,193.86) and (89.45,190.53) .. (90.02,187.2) .. controls (90.57,190.53) and (92.21,193.88) .. (94.98,197.22) ;
+            \draw  [line width=1.5]  (183.98,185.18) .. controls (181.21,188.52) and (179.57,191.87) .. (179.02,195.2) .. controls (178.45,191.87) and (176.77,188.54) .. (173.98,185.22) ;
+            %Straight Lines [id:da8621973089643364] 
+            \draw    (305,140.14) -- (305,110.34) ;
+            \draw [shift={(305,108.34)}, rotate = 450] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+            %Image [id:dp3004260800206018] 
+            \draw (478.5,191.17) node  {\includegraphics[width=81.75pt,height=73.24pt]{images_folder/dasboard.png}};
+            %Straight Lines [id:da5647227462310467] 
+            \draw    (361,190.14) -- (399,190.14) ;
+            \draw [shift={(401,190.14)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+            %Curve Lines [id:da8444521437277317] 
+            \draw  [dash pattern={on 4.5pt off 4.5pt}]  (360,71) .. controls (477.81,70.35) and (479.97,70.34) .. (480,128.56) ;
+            \draw [shift={(480,130.34)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+            
+            % Text Node
+            \draw (97,182) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\fontfamily{ptm}\selectfont \textbf{EA - build}}};
+            % Text Node
+            \draw (270,225) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\tiny EA-Dashboard}};
+            % Text Node
+            \draw (265,15) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\tiny EA-Dashboard-storage}};
+            \end{tikzpicture}
     \caption{Double database structure}
     \label{fig:dds}
 \end{figure}
