@@ -72,7 +72,7 @@
 	<{\egroup}%
 }
 \usepackage[nottoc,notlot,notlof]{tocbibind}
-\usepackage[toc]{glossaries}
+% \usepackage[toc]{glossaries}
 \usepackage{longtable}
 \usepackage{float}
 \usepackage{booktabs}
@@ -82,7 +82,7 @@
 \bibliographystyle{unsrtnat}
 \usepackage[numbers]{natbib}
 \usepackage[doublespacing]{setspace}
-\usepackage{glossaries}
+\usepackage[style=super,toc]{glossaries}
 
 
 
@@ -157,19 +157,20 @@
 	
 \titleSal
 \pagestyle{plain}
+\cleardoublepage
 
 \newcommand*\rot{\multicolumn{1}{R{45}{1em}}}
 
 	
-	\newpage
-	
-	\pagenumbering{arabic}
 
+	
+	
 % Acknowledgements	
 \chapter*{}
 \subfile{0-Acknowledgements/Acknowledgements}
 \cleardoublepage
 
+\pagenumbering{arabic}
 % Tables of content
 \tableofcontents
 \cleardoublepage
